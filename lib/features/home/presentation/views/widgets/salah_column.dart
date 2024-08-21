@@ -5,7 +5,7 @@ class SalahColumn extends StatelessWidget {
   final AzanModel azan;
   const SalahColumn({
     super.key,
-    required this.azan, 
+    required this.azan,
   });
 
   @override
@@ -16,7 +16,10 @@ class SalahColumn extends StatelessWidget {
         children: [
           Text(
             azan.title,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .copyWith(color: Colors.white),
           ),
           Icon(azan.icon),
           Text(
@@ -25,7 +28,7 @@ class SalahColumn extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .titleLarge!
-                .copyWith(fontWeight: FontWeight.bold),
+                .copyWith(fontWeight: FontWeight.bold,color: Colors.white),
           ),
         ],
       ),

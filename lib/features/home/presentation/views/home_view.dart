@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key,});
-  
+  const HomeView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +19,8 @@ class HomeView extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Stack(
-                  children: [
-                    const HomeBgImage(),
-                    Padding(
+                const HomeBgImage(),
+                Padding(
                   padding: const EdgeInsets.symmetric(vertical: 40.0),
                   child: Column(
                     children: [
@@ -31,27 +30,21 @@ class HomeView extends StatelessWidget {
                       ),
                       Text(
                         'اذان العشاء بعد 1:50:10',
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: Colors.white),
                       ),
                       const AzanList(),
                     ],
                   ),
                 ),
-                  ],
-                ),
-                const BodyContent(),
               ],
             ),
+            const BodyContent(),
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
-

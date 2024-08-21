@@ -32,6 +32,7 @@ class _AzanListState extends State<AzanList> {
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   AzanModel prayTime = snapShot.data!;
+
                   final List<AzanModel> azan = [
                     AzanModel(
                       title: 'الفجر',
@@ -41,7 +42,7 @@ class _AzanListState extends State<AzanList> {
                     ),
                     AzanModel(
                         title: 'الظهر',
-                        icon:Icons.wb_sunny_outlined,
+                        icon: Icons.wb_sunny_outlined,
                         timings: prayTime.timings,
                         prayTime: prayTime.timings.dhuhr),
                     AzanModel(
@@ -60,9 +61,14 @@ class _AzanListState extends State<AzanList> {
                         timings: prayTime.timings,
                         prayTime: prayTime.timings.isha),
                   ];
-                  return SalahColumn(
-                    azan: azan[index],
-                  );
+                  if (snapShot.hasData) {
+                    return SalahColumn(
+                      azan: azan[index],
+                    );
+                  } else if (snapShot.hasError) {
+                    Text(snapShot.data.toString());
+                  }
+                  return null;
                 },
               );
             },
