@@ -44,9 +44,7 @@ class GetLocationData {
     final List<Placemark> placeMark = await placemarkFromCoordinates(
       position!.latitude,
       position.longitude,
-
     );
     log(placeMark[0].locality.toString());
   }
-
 }

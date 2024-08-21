@@ -16,15 +16,19 @@ class SalahColumn extends StatelessWidget {
         children: [
           Text(
             azan.title,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          Icon(azan.icon),
-          Text(
-            azan.time,
             style: Theme.of(context)
                 .textTheme
                 .titleLarge!
-                .copyWith(fontWeight: FontWeight.bold),
+                .copyWith(color: Colors.white),
+          ),
+          Icon(azan.icon),
+          Text(
+            //?must change later
+            azan.prayTime,
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .copyWith(fontWeight: FontWeight.bold,color: Colors.white),
           ),
         ],
       ),

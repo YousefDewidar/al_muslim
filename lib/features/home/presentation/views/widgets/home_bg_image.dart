@@ -1,4 +1,4 @@
-import 'package:al_muslim/core/utils/images_data.dart';
+import 'package:al_muslim/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class HomeBgImage extends StatelessWidget {
@@ -11,7 +11,7 @@ class HomeBgImage extends StatelessWidget {
     return Image(
       height: MediaQuery.of(context).size.height * .3,
       width: double.infinity,
-      image: const AssetImage(ImageData.kHomeBgImage),
+      image: const AssetImage(Constants.kHomeBgImage),
       fit: BoxFit.cover,
     );
   }

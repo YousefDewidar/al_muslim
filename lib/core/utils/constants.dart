@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Constants {
+  static const String kHomeBgImage = 'assets/images/home_masged.jpg';
+  static const String kBaseUrl = 'https://api.aladhan.com/v1/timingsByCity/';
+
   // background colors
   static Color kBgColLight = const Color(0xffEEE7DD);
   static Color kBgColDark = const Color(0xff001427);

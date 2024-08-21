@@ -1,5 +1,6 @@
+
 import 'package:al_muslim/core/utils/images_data.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/features%20card/feature_card.dart';
 import 'package:flutter/material.dart';
 
 class FeaturesGridView extends StatelessWidget {

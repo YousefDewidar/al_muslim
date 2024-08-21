@@ -17,7 +17,7 @@ class AlMuslim extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'المسلم',
 
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       darkTheme: CustomThemeData.darkData(context),
       theme: CustomThemeData.lightData(context),
       home: const HomeView(),
