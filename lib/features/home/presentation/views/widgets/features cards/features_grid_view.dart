@@ -1,6 +1,6 @@
 
 import 'package:al_muslim/core/utils/images_data.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/feature_card.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
 import 'package:flutter/material.dart';
 
 class FeaturesGridView extends StatelessWidget {
@@ -13,7 +13,7 @@ class FeaturesGridView extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 4.7,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: GridView.count(
           padding: EdgeInsets.zero,
           physics: const NeverScrollableScrollPhysics(),

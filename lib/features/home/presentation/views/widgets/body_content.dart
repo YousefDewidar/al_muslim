@@ -1,6 +1,7 @@
-import 'package:al_muslim/features/home/presentation/views/widgets/features_grid_view.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/quran_card.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/routine_track_card.dart';
+import 'package:al_muslim/core/widgets/space.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/features_grid_view.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/quran_card.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/routine_track_card.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/random_card.dart';
 import 'package:flutter/material.dart';
 
@@ -11,16 +12,15 @@ class BodyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        children: [
-          QuranCard(),
-          FeaturesGridView(),
-          RoutineTrackCard(),
-          RandomCard(),
-          
-        ],
-      ),
+    return const Column(
+      children: [
+        SpaceV(2),
+        QuranCard(),
+        FeaturesGridView(),
+        SpaceV(3),
+        RoutineTrackCard(),
+        RandomCard(),
+      ],
     );
   }
 }

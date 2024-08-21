@@ -11,7 +11,7 @@ class QuranCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Card(
         child: Container(
           height: MediaQuery.of(context).size.width / 5,

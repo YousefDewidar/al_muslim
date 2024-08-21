@@ -21,10 +21,10 @@ class _RandomCardState extends State<RandomCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * .2,
+      height: MediaQuery.of(context).size.height * .21,
       width: MediaQuery.of(context).size.width * 1,
       child: Card(
-        margin: const EdgeInsets.all(20),
+        margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
         child: Column(
           children: [
             Row(

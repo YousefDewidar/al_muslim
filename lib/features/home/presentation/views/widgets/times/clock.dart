@@ -45,27 +45,20 @@ class _ClockViewState extends State<ClockView> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          CircularPercentIndicator(
-            radius: 50.0,
-            lineWidth: 5.0,
-            percent: indicatorVal,
-            circularStrokeCap: CircularStrokeCap.round,
-            progressColor: const Color.fromARGB(255, 250, 223, 161),
-            backgroundColor: Colors.orange,
-          ),
-          Text(
-            time(),
-            style: const TextStyle(
-              fontSize: 20,
-              color: Color.fromARGB(255, 250, 223, 161),
-            ),
-          ),
-        ],
+    return CircularPercentIndicator(
+      center: Text(
+        time(),
+        style: const TextStyle(
+          fontSize: 20,
+          color: Color.fromARGB(255, 250, 223, 161),
+        ),
       ),
+      radius: 50.0,
+      lineWidth: 5.0,
+      percent: indicatorVal,
+      circularStrokeCap: CircularStrokeCap.round,
+      progressColor: const Color.fromARGB(255, 250, 223, 161),
+      backgroundColor: Colors.orange,
     );
   }
 }
