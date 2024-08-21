@@ -1,9 +1,15 @@
+
+import 'package:al_muslim/core/helper/location.dart';
+
 import 'package:al_muslim/core/themes/theme_data.dart';
-import 'package:al_muslim/features/home/presentation/view/home_view.dart';
+
 import 'package:flutter/material.dart';
 
-void main() {
+import 'features/home/presentation/views/home_view.dart';
+
+void main() async{
   runApp(const AlMuslim());
+  GetLocationData().getLocation(position: await Location().getCurrentLocation())!;
 }
 
 class AlMuslim extends StatelessWidget {
@@ -14,6 +20,7 @@ class AlMuslim extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'المسلم',
+
       themeMode: ThemeMode.dark,
       darkTheme: CustomThemeData.darkData(context),
       theme: CustomThemeData.lightData(context),
