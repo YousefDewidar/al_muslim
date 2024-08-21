@@ -1,7 +1,7 @@
 import 'package:al_muslim/features/home/presentation/views/widgets/azan_list.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/body_content.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/clock.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/home_bg_image.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/time_of_now.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,7 +10,7 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String time = DateFormat('hh:mm').format(DateTime.now());
+    // String time = DateFormat('hh:mm').format(DateTime.now());
     return Column(
       children: [
         Stack(
@@ -20,7 +20,11 @@ class HomeViewBody extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 40.0),
               child: Column(
                 children: [
-                  TimeofNow(time: time),
+                  const SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: ClockView(),
+                      ),
                   const SizedBox(
                     height: 10,
                   ),
