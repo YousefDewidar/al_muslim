@@ -1,7 +1,11 @@
+import 'package:al_muslim/core/helper/location.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'features/home/presentation/views/home_view.dart';
+
+void main() async{
   runApp(const AlMuslim());
+  GetLocationData().getLocation(position: await Location().getCurrentLocation())!;
 }
 
 class AlMuslim extends StatelessWidget {
@@ -13,7 +17,7 @@ class AlMuslim extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'المسلم',
       theme: ThemeData(),
-      home: const Scaffold(),
+      home:const HomeView(),
     );
   }
 }
