@@ -1,10 +1,6 @@
-
 import 'package:al_muslim/core/helper/location.dart';
-
 import 'package:al_muslim/core/themes/theme_data.dart';
-
 import 'package:flutter/material.dart';
-
 import 'features/home/presentation/views/home_view.dart';
 
 void main() async{

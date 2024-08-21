@@ -1,3 +1,5 @@
+import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/features_grid_view.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/quran_card.dart';
 import 'package:flutter/material.dart';
 
 class BodyContent extends StatelessWidget {
@@ -17,6 +19,12 @@ class BodyContent extends StatelessWidget {
           topRight: Radius.circular(50),
           topLeft: Radius.circular(50),
         ),
+      ),
+      child: const Column(
+        children: [
+          QuranCard(),
+          FeaturesGridView(),
+        ],
       ),
     );
   }
