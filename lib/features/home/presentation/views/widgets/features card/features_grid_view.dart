@@ -1,6 +1,6 @@
 
 import 'package:al_muslim/core/utils/images_data.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/feature_card.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/features%20card/feature_card.dart';
 import 'package:flutter/material.dart';
 
 class FeaturesGridView extends StatelessWidget {
@@ -18,7 +18,7 @@ class FeaturesGridView extends StatelessWidget {
           padding: EdgeInsets.zero,
           physics: const NeverScrollableScrollPhysics(),
           crossAxisCount: 4,
-          children: [
+          children: const [
             FeatureCard(title: 'الأحاديث', imagePath: ImageData.book),
             FeatureCard(title: 'الصلاة', imagePath: ImageData.prayTime),
             FeatureCard(title: 'الأدعية', imagePath: ImageData.du3aa),

@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:al_muslim/core/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class RandomCard extends StatefulWidget {
@@ -39,6 +38,7 @@ class _RandomCardState extends State<RandomCard> {
                       if (ayah == ayat.length) {
                         ayah = 0;
                       }
+                      log(ayah.toString());
                       setState(() {});
                     },
                     child: const CircleAvatar(
@@ -47,10 +47,6 @@ class _RandomCardState extends State<RandomCard> {
                       child: Icon(Icons.replay),
                     ),
                   ),
-                ),
-                Text(
-                  'رسالتك اليوميه',
-                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -63,7 +59,6 @@ class _RandomCardState extends State<RandomCard> {
                 ),
               ],
             ),
-            const SpaceV(10),
             Text(
               textAlign: TextAlign.center,
               ayat[ayah],

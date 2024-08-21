@@ -31,7 +31,7 @@ class LandingView extends StatelessWidget {
                 height: 50,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: ()  {
+                  onPressed: () {
                     Location().requestPermission();
                   },
                   style: ButtonStyle(

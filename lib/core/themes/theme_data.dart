@@ -6,13 +6,7 @@ class CustomThemeData {
   static ThemeData darkData(context) {
     return ThemeData(
         scaffoldBackgroundColor: Constants.kBgColDark,
-        textTheme: GoogleFonts.amiriTextTheme(Theme.of(context)
-            .textTheme
-            .copyWith(
-                titleLarge: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(color: Colors.black))),
+        textTheme: GoogleFonts.amiriTextTheme(Theme.of(context).textTheme),
         cardTheme: CardTheme(
           color: Constants.kPrimaryColDark,
         ),
@@ -35,13 +29,7 @@ class CustomThemeData {
   static ThemeData lightData(context) {
     return ThemeData(
       scaffoldBackgroundColor: Constants.kBgColLight,
-      textTheme: GoogleFonts.amiriTextTheme(Theme.of(context)
-          .textTheme
-          .copyWith(
-              titleLarge: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(color: Colors.black))),
+      textTheme: GoogleFonts.amiriTextTheme(Theme.of(context).textTheme),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           foregroundColor: const WidgetStatePropertyAll(Colors.white),
