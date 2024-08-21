@@ -61,6 +61,9 @@ class _AzanListState extends State<AzanList> {
                         timings: prayTime.timings,
                         prayTime: prayTime.timings.isha),
                   ];
+                  if (snapShot.data == null) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
                   if (snapShot.hasData) {
                     return SalahColumn(
                       azan: azan[index],
