@@ -1,9 +1,10 @@
+
 import 'package:al_muslim/features/home/presentation/views/widgets/azan_list.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/body_content.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/clock.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/home_bg_image.dart';
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});

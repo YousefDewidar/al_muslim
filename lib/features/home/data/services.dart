@@ -1,4 +1,4 @@
-import 'package:al_muslim/core/utils/constants.dart';
+import 'package:al_muslim/core/utils/strings.dart';
 import 'package:al_muslim/features/home/data/model/azan_model.dart';
 import 'package:dio/dio.dart';
 
@@ -8,7 +8,7 @@ class AzanServices {
   late DateHijri date;
   AzanServices() {
     BaseOptions options = BaseOptions(
-      baseUrl: Constants.kBaseUrl,
+      baseUrl: ConstStrings.kBaseUrl,
       connectTimeout: const Duration(seconds: 20),
       receiveTimeout: const Duration(seconds: 20),
     );

@@ -3,10 +3,20 @@ import 'package:al_muslim/features/home/data/services.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/salah_column.dart';
 import 'package:flutter/material.dart';
 
-class AzanList extends StatelessWidget {
+class AzanList extends StatefulWidget {
   const AzanList({
     super.key,
   });
+  @override
+  State<AzanList> createState() => _AzanListState();
+}
+
+class _AzanListState extends State<AzanList> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,38 +31,39 @@ class AzanList extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
-                  if (!snapShot.hasData) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapShot.hasData) {
-                    AzanModel prayTime = snapShot.data!;
-                    final List<AzanModel> azan = [
-                      AzanModel(
-                        title: 'الفجر',
-                        icon: Icons.cloud,
-                        prayTime: prayTime.timings.fajr,
+                  AzanModel prayTime = snapShot.data!;
+                  final List<AzanModel> azan = [
+                    AzanModel(
+                      title: 'الفجر',
+                      icon: Icons.cloud,
+                      prayTime: prayTime.timings.fajr,
+                      timings: prayTime.timings,
+                    ),
+                    AzanModel(
+                        title: 'الظهر',
+                        icon: Icons.wb_sunny_outlined,
                         timings: prayTime.timings,
-                      ),
-                      AzanModel(
-                          title: 'الظهر',
-                          icon: Icons.wb_sunny_outlined,
-                          timings: prayTime.timings,
-                          prayTime: prayTime.timings.dhuhr),
-                      AzanModel(
-                          title: 'العصر',
-                          icon: Icons.sunny,
-                          timings: prayTime.timings,
-                          prayTime: prayTime.timings.asr),
-                      AzanModel(
-                          title: 'المغرب',
-                          icon: Icons.nights_stay_outlined,
-                          timings: prayTime.timings,
-                          prayTime: prayTime.timings.maghrib),
-                      AzanModel(
-                          title: 'العشاء',
-                          icon: Icons.nightlight_outlined,
-                          timings: prayTime.timings,
-                          prayTime: prayTime.timings.isha),
-                    ];
+                        prayTime: prayTime.timings.dhuhr),
+                    AzanModel(
+                        title: 'العصر',
+                        icon: Icons.sunny,
+                        timings: prayTime.timings,
+                        prayTime: prayTime.timings.asr),
+                    AzanModel(
+                        title: 'المغرب',
+                        icon: Icons.nights_stay_outlined,
+                        timings: prayTime.timings,
+                        prayTime: prayTime.timings.maghrib),
+                    AzanModel(
+                        title: 'العشاء',
+                        icon: Icons.nightlight_outlined,
+                        timings: prayTime.timings,
+                        prayTime: prayTime.timings.isha),
+                  ];
+                  if (snapShot.data == null) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snapShot.hasData) {
                     return SalahColumn(
                       azan: azan[index],
                     );
