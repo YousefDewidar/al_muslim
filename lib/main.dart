@@ -1,3 +1,5 @@
+import 'package:al_muslim/core/themes/theme_data.dart';
+import 'package:al_muslim/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,8 +14,10 @@ class AlMuslim extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'المسلم',
-      theme: ThemeData(),
-      home: const Scaffold(),
+      themeMode: ThemeMode.dark,
+      darkTheme: CustomThemeData.darkData(context),
+      theme: CustomThemeData.lightData(context),
+      home: const HomeView(),
     );
   }
 }

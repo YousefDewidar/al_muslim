@@ -14,6 +14,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   dio: ^5.6.0
   flutter_native_splash: ^2.4.1
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +29,7 @@ flutter:
   assets:
     - assets/images/
     - assets/logo/
+    - assets/icons/
 
   # fonts:
   #   - family: Schyler
