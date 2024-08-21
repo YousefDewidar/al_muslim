@@ -1,0 +1,24 @@
+import 'package:al_muslim/core/utils/strings.dart';
+import 'package:al_muslim/features/home/data/model/azan_model.dart';
+import 'package:dio/dio.dart';
+
+class AzanServices {
+  late Dio dio;
+  late AzanModel prayTime;
+  AzanServices() {
+    BaseOptions options = BaseOptions(
+      baseUrl: ConstStrings.kBaseUrl,
+      connectTimeout: const Duration(seconds: 20),
+      receiveTimeout: const Duration(seconds: 20),
+    );
+    dio = Dio(options);
+  }
+  Future<AzanModel> getAzanTime() async {
+    Response response = await dio.get(
+      'https://api.aladhan.com/v1/timingsByCity/21-08-2024?city=cairo&country=egypt&method=8',
+    );
+      AzanModel azan =AzanModel.fromJson(response.data);
+      return azan;
+  
+  }
+}

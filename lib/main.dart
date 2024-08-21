@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 
 import 'features/home/presentation/views/home_view.dart';
 
-void main() async{
+void main() async {
   runApp(const AlMuslim());
-  GetLocationData().getLocation(position: await Location().getCurrentLocation())!;
+  GetLocationData()
+      .getLocation(position: await Location().getCurrentLocation())!;
 }
 
 class AlMuslim extends StatelessWidget {
@@ -17,7 +18,7 @@ class AlMuslim extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'المسلم',
       theme: ThemeData(),
-      home:const HomeView(),
+      home: const HomeView(),
     );
   }
 }

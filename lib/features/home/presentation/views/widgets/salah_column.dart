@@ -5,7 +5,7 @@ class SalahColumn extends StatelessWidget {
   final AzanModel azan;
   const SalahColumn({
     super.key,
-    required this.azan,
+    required this.azan, 
   });
 
   @override
@@ -20,7 +20,8 @@ class SalahColumn extends StatelessWidget {
           ),
           Icon(azan.icon),
           Text(
-            azan.time,
+            //?must change later
+            azan.prayTime,
             style: Theme.of(context)
                 .textTheme
                 .titleLarge!
