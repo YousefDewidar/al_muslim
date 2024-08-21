@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:al_muslim/core/utils/strings.dart';
 import 'package:flutter/material.dart';

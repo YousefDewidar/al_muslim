@@ -1,9 +1,9 @@
+import 'package:al_muslim/clock.dart';
+import 'package:al_muslim/features/home/data/services.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/azan_list.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/body_content.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/home_bg_image.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/time_of_now.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String time = DateFormat('hh:mm').format(DateTime.now());
+    // String time = DateFormat('hh:mm').format(DateTime.now());
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -21,15 +21,19 @@ class HomeView extends StatelessWidget {
               children: [
                 const HomeBgImage(),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 40.0),
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: Column(
                     children: [
-                      TimeofNow(time: time),
+                      const SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: ClockView(),
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
                       Text(
-                        'اذان العشاء بعد 1:50:10',
+                        '12 صفر ',
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge!

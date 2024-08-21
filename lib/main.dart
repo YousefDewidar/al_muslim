@@ -1,11 +1,9 @@
-
 import 'package:al_muslim/core/helper/location.dart';
 
 import 'package:al_muslim/core/themes/theme_data.dart';
+import 'package:al_muslim/features/home/presentation/views/home_view.dart';
 
 import 'package:flutter/material.dart';
-
-import 'features/home/presentation/views/home_view.dart';
 
 void main() async {
   runApp(const AlMuslim());
@@ -21,7 +19,6 @@ class AlMuslim extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'المسلم',
-
       themeMode: ThemeMode.light,
       darkTheme: CustomThemeData.darkData(context),
       theme: CustomThemeData.lightData(context),

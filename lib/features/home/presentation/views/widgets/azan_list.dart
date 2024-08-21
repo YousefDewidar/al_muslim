@@ -32,7 +32,6 @@ class _AzanListState extends State<AzanList> {
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   AzanModel prayTime = snapShot.data!;
-
                   final List<AzanModel> azan = [
                     AzanModel(
                       title: 'الفجر',
