@@ -14,9 +14,13 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_native_splash: ^2.4.1
+
   geocoding: ^3.0.0
   geolocator: ^13.0.1
   intl: ^0.19.0
+
+  google_fonts: ^6.2.1
+
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
@@ -30,6 +34,10 @@ flutter:
   assets:
     - assets/images/
     - assets/logo/
+
+    - assets/icons/
+
+
   # fonts:
   #   - family: Schyler
   #     fonts:
