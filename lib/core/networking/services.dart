@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiServices {
-  Dio dio;
-  ApiServices(this.dio);
+  Dio dio=Dio();
 
   void setBaseUrl({required String baseUrl}) {
     BaseOptions options = BaseOptions(
@@ -12,12 +11,12 @@ class ApiServices {
     );
     dio = Dio(options);
   }
-
   getData({required String endPoint}) async {
     Response response = await dio.get(
       endPoint,
     );
-
     return response.data;
   }
 }
+
+

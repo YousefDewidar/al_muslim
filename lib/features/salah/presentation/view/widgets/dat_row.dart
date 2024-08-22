@@ -1,3 +1,4 @@
+import 'package:al_muslim/core/helper/lang_converter.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,13 @@ class DayRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String dayInAr = LangConverter().convertToArabic(int.parse(dayData.date.dayHnum));
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Column(
           children: [
-            Text('${dayData.date.dayHnum} ',
+            Text(dayInAr,
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge!

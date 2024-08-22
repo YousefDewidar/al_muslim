@@ -1,4 +1,5 @@
 import 'package:al_muslim/core/utils/images_data.dart';
+import 'package:al_muslim/features/athkar/views/azkar_view.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,9 @@ class FeaturesGridView extends StatelessWidget {
             FeatureCard(
               title: 'الأذكار',
               imagePath: ImageData.pray,
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const AzkarView());
+              },
             ),
             FeatureCard(
               title: 'الاعدادات',
