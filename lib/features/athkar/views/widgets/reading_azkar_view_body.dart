@@ -18,9 +18,9 @@ class ReadingAzkarViewBody extends StatelessWidget {
             List<AzkarModel> azkar = snapShot.data!;
               return Column(
                 children: [
-                  AzkarAppBar(
-                    azkarType: azkar[0].category,
-                    azkarAbout: 'تعزز السكينه والطمانينه ف القلب ',
+                  CustomAppBar(
+                    header: azkar[0].category,
+                    desc: 'تعزز السكينه والطمانينه ف القلب ',
                   ),
                   Expanded(
                     child: ListView.builder(
