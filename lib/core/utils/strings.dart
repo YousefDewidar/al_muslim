@@ -1,4 +1,18 @@
 class ConstStrings {
   static const String kHomeBgImage = 'assets/images/home_masged.jpg';
-  static const String aladhanBaseUrl = 'https://api.aladhan.com/v1/timingsByCity/';
+  static const String aladhanBaseUrl =
+      'https://api.aladhan.com/v1/timingsByCity/';
+  static List<String> azkar = [
+    'اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ على نَبِيِّنَا مُحمَّد',
+    'الْحَمْدُ للّهِ رَبِّ الْعَالَمِينَ ',
+    'الْحَمْدُ لِلَّهِ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ.',
+    'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ ، سُبْحَانَ اللَّهِ الْعَظِيمِ',
+    'سُبْحَانَ اللهِ العَظِيمِ وَبِحَمْدِهِ ',
+    'سُبْحـانَ اللهِ وَبِحَمْـدِهِ',
+    'لا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ',
+    'لَا إِلَهَ إِلَّا اللَّهُ',
+    'الْلَّهُ أَكْبَرُ ',
+    'أستغفر الله ',
+    'أسْتَغْفِرُ اللهَ وَأتُوبُ إلَيْهِ',
+  ];
 }

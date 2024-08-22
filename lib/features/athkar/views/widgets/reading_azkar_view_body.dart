@@ -5,36 +5,37 @@ import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion
 import 'package:flutter/material.dart';
 
 class ReadingAzkarViewBody extends StatelessWidget {
-  final int pageid;
-  const ReadingAzkarViewBody({super.key, required this.pageid});
+  const ReadingAzkarViewBody({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const CustomAppBar(
-          header: 'اذكار الصباح',
-          desc: 'تعزز السكينه والطمانينه ف القلب ',
-        ),
-        Expanded(
-          child: FutureBuilder<List<AzkarModel>>(
-              future: AzkarServices().getAzkar(categoryType: pageid),
-              builder: (context, snapShot) {
-                if (snapShot.hasData) {
-                  List<AzkarModel> azkar = snapShot.data!;
-                  return ListView.builder(
-                    itemCount: azkar.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ZekrCard(azkar: azkar[index]);
-                    },
-                  );
-                } else {
-                  return const Text('');
-                }
-              }),
-        ),
-      ],
-    );
+    return FutureBuilder<List<AzkarModel>>(
+        future: AzkarServices().getAzkar(),
+        builder: (context, snapShot) {
+          if (snapShot.hasData) {
+            List<AzkarModel> azkar = snapShot.data!;
+              return Column(
+                children: [
+                  CustomAppBar(
+                    header: azkar[0].category,
+                    desc: 'تعزز السكينه والطمانينه ف القلب ',
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: azkar.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ZekrCard(azkar: azkar[index]);
+                      },
+                    ),
+                  ),
+                ],
+              );
+          } else {
+            return const Text('');
+          }
+        });
   }
 }
 
@@ -51,7 +52,7 @@ class _ZekrCardState extends State<ZekrCard> {
   int count = 0;
   @override
   void initState() {
-    count = int.parse(widget.azkar.count);
+    count = widget.azkar.count;
     super.initState();
   }
 
@@ -75,20 +76,12 @@ class _ZekrCardState extends State<ZekrCard> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                widget.azkar.conten,
+                widget.azkar.text,
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
                     .labelLarge!
                     .copyWith(fontFamily: 'IBMPlex', fontSize: 20),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                widget.azkar.description,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontFamily: 'IBMPlex'),
               ),
             ),
             Row(
