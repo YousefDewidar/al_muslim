@@ -14,7 +14,8 @@ class SunahTable extends StatelessWidget {
           Table(
             border: TableBorder.all(
               borderRadius: BorderRadius.circular(16),
-              color: Theme.of(context).iconTheme.color!.withOpacity(.4),
+              color:
+                  Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(.7),
             ),
             children: [
               // head

@@ -1,13 +1,12 @@
-import 'package:al_muslim/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class AzkarAppBar extends StatelessWidget {
-  final String azkarType;
-  final String azkarAbout;
-  const AzkarAppBar({
+class CustomAppBar extends StatelessWidget {
+  final String header;
+  final String desc;
+  const CustomAppBar({
     super.key,
-    required this.azkarType,
-    required this.azkarAbout,
+    required this.header,
+    required this.desc,
   });
 
   @override
@@ -18,7 +17,7 @@ class AzkarAppBar extends StatelessWidget {
         bottomRight: Radius.circular(40),
       ),
       elevation: 3,
-      shadowColor: Colors.orange,
+      shadowColor: Colors.orange.withOpacity(.6),
       child: Stack(
         children: [
           Container(
@@ -26,18 +25,19 @@ class AzkarAppBar extends StatelessWidget {
             height: MediaQuery.of(context).size.height * .13,
             width: double.infinity,
             decoration: BoxDecoration(
-                color: Constants.kPrimaryColLight,
+                color: Theme.of(context).cardTheme.color!.withOpacity(.8),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(40),
                   bottomRight: Radius.circular(40),
                 )),
+            // Title
             child: Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      azkarType,
+                      header,
                       style: Theme.of(context)
                           .textTheme
                           .headlineLarge!
@@ -47,16 +47,17 @@ class AzkarAppBar extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: Text(azkarAbout,
+                  child: Text(desc,
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
-                          .copyWith(color: Colors.grey)),
+                          .copyWith(color: Colors.black45)),
                 ),
               ],
             ),
           ),
+          // Icon Back
           Positioned(
             top: 10,
             right: 10,
@@ -65,8 +66,8 @@ class AzkarAppBar extends StatelessWidget {
                 Navigator.pop(context);
               },
               child: Container(
-                height: 40,
-                width: 40,
+                height: 37,
+                width: 37,
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(10)),

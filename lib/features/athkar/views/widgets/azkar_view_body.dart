@@ -1,5 +1,5 @@
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
-import 'package:al_muslim/features/athkar/views/widgets/azkar_app_bar.dart';
+import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/athkar/views/widgets/azkar_title_card.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +10,9 @@ class AzkarViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const AzkarAppBar(
-            azkarType: 'الاذكار',
-            azkarAbout: ' اذكار لمختلف المواقف والاحداث فى \nالحياه اليوميه,'),
+        const CustomAppBar(
+            header: 'الاذكار',
+            desc: 'اذكار لمختلف المواقف والاحداث فى الحياه اليوميه'),
         Expanded(
           child: FutureBuilder(
               future: AzkarServices().getAllCategory(),
@@ -21,7 +21,10 @@ class AzkarViewBody extends StatelessWidget {
                   return ListView.builder(
                     itemCount: snapShot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return  AzkarTitleCard(categorytTitle: snapShot.data![index], pageid: index,);
+                      return AzkarTitleCard(
+                        categorytTitle: snapShot.data![index],
+                        pageid: index,
+                      );
                     },
                   );
                 } else {

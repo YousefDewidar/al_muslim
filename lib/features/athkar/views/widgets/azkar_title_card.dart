@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 class AzkarTitleCard extends StatelessWidget {
   final String categorytTitle;
   final int pageid;
-  const AzkarTitleCard({super.key, required this.categorytTitle, required this.pageid});
+  const AzkarTitleCard(
+      {super.key, required this.categorytTitle, required this.pageid});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class AzkarTitleCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
       child: GestureDetector(
         onTap: () {
-          Get.to(() =>  ReadingAzkarView(
+          Get.to(() => ReadingAzkarView(
                 pageid: pageid,
               ));
         },

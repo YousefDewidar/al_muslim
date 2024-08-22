@@ -1,6 +1,6 @@
 import 'package:al_muslim/features/athkar/data/azkar_model.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
-import 'package:al_muslim/features/athkar/views/widgets/azkar_app_bar.dart';
+import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion_button.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +12,9 @@ class ReadingAzkarViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const AzkarAppBar(
-          azkarType: 'اذكار الصباح',
-          azkarAbout: 'تعزز السكشنه والطمانينه ف القلب ',
+        const CustomAppBar(
+          header: 'اذكار الصباح',
+          desc: 'تعزز السكينه والطمانينه ف القلب ',
         ),
         Expanded(
           child: FutureBuilder<List<AzkarModel>>(
