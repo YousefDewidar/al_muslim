@@ -1,7 +1,8 @@
-
 import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
+import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FeaturesGridView extends StatelessWidget {
   const FeaturesGridView({
@@ -19,14 +20,48 @@ class FeaturesGridView extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           crossAxisCount: 4,
           children: [
-            FeatureCard(title: 'الأحاديث', imagePath: ImageData.book),
-            FeatureCard(title: 'الصلاة', imagePath: ImageData.prayTime),
-            FeatureCard(title: 'الأدعية', imagePath: ImageData.du3aa),
-            FeatureCard(title: 'الأذكار', imagePath: ImageData.pray),
-            FeatureCard(title: 'الاعدادات', imagePath: ImageData.sitting),
-            FeatureCard(title: 'المفضلة', imagePath: ImageData.bookmark),
-            FeatureCard(title: 'القبلة', imagePath: ImageData.qibla),
-            FeatureCard(title: 'السبحة', imagePath: ImageData.thbha),
+            FeatureCard(
+              title: 'الأحاديث',
+              imagePath: ImageData.book,
+              onTap: () {},
+            ),
+            FeatureCard(
+              title: 'الصلاة',
+              imagePath: ImageData.prayTime,
+              onTap: () {
+                Get.to(() => const SalahView());
+              },
+            ),
+            FeatureCard(
+              title: 'الأدعية',
+              imagePath: ImageData.du3aa,
+              onTap: () {},
+            ),
+            FeatureCard(
+              title: 'الأذكار',
+              imagePath: ImageData.pray,
+              onTap: () {},
+            ),
+            FeatureCard(
+              title: 'الاعدادات',
+              imagePath: ImageData.sitting,
+              onTap: () {},
+            ),
+            FeatureCard(
+              title: 'المفضلة',
+              imagePath: ImageData.bookmark,
+              onTap: () {},
+            ),
+            FeatureCard(
+              title: 'القبلة',
+              imagePath: ImageData.qibla,
+              onTap: () {},
+            ),
+            FeatureCard(
+              title: 'السبحة',
+              imagePath: ImageData.thbha,
+              onTap: () {},
+            ),
           ],
         ),
       ),

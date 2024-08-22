@@ -1,5 +1,5 @@
 import 'package:al_muslim/features/home/data/model/azan_model.dart';
-import 'package:al_muslim/features/home/data/services.dart';
+import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/times/salah_column.dart';
 import 'package:flutter/material.dart';
 
