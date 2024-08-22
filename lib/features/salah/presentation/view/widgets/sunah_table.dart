@@ -8,13 +8,14 @@ class SunahTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 75, left: 16, right: 16),
+      padding: const EdgeInsets.only(top: 25, left: 16, right: 16),
       child: Column(
         children: [
           Table(
             border: TableBorder.all(
               borderRadius: BorderRadius.circular(16),
-              color: Theme.of(context).iconTheme.color!.withOpacity(.4),
+              color:
+                  Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(.7),
             ),
             children: [
               // head

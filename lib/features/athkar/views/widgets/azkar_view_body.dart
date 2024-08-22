@@ -1,6 +1,6 @@
 import 'package:al_muslim/features/athkar/data/azkar_model.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
-import 'package:al_muslim/features/athkar/views/widgets/azkar_app_bar.dart';
+import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/athkar/views/widgets/azkar_title_card.dart';
 import 'package:flutter/material.dart';
 

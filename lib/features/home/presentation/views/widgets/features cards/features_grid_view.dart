@@ -1,5 +1,6 @@
 import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/features/athkar/views/azkar_view.dart';
+import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
 import 'package:al_muslim/features/qubla/presentation/views/qiblah_compass_view_body.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
@@ -26,7 +27,9 @@ class FeaturesGridView extends StatelessWidget {
             FeatureCard(
               title: 'الأحاديث',
               imagePath: ImageData.book,
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const HadithView());
+              },
             ),
             FeatureCard(
               title: 'الصلاة',

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AzkarTitleCard extends StatelessWidget {
-  final String categorytTitle;
-  const AzkarTitleCard({super.key, required this.categorytTitle,});
+  const AzkarTitleCard({super.key,});
+
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,6 @@ class AzkarTitleCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Get.to(() =>  const ReadingAzkarView(
-              ));
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
