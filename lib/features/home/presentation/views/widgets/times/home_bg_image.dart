@@ -1,7 +1,10 @@
+import 'package:al_muslim/core/helper/lang_converter.dart';
 import 'package:al_muslim/core/utils/strings.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/times/azan_list.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/times/clock.dart';
+import 'package:al_muslim/features/salah/data/model/day_data.dart';
+import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:flutter/material.dart';
 
 class HomeBgImage extends StatelessWidget {
@@ -19,27 +22,58 @@ class HomeBgImage extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SpaceV(5),
-          const SizedBox(
+          SpaceV(5),
+          SizedBox(
             height: 100,
             width: 100,
             child: ClockView(),
           ),
-          const SpaceV(10),
-          Text(
-            '12 صفر ',
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge!
-                .copyWith(color: Colors.white),
-          ),
-          const SpaceV(10),
-          const AzanList(),
+          SpaceV(10),
+          HijriDate(),
+          SpaceV(10),
+          AzanList(),
         ],
       ),
     );
+  }
+}
+
+class HijriDate extends StatelessWidget {
+  const HijriDate({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: SalahServices().getDayData(),
+        builder: (context, snapShot) {
+          return handelDate(snapShot, context);
+        });
+  }
+
+  Widget handelDate(AsyncSnapshot<DayData> snapShot, BuildContext context) {
+    if (snapShot.hasData) {
+      DayData date = snapShot.data!;
+      String month = date.date.monthHName;
+      String dayInAr =
+          LangConverter().convertToArabic(int.parse(date.date.dayHnum));
+      String yearInAr =
+          LangConverter().convertToArabic(int.parse(date.date.hijriYear));
+      return Text(
+        dayInAr + month + yearInAr,
+        style: Theme.of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(color: Colors.white),
+      );
+    } else if (snapShot.hasError) {
+      return const Text('التاريخ غير متوفر ');
+    } else {
+      return const Center(child: CircularProgressIndicator());
+    }
   }
 }
