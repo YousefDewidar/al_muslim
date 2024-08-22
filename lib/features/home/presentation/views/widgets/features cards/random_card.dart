@@ -1,5 +1,5 @@
-
 import 'package:al_muslim/core/widgets/space.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion_button.dart';
 import 'package:flutter/material.dart';
 
 class RandomCard extends StatefulWidget {
@@ -24,40 +24,35 @@ class _RandomCardState extends State<RandomCard> {
       height: MediaQuery.of(context).size.height * .21,
       width: MediaQuery.of(context).size.width * 1,
       child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      ayah++;
-                      if (ayah == ayat.length) {
-                        ayah = 0;
-                      }
-                      setState(() {});
-                    },
-                    child: const CircleAvatar(
-                      backgroundColor: Color(0xff3d7085),
-                      radius: 20,
-                      child: Icon(Icons.replay),
-                    ),
-                  ),
-                ),
+                    padding: const EdgeInsets.all(10.0),
+                    child: CirculeActionButton(
+                        color: const Color(0xff3d7085),
+                        icon: Icons.replay,
+                        radius: 20,
+                        onTap: () {
+                          ayah++;
+                          if (ayah == ayat.length) {
+                            ayah = 0;
+                          }
+                          setState(() {});
+                        })),
                 Text(
                   'رسالتك اليوميه',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: GestureDetector(
-                    child: const CircleAvatar(
-                        backgroundColor: Colors.orange,
-                        radius: 20,
-                        child: Icon(Icons.share)),
+                const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: CirculeActionButton(
+                    color: Colors.orange,
+                    icon: Icons.share,
+                    radius: 20,
                   ),
                 ),
               ],
@@ -74,3 +69,4 @@ class _RandomCardState extends State<RandomCard> {
     );
   }
 }
+

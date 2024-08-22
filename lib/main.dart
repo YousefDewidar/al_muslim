@@ -20,7 +20,7 @@ class AlMuslim extends StatelessWidget {
       transitionDuration: const Duration(milliseconds: 400),
       debugShowCheckedModeBanner: false,
       title: 'المسلم',
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       darkTheme: CustomThemeData.darkData(context),
       theme: CustomThemeData.lightData(context),
       home: const HomeView(),

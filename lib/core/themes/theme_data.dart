@@ -6,7 +6,6 @@ class CustomThemeData {
   static ThemeData darkData(context) {
     return ThemeData(
         scaffoldBackgroundColor: Constants.kBgColDark,
-
         // ###################
         textTheme: GoogleFonts.amiriTextTheme(
           Theme.of(context).textTheme.copyWith(
@@ -41,13 +40,13 @@ class CustomThemeData {
 
         // ###################
         iconTheme: const IconThemeData(color: Colors.white));
+        //####################
   }
 
 // =========================================================================
   static ThemeData lightData(context) {
     return ThemeData(
       scaffoldBackgroundColor: Constants.kBgColLight,
-
       // ###################
       textTheme: GoogleFonts.amiriTextTheme(
         Theme.of(context).textTheme.copyWith(
@@ -79,7 +78,7 @@ class CustomThemeData {
       ),
 
       // ###################
-      iconTheme: IconThemeData(color: Constants.kGreenCol),
+      iconTheme: const IconThemeData(color: Colors.white),
     );
   }
 }
