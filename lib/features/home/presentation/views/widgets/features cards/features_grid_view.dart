@@ -1,6 +1,8 @@
 import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/features/athkar/views/azkar_view.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
+import 'package:al_muslim/features/qubla/presentation/views/qiblah_compass_view_body.dart';
+import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,12 +60,16 @@ class FeaturesGridView extends StatelessWidget {
             FeatureCard(
               title: 'القبلة',
               imagePath: ImageData.qibla,
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const QuiblaViewBody());
+              },
             ),
             FeatureCard(
               title: 'السبحة',
               imagePath: ImageData.thbha,
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const SebhaView());
+              },
             ),
           ],
         ),

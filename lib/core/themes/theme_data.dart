@@ -7,6 +7,7 @@ class CustomThemeData {
     return ThemeData(
         scaffoldBackgroundColor: Constants.kBgColDark,
         // ###################
+        // ###################
         textTheme: GoogleFonts.amiriTextTheme(
           Theme.of(context).textTheme.copyWith(
                 headlineSmall: const TextStyle(color: Colors.white),

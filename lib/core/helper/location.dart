@@ -26,9 +26,9 @@ class Location {
         (permission == LocationPermission.whileInUse ||
             permission == LocationPermission.always)) {
       Position position = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.best,
-        ),
+        // locationSettings: const LocationSettings(
+        //   accuracy: LocationAccuracy.best,
+        // ),
       );
       return position;
     } else {
