@@ -11,7 +11,7 @@ class AzanList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder<AzanModel>(
-        future: AzanServices().getAzanTime(),
+        future: PrayTimeServices().getDataFromDB(),
         builder: (context, snapShot) {
           return ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 20),
