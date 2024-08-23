@@ -5,6 +5,7 @@ import 'package:al_muslim/features/home/presentation/views/widgets/features%20ca
 import 'package:al_muslim/features/qubla/presentation/views/qiblah_compass_view_body.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
+import 'package:al_muslim/features/settings/presentation/view/setting_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -53,7 +54,9 @@ class FeaturesGridView extends StatelessWidget {
             FeatureCard(
               title: 'الاعدادات',
               imagePath: ImageData.sitting,
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const SettingView());
+              },
             ),
             FeatureCard(
               title: 'المفضلة',

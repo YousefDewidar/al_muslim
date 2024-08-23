@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:al_muslim/core/widgets/custom_app_bar.dart';
+import 'package:al_muslim/core/widgets/space.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 
@@ -31,30 +33,28 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('القبله'),
-      ),
-      body: Column(
-        children: [
-          StreamBuilder<QiblahDirection>(
-              stream: FlutterQiblah.qiblahStream,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final direction = snapshot.data;
-                  animation = Tween(
-                          begin: begin,
-                          end: (direction!.qiblah * (pi / 180) * -1))
-                      .animate(_animationController!);
-                  begin = (direction.qiblah * (pi / 180) * -1);
-                  _animationController!.forward(from: 0);
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            const CustomAppBar(
+                header: 'القبلة', desc: 'الاتجاه الدقيق لقبلة الصلاة'),
+            StreamBuilder<QiblahDirection>(
+                stream: FlutterQiblah.qiblahStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final direction = snapshot.data;
+                    animation = Tween(
+                            begin: begin,
+                            end: (direction!.qiblah * (pi / 180) * -1))
+                        .animate(_animationController!);
+                    begin = (direction.qiblah * (pi / 180) * -1);
+                    _animationController!.forward(from: 0);
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: 150,
+                          height: 100,
                           width: 150,
                           child: direction.direction.round() == 137
                               ? Image.asset('assets/images/qibla.png')
@@ -62,7 +62,10 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
                         ),
                         Text(
                           '${direction.direction.round()}°',
-                          style: Theme.of(context).textTheme.displayLarge,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontFamily: 'IBMPlex', fontSize: 42),
                         ),
                         SizedBox(
                           height: 300,
@@ -80,28 +83,32 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
                           'السهم يشير الى اتجاه القبلة دائما',
                           style: Theme.of(context)
                               .textTheme
-                              .titleLarge!
-                              .copyWith(fontFamily: 'IBMPlex'),
-                        ),
-                        Text(
-                          textAlign: TextAlign.center,
-                          'يشير السهم الي اتجاه القبله وللحصول علي نتيجه دقيقه حرك جهازك يمينا او يسارا بشكل دائري  واحرص علي ان يكون جهازك بعيد عن اي اجهزه الكترونيه او مجال مغناطيسي  حول الجهاز حتي لا يوثر علي دقة البوصلة',
-                          style: Theme.of(context)
-                              .textTheme
                               .titleMedium!
-                              .copyWith(fontFamily: 'IBMPlex'),
+                              .copyWith(fontFamily: 'IBMPlex', fontSize: 23),
+                        ),
+                        const SpaceV(5),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            'يشير السهم الي اتجاه القبله وللحصول علي نتيجه دقيقه حرك جهازك يمينا او يسارا بشكل دائري  واحرص علي ان يكون جهازك بعيد عن اي اجهزه الكترونيه او مجال مغناطيسي  حول الجهاز حتي لا يوثر علي دقة البوصلة',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(fontFamily: 'IBMPlex'),
+                          ),
                         ),
                       ],
-                    ),
-                  );
-                } else {
-                  return const Center(
-                      child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ));
-                }
-              }),
-        ],
+                    );
+                  } else {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ));
+                  }
+                }),
+          ],
+        ),
       ),
     );
   }

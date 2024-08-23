@@ -1,8 +1,6 @@
 import 'package:al_muslim/core/helper/lang_converter.dart';
-import 'package:al_muslim/core/utils/strings.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/times/azan_list.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/times/clock.dart';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +13,11 @@ class HomeBgImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .3,
+      padding: const EdgeInsets.only(top: 40),
+      height: MediaQuery.of(context).size.height * .39,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(ConstStrings.kHomeBgImage),
+          image: AssetImage('assets/images/home.jpg'),
           fit: BoxFit.cover,
         ),
       ),
@@ -26,12 +25,18 @@ class HomeBgImage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SpaceV(5),
-          SizedBox(
-            height: 100,
-            width: 100,
-            child: ClockView(),
+          // SizedBox(
+          //   height: 100,
+          //   width: 100,
+          //   child: ClockView(),
+          // ),
+          Text(
+            '12:00',
+            style: TextStyle(
+                fontSize: 50, color: Colors.white, fontWeight: FontWeight.bold),
           ),
-          SpaceV(10),
+
+          SpaceV(5),
           HijriDate(),
           SpaceV(10),
           AzanList(),
@@ -64,11 +69,10 @@ class HijriDate extends StatelessWidget {
       String yearInAr =
           LangConverter().convertToArabic(int.parse(date.date.hijriYear));
       return Text(
-        dayInAr + month + yearInAr,
-        style: Theme.of(context)
-            .textTheme
-            .titleLarge!
-            .copyWith(color: Colors.white),
+        '$dayInAr $month $yearInAr',
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: Colors.white,
+            ),
       );
     } else if (snapShot.hasError) {
       return const Text('التاريخ غير متوفر ');

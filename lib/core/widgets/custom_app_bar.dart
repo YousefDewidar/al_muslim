@@ -1,3 +1,4 @@
+import 'package:al_muslim/core/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -22,7 +23,9 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            height: MediaQuery.of(context).size.height * .13,
+            height: desc == ''
+                ? MediaQuery.of(context).size.height * .09
+                : MediaQuery.of(context).size.height * .13,
             width: double.infinity,
             decoration: BoxDecoration(
                 color: Theme.of(context).cardTheme.color!.withOpacity(.8),
@@ -45,15 +48,17 @@ class CustomAppBar extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: Text(desc,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(color: Colors.black45)),
-                ),
+                desc == ''
+                    ? const SpaceV(0)
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(desc,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(color: Colors.black45)),
+                      ),
               ],
             ),
           ),

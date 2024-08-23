@@ -1,4 +1,4 @@
-import 'package:al_muslim/core/widgets/icon_back.dart';
+import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/salah/presentation/view/widgets/sunah_table.dart';
 import 'package:flutter/material.dart';
@@ -10,20 +10,9 @@ class SunahView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
-          actions: const [IconBack()],
-          centerTitle: true,
-          title: Text(
-            'السنن  الرواتب',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        ),
-        
-        
         body: Column(
           children: [
+            const CustomAppBar(header: 'السنن  الرواتب', desc: 'سنن الصلاة'),
             const SunahTable(),
             const SpaceV(30),
             Padding(

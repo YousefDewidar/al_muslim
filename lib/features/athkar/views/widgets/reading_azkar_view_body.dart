@@ -16,22 +16,22 @@ class ReadingAzkarViewBody extends StatelessWidget {
         builder: (context, snapShot) {
           if (snapShot.hasData) {
             List<AzkarModel> azkar = snapShot.data!;
-              return Column(
-                children: [
-                  CustomAppBar(
-                    header: azkar[0].category,
-                    desc: 'تعزز السكينه والطمانينه ف القلب ',
+            return Column(
+              children: [
+                CustomAppBar(
+                  header: azkar[0].category,
+                  desc: 'تعزز السكينه والطمانينه ف القلب ',
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: azkar.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ZekrCard(azkar: azkar[index]);
+                    },
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: azkar.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ZekrCard(azkar: azkar[index]);
-                      },
-                    ),
-                  ),
-                ],
-              );
+                ),
+              ],
+            );
           } else {
             return const Text('');
           }
@@ -78,10 +78,7 @@ class _ZekrCardState extends State<ZekrCard> {
               child: Text(
                 widget.azkar.text,
                 textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge!
-                    .copyWith(fontFamily: 'IBMPlex', fontSize: 20),
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(height: 1.8),
               ),
             ),
             Row(

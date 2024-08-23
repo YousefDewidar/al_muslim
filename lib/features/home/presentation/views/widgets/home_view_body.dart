@@ -8,10 +8,21 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Stack(
       children: [
-        HomeBgImage(),
-        BodyContent(),
+        const HomeBgImage(),
+        Container(
+          margin:
+              EdgeInsets.only(top: MediaQuery.of(context).size.height * .31),
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          child: const BodyContent(),
+        ),
       ],
     );
   }

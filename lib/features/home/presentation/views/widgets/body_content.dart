@@ -14,7 +14,7 @@ class BodyContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        SpaceV(2),
+        SpaceV(35),
         QuranCard(),
         FeaturesGridView(),
         SpaceV(3),

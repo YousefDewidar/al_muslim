@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomThemeData {
-  static ThemeData darkData(context) {
+  final double myFont;
+  CustomThemeData(this.myFont);
+  ThemeData darkData(context) {
     return ThemeData(
         scaffoldBackgroundColor: Constants.kBgColDark,
         // ###################
@@ -14,6 +16,10 @@ class CustomThemeData {
                 bodyLarge: const TextStyle(color: Colors.white),
                 headlineMedium: const TextStyle(color: Colors.white),
                 titleLarge: const TextStyle(color: Colors.black),
+                titleMedium: const TextStyle(color: Colors.white),
+                // $$$$$$$$$$$$$$$$$$$$$$$$$$$
+                labelLarge: const TextStyle(color: Colors.white)
+                    .copyWith(fontFamily: 'IBMPlex', fontSize: myFont),
               ),
         ),
 
@@ -41,11 +47,11 @@ class CustomThemeData {
 
         // ###################
         iconTheme: const IconThemeData(color: Colors.white));
-        //####################
+    //####################
   }
 
 // =========================================================================
-  static ThemeData lightData(context) {
+  ThemeData lightData(context) {
     return ThemeData(
       scaffoldBackgroundColor: Constants.kBgColLight,
       // ###################
@@ -55,6 +61,11 @@ class CustomThemeData {
               bodyLarge: const TextStyle(color: Colors.black),
               headlineMedium: const TextStyle(color: Colors.black),
               titleLarge: const TextStyle(color: Colors.black),
+              titleMedium: const TextStyle(color: Colors.black),
+
+              // $$$$$$$$$$$$$$$$$$$$$$$$$$$
+              labelLarge: const TextStyle(color: Colors.black)
+                  .copyWith(fontFamily: 'IBMPlex', fontSize: myFont),
             ),
       ),
 
