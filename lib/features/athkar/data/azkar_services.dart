@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:al_muslim/features/athkar/data/azkar_model.dart';
 import 'package:dio/dio.dart';
@@ -34,13 +33,13 @@ class AzkarServices {
   Future<String> getAzkarAsString() async {
     Response response = await dio.get(options.baseUrl);
     SharedPreferences asyncPref = await SharedPreferences.getInstance();
-    asyncPref.setString('all_azkar',response.data);
+    asyncPref.setString('all_azkar', response.data);
     return response.data;
   }
-    Future<List<AzkarModel>> getAzkar() async {
-      
+
+  Future<List<AzkarModel>> getAzkar() async {
     SharedPreferences asyncPref = await SharedPreferences.getInstance();
-    String dataAll=asyncPref.getString('all_azkar')??'';
+    String dataAll = asyncPref.getString('all_azkar') ?? '';
     List<dynamic> data = jsonDecode(dataAll);
 
     List<AzkarModel> azkarModelList = [];
@@ -48,11 +47,8 @@ class AzkarServices {
       AzkarModel oneZekr = AzkarModel.fromJson(azan);
       azkarModelList.add(oneZekr);
     }
-    log(azkarModelList[0].category.toString());
     return azkarModelList;
   }
-
-
 }
 
 

@@ -3,6 +3,7 @@ import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/home_view.dart';
 import 'package:al_muslim/features/landing/landing_view.dart';
+import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_state.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +52,9 @@ class _AlMuslimState extends State<AlMuslim> {
 
   @override
   Widget build(BuildContext context) {
+    SalahServices().setDayData();
+    PrayTimeServices().getPrayTime();
+    AzkarServices().getAzkarAsString();
     Future getPermision() async {
       if (await Permission.location.serviceStatus.isEnabled) {
         var status = await Permission.location.status;
@@ -90,8 +94,9 @@ class _AlMuslimState extends State<AlMuslim> {
                 if (hasPermision) {
                   return const HomeView();
                 } else {
-                  PrayTimeServices().getPrayTime();
-                  AzkarServices().getAzkarAsString();
+                  // SalahServices().setDayData();
+                  // PrayTimeServices().getPrayTime();
+                  // AzkarServices().getAzkarAsString();
                   return const LandingView();
                 }
               },
