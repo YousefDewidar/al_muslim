@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -26,10 +24,10 @@ class Location {
         (permission == LocationPermission.whileInUse ||
             permission == LocationPermission.always)) {
       Position position = await Geolocator.getCurrentPosition(
-        // locationSettings: const LocationSettings(
-        //   accuracy: LocationAccuracy.best,
-        // ),
-      );
+          // locationSettings: const LocationSettings(
+          //   accuracy: LocationAccuracy.best,
+          // ),
+          );
       return position;
     } else {
       await enabelLocaion();
@@ -40,13 +38,11 @@ class Location {
 
 //to get a certin Location like your countryName,etc...
 class GetLocationData {
-  getLocation({required Position? position}) async {
+  Future<List<Placemark>> getLocation({required Position? position}) async {
     final List<Placemark> placeMark = await placemarkFromCoordinates(
       position!.latitude,
       position.longitude,
-
     );
-    log(placeMark[0].locality.toString());
+    return placeMark;
   }
-
 }

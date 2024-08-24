@@ -1,9 +1,12 @@
+import 'package:al_muslim/core/widgets/custom_app_bar.dart';
+import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/sabha/presentation/views/all_azkar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SebhaView extends StatefulWidget {
-  const SebhaView({super.key});
+  const SebhaView({super.key, this.zkr = 'سبحان الله '});
+  final String zkr;
 
   @override
   State<SebhaView> createState() => _SebhaViewState();
@@ -18,60 +21,51 @@ class _SebhaViewState extends State<SebhaView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          count++;
-          setState(() {});
-        },
-        child: Container(
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          color: Colors.teal,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SafeArea(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.repeat,
-                          size: 40,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          count = 0;
-                          setState(() {});
-                        },
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(()=> AllAzkarView(zekrCount: count ,));
-                        },
-                        child: SizedBox(
-                            height: 50,
-                            width: 50,
-                            child:
-                                Image.asset('assets/icons/prayer-beads.png')),
-                      ),
-                    ],
+          child: InkWell(
+            onTap: () {
+              count++;
+              setState(() {});
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomAppBar(
+                    downloadButt: () {
+                      count = 0;
+                      setState(() {});
+                    },
+                    downloadIcon: Icons.repeat,
+                    hasDownload: true,
+                    header: 'السبحة',
+                    desc: ''),
+                Text(
+                  widget.zkr,
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(100.0),
+                  child: Text(
+                    '$count',
+                    style: Theme.of(context).textTheme.displayLarge,
                   ),
-                  Text(
-                    'سبحان الله ',
-                    style: Theme.of(context).textTheme.displaySmall,
+                ),
+                GestureDetector(
+                  onTap: () {
+                  Get.off(() => AllAzkarView(zekrCount: count));
+                  },
+                  child: SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: Image.asset('assets/icons/prayer-beads.png'),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(100.0),
-                    child: Text(
-                      '$count',
-                      style: Theme.of(context).textTheme.displayLarge,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                const SpaceV(20),
+              ],
             ),
           ),
         ),

@@ -17,7 +17,7 @@ class FeaturesGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 4.7,
+      height: MediaQuery.of(context).size.height / 4.62,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: GridView.count(

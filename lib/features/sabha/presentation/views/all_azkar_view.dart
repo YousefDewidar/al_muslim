@@ -1,5 +1,8 @@
 import 'package:al_muslim/core/utils/strings.dart';
+import 'package:al_muslim/core/widgets/icon_back.dart';
+import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AllAzkarView extends StatelessWidget {
   final int zekrCount;
@@ -7,10 +10,20 @@ class AllAzkarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> azkar =ConstStrings.azkar;
+    List<String> azkar = ConstStrings.azkar;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('اختر الذكر'),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        actions: const [
+          IconBack(),
+        ],
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
             Expanded(
@@ -22,7 +35,7 @@ class AllAzkarView extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * .1,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pop(context,azkar[index]);
+                        Get.off(() => SebhaView(zkr: azkar[index]));
                       },
                       child: Card(
                         child: Padding(

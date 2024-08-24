@@ -1,6 +1,7 @@
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ChangeFontCard extends StatefulWidget {
   const ChangeFontCard({
@@ -14,6 +15,23 @@ class ChangeFontCard extends StatefulWidget {
 class _ChangeFontCardState extends State<ChangeFontCard> {
   static double size = 20;
   double val = size;
+
+  @override
+  void initState() {
+    initialDataFromLDB();
+    super.initState();
+  }
+
+  void initialDataFromLDB() async {
+    SharedPreferences asyncPref = await SharedPreferences.getInstance();
+
+    if (asyncPref.getDouble('font') != null) {
+      size = asyncPref.getDouble('font')!;
+      val = size;
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -39,7 +57,6 @@ class _ChangeFontCardState extends State<ChangeFontCard> {
               Slider(
                 max: 27,
                 min: 19,
-                // divisions: 4,
                 value: val,
                 onChanged: (v) {
                   BlocProvider.of<SettingCubit>(context).setFont(font: v);

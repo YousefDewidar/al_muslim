@@ -4,10 +4,16 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget {
   final String header;
   final String desc;
+  final bool hasDownload;
+  final IconData downloadIcon;
+  final void Function()? downloadButt;
   const CustomAppBar({
     super.key,
     required this.header,
     required this.desc,
+    this.downloadButt,
+    this.hasDownload = false,
+    this.downloadIcon = Icons.download_for_offline_outlined,
   });
 
   @override
@@ -83,6 +89,20 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
           ),
+          hasDownload
+              ? Positioned(
+                  top: 10,
+                  left: 30,
+                  child: GestureDetector(
+                    onTap: downloadButt,
+                    child: Icon(
+                      size: 41,
+                      downloadIcon,
+                      color: const Color.fromARGB(172, 0, 0, 0),
+                    ),
+                  ),
+                )
+              : const SpaceH(0),
         ],
       ),
     );

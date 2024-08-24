@@ -2,6 +2,7 @@ import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ChangeThemeCard extends StatefulWidget {
   const ChangeThemeCard({
@@ -15,6 +16,25 @@ class ChangeThemeCard extends StatefulWidget {
 class _ChangeThemeCardState extends State<ChangeThemeCard> {
   static List<String> options = ['op1', 'op2', 'op3'];
   String curOption = options[2];
+
+  @override
+  void initState() {
+    initialDataFromLDB();
+    super.initState();
+  }
+
+  void initialDataFromLDB() async {
+    SharedPreferences asyncPref = await SharedPreferences.getInstance();
+    if (asyncPref.getString('theme') == 'ThemeMode.dark') {
+      curOption = options[1];
+    } else if (asyncPref.getString('theme') == 'ThemeMode.light') {
+      curOption = options[0];
+    } else if (asyncPref.getString('theme') == 'ThemeMode.system') {
+      curOption = options[2];
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +53,12 @@ class _ChangeThemeCardState extends State<ChangeThemeCard> {
                 Radio(
                   value: options[0],
                   groupValue: curOption,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    curOption = options[0];
+                    BlocProvider.of<SettingCubit>(context)
+                        .setTheme(theme: ThemeMode.light);
+                    setState(() {});
+                  },
                 ),
                 const Spacer(),
                 Text(
@@ -67,7 +92,12 @@ class _ChangeThemeCardState extends State<ChangeThemeCard> {
                 Radio(
                     value: options[1],
                     groupValue: curOption,
-                    onChanged: (value) {}),
+                    onChanged: (value) {
+                      curOption = options[1];
+                      BlocProvider.of<SettingCubit>(context)
+                          .setTheme(theme: ThemeMode.dark);
+                      setState(() {});
+                    }),
                 const Spacer(),
                 Text(
                   'الوضع الليلي',
@@ -100,7 +130,12 @@ class _ChangeThemeCardState extends State<ChangeThemeCard> {
                 Radio(
                     value: options[2],
                     groupValue: curOption,
-                    onChanged: (value) {}),
+                    onChanged: (value) {
+                      curOption = options[2];
+                      BlocProvider.of<SettingCubit>(context)
+                          .setTheme(theme: ThemeMode.system);
+                      setState(() {});
+                    }),
                 const Spacer(),
                 Text(
                   'وضع النظام',
