@@ -1,4 +1,5 @@
 import 'package:al_muslim/core/themes/theme_data.dart';
+import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/home_view.dart';
@@ -14,6 +15,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  FehresService().getAllSwar();
+  FehresService().getFromDataBase();
   await Hive.initFlutter();
   runApp(const AlMuslim());
 }
@@ -90,6 +93,7 @@ class _AlMuslimState extends State<AlMuslim> {
               future: getPermision(),
               builder: (contex, snapshot) {
                 if (hasPermision) {
+                  //! chage with home view at end
                   return const HomeView();
                 } else {
                   PrayTimeServices().getPrayTime();

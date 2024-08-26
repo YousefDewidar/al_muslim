@@ -1,5 +1,8 @@
 import 'package:al_muslim/core/widgets/space.dart';
+import 'package:al_muslim/features/alquran/data/tafser_services.dart';
 import 'package:al_muslim/features/alquran/views/fehres_view.dart';
+import 'package:al_muslim/features/alquran/views/tafser_view.dart';
+import 'package:al_muslim/features/athkar/views/all_swar.dart';
 import 'package:al_muslim/features/athkar/views/reading_azkar_view.dart';
 import 'package:al_muslim/features/radio/views/radio_view.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +23,8 @@ class CustomTitleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TafserServices().getAllTafser();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
       child: GestureDetector(
@@ -29,8 +34,13 @@ class CustomTitleCard extends StatelessWidget {
               Get.to(() => const ReadingAzkarView());
             case 'radio':
               Get.to(() => RadioView(url: url ?? ''));
-            case 'quran':
+            case 'fehres':
               Get.to(() => const FehresView());
+            case 'tafser':
+              Get.to(() => const AllSwarView());
+            case 'redingTafser':
+              Get.to(() =>  const TafserView(
+                  ));
             default:
           }
         },

@@ -1,5 +1,5 @@
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
-import 'package:al_muslim/features/athkar/views/widgets/azkar_title_card.dart';
+import 'package:al_muslim/features/athkar/views/widgets/custom_title_card.dart';
 import 'package:al_muslim/features/radio/data/radio_services.dart';
 import 'package:flutter/material.dart';
 
