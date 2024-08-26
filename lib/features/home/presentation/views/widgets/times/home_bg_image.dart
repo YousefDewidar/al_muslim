@@ -54,7 +54,7 @@ class HijriDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: SalahServices().getDayData(),
+        future: SalahServices().getDayDataFormLDB(),
         builder: (context, snapShot) {
           return handelDate(snapShot, context);
         });

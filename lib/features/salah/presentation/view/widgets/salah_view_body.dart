@@ -22,7 +22,7 @@ class SalahViewBody extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
           child: FutureBuilder(
-              future: SalahServices().getDayData(),
+              future: SalahServices().getDayDataFormLDB(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return Column(
