@@ -12,17 +12,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as nav;
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  runApp(const AlMuslim());
   FehresService().getAllSwar();
   FehresService().getFromDataBase();
-  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.initNotification();
-  runApp(const AlMuslim());
 }
 
 class AlMuslim extends StatefulWidget {
