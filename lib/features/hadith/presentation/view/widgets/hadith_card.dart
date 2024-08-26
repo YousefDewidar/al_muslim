@@ -1,6 +1,9 @@
+import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
+import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_state.dart';
 import 'package:al_muslim/features/hadith/data/model/hadith_model.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HadithCard extends StatelessWidget {
   final HadithModel hadith;
@@ -22,10 +25,17 @@ class HadithCard extends StatelessWidget {
             const EdgeInsets.only(top: 10.0, bottom: 20, left: 20, right: 20),
         child: Column(
           children: [
-            CirculeActionButton(
-              color: const Color.fromARGB(255, 233, 195, 154).withOpacity(.8),
-              icon: Icons.camera,
-              radius: 20,
+            BlocBuilder<FavCubit, FavState>(
+              builder: (context, state) {
+                return CirculeActionButton(
+                  color: Colors.red,
+                  icon: hadith.isFav ? Icons.favorite : Icons.favorite_border,
+                  radius: 20,
+                  onTap: () {
+            
+                  },
+                );
+              },
             ),
             Text(
               hadith.hadith,

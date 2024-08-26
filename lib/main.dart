@@ -98,7 +98,6 @@ class _AlMuslimState extends State<AlMuslim> {
               future: getPermision(),
               builder: (contex, snapshot) {
                 if (hasPermision) {
-                  //! chage with home view at end
                   return const HomeView();
                 } else {
                   return const LandingView();

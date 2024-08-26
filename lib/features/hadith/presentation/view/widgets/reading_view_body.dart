@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:al_muslim/core/storage/storage_service.dart';
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/hadith/data/model/hadith_model.dart';
@@ -35,8 +33,6 @@ class _ReadingHadithViewBodyState extends State<ReadingHadithViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    log(downloaded.toString());
-
     num hadithListCount = 0;
     return FutureBuilder<List<HadithModel>>(
       future: downloaded
@@ -63,7 +59,9 @@ class _ReadingHadithViewBodyState extends State<ReadingHadithViewBody> {
                 child: ListView.builder(
                   itemCount: hadith.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return HadithCard(hadith: hadith[index]);
+                    return HadithCard(
+                      hadith: hadith[index],
+                    );
                   },
                 ),
               ),

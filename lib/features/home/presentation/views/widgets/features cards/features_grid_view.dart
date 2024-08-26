@@ -1,5 +1,6 @@
 import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/features/athkar/views/azkar_view.dart';
+import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
 import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
 import 'package:al_muslim/features/qubla/presentation/views/qiblah_compass_view_body.dart';
@@ -65,7 +66,9 @@ class FeaturesGridView extends StatelessWidget {
             FeatureCard(
               title: 'المفضلة',
               imagePath: ImageData.bookmark,
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const FavView());
+              },
             ),
             FeatureCard(
               title: 'القبلة',
