@@ -22,7 +22,8 @@ class AzkarViewBody extends StatelessWidget {
                 return ListView.builder(
                   itemCount: azkar.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return AzkarTitleCard(
+                    return CustomTitleCard(
+                      pageName: 'redingAzkar',
                       categorytTitle: azkar[index].category,
                     );
                   },
