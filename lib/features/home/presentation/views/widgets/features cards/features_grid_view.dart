@@ -4,6 +4,7 @@ import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
 import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
 import 'package:al_muslim/features/qubla/presentation/views/qiblah_compass_view_body.dart';
+import 'package:al_muslim/features/radio/views/all_radios_view.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
 import 'package:al_muslim/features/settings/presentation/view/setting_view.dart';
@@ -41,9 +42,12 @@ class FeaturesGridView extends StatelessWidget {
               },
             ),
             FeatureCard(
-              title: 'الأدعية',
-              imagePath: ImageData.du3aa,
-              onTap: () {},
+              title: 'رأديو',
+              imagePath: ImageData.radio,
+              onTap: () {
+                Get.to(() =>  const AllRadiosView());
+              },
+              
             ),
             FeatureCard(
               title: 'الأذكار',

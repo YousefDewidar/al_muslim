@@ -7,7 +7,7 @@ class ImageData {
   static String book = 'assets/icons/book.png';
   static String bookmark = 'assets/icons/bookmark.png';
   static String prayTime = 'assets/icons/prayer-mat.png';
-  static String du3aa = 'assets/icons/prayer.png';
+  static String radio = 'assets/icons/radio.png';
   static String qibla = 'assets/icons/Qibla.png';
   static String sitting = 'assets/icons/setting.png';
 

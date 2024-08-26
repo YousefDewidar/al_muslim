@@ -1,5 +1,6 @@
 import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/themes/theme_data.dart';
+import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
@@ -12,10 +13,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as nav;
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  FehresService().getAllSwar();
+  FehresService().getFromDataBase();
+  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.initNotification();
   runApp(const AlMuslim());
@@ -72,47 +77,39 @@ class _AlMuslimState extends State<AlMuslim> {
       }
     }
 
-    return MultiBlocProvider(
-        providers: [
-            BlocProvider(
-          create: (context) => SettingCubit(),
-    
-        ),
-            BlocProvider(
-                create: (context) => FavCubit(),
+    return BlocProvider(
+      create: (context) => SettingCubit(),
+      child: BlocConsumer<SettingCubit, SettingState>(
+        listener: (context, state) {
+          if (state is ThemeChangedState) {
+            myTheme = state.theme;
+          }
+          if (state is FontChangedState) {
+            myFont = state.font;
+          }
+        },
+        builder: (context, state) {
+          return GetMaterialApp(
+            defaultTransition: nav.Transition.rightToLeft,
+            transitionDuration: const Duration(milliseconds: 400),
+            debugShowCheckedModeBanner: false,
+            title: 'المسلم',
+            themeMode: myTheme,
+            darkTheme: CustomThemeData(myFont).darkData(context),
+            theme: CustomThemeData(myFont).lightData(context),
+            home: FutureBuilder(
+              future: getPermision(),
+              builder: (contex, snapshot) {
+                if (hasPermision) {
+                  return const HomeView();
+                } else {
+                  return const LandingView();
+                }
+              },
             ),
-        ],
-              child: BlocConsumer<SettingCubit, SettingState>(
-            listener: (context, state) {
-              if (state is ThemeChangedState) {
-                myTheme = state.theme;
-              }
-              if (state is FontChangedState) {
-                myFont = state.font;
-              }
-            },
-            builder: (context, state) {
-              return GetMaterialApp(
-                defaultTransition: nav.Transition.rightToLeft,
-                transitionDuration: const Duration(milliseconds: 400),
-                debugShowCheckedModeBanner: false,
-                title: 'المسلم',
-                themeMode: myTheme,
-                darkTheme: CustomThemeData(myFont).darkData(context),
-                theme: CustomThemeData(myFont).lightData(context),
-                home: FutureBuilder(
-                  future: getPermision(),
-                  builder: (contex, snapshot) {
-                    if (hasPermision) {
-                      return const HomeView();
-                    } else {
-                      return const LandingView();
-                    }
-                  },
-                ),
-              );
-            },
-          ),
+          );
+        },
+      ),
     );
   }
 }

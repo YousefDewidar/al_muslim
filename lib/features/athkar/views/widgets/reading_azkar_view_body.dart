@@ -49,6 +49,7 @@ class ZekrCard extends StatefulWidget {
 
 class _ZekrCardState extends State<ZekrCard> {
   bool isFinished = false;
+  bool isFav = false;
   int count = 0;
   @override
   void initState() {
@@ -78,7 +79,10 @@ class _ZekrCardState extends State<ZekrCard> {
               child: Text(
                 widget.azkar.text,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.labelLarge!.copyWith(height: 1.8),
+                style: Theme.of(context)
+                    .textTheme
+                    .labelLarge!
+                    .copyWith(height: 1.8),
               ),
             ),
             Row(
@@ -103,9 +107,15 @@ class _ZekrCardState extends State<ZekrCard> {
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
-                const CirculeActionButton(
+                CirculeActionButton(
+                  onPressed: () {
+                    setState(() {
+                      isFav = !isFav;
+                      widget.azkar.isFav = isFav;
+                    });
+                  },
                   color: Colors.orange,
-                  icon: Icons.headphones,
+                  icon:widget.azkar.isFav ? Icons.favorite:Icons.favorite_outline,
                   radius: 20,
                 ),
               ],
