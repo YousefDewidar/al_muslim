@@ -14,7 +14,7 @@ class QuranViewBody extends StatelessWidget {
       AllModel(
           title: 'استماع القران الكريم',
           icon: Icons.headphones_outlined,
-          routeName: 'listen'),
+          routeName: 'listenQuran'),
       AllModel(
           title: 'تفسير القران الكريم',
           icon: FontAwesomeIcons.book,
@@ -35,7 +35,7 @@ class QuranViewBody extends StatelessWidget {
                 startIndex: index,
                 pageName: allAboutQuran[index].routeName,
                 categorytTitle: allAboutQuran[index].title,
-                icon: allAboutQuran[index].icon,
+                prefixIcon: allAboutQuran[index].icon,
               );
             },
           ),
