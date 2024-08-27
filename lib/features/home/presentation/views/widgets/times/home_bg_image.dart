@@ -3,7 +3,9 @@ import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/times/azan_list.dart';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
+import 'package:al_muslim/features/settings/presentation/view/setting_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeBgImage extends StatelessWidget {
   const HomeBgImage({
@@ -21,25 +23,31 @@ class HomeBgImage extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: const Column(
+      child:  Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SpaceV(5),
+          const SpaceV(5),
+          Row(
+            children: [
+              IconButton(onPressed: (){
+                  Get.to(() => const SettingView());
+              }, icon: const Icon(Icons.settings)),
+            ],
+          ),
           // SizedBox(
           //   height: 100,
           //   width: 100,
           //   child: ClockView(),
           // ),
-          Text(
+          const Text(
             '12:00',
             style: TextStyle(
                 fontSize: 50, color: Colors.white, fontWeight: FontWeight.bold),
           ),
-
-          SpaceV(5),
-          HijriDate(),
-          SpaceV(10),
-          AzanList(),
+          const SpaceV(5),
+          const HijriDate(),
+          const SpaceV(10),
+          const AzanList(),
         ],
       ),
     );

@@ -5,8 +5,9 @@ import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion
 import 'package:flutter/material.dart';
 
 class ReadingAzkarViewBody extends StatelessWidget {
+  final int startIndex;
   const ReadingAzkarViewBody({
-    super.key,
+    super.key, required this.startIndex,
   });
 
   @override
@@ -19,14 +20,14 @@ class ReadingAzkarViewBody extends StatelessWidget {
             return Column(
               children: [
                 CustomAppBar(
-                  header: azkar[0].category,
+                  header: azkar[startIndex].category,
                   desc: 'تعزز السكينه والطمانينه ف القلب ',
                 ),
                 Expanded(
                   child: ListView.builder(
                     itemCount: azkar.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return ZekrCard(azkar: azkar[index]);
+                      return ZekrCard(azkar: azkar[startIndex]);
                     },
                   ),
                 ),
@@ -115,7 +116,9 @@ class _ZekrCardState extends State<ZekrCard> {
                     });
                   },
                   color: Colors.orange,
-                  icon:widget.azkar.isFav ? Icons.favorite:Icons.favorite_outline,
+                  icon: widget.azkar.isFav
+                      ? Icons.favorite
+                      : Icons.favorite_outline,
                   radius: 20,
                 ),
               ],

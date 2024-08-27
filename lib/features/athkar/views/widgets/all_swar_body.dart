@@ -20,7 +20,7 @@ class AllSwarViewBody extends StatelessWidget {
                   return ListView.builder(
                     itemCount: allSwar.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return  CustomTitleCard(categorytTitle: allSwar[index].name, pageName: 'redingTafser',);
+                      return  CustomTitleCard(categorytTitle: allSwar[index].name, pageName: 'redingTafser',tafserstartIndex: index+1,);
                     },
                   );
                 } else {
