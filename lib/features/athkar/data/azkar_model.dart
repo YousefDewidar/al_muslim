@@ -6,7 +6,7 @@ class AzkarModel {
   late bool isFav;
   AzkarModel({
     required this.category,
-     this.isFav=false,
+    this.isFav = false,
     required this.count,
     required this.text,
     required this.id,
@@ -19,4 +19,21 @@ class AzkarModel {
       id: json['array'][0]['id'],
     );
   }
+  factory AzkarModel.fromJsonToFav(json) {
+    return AzkarModel(
+      category: json['category'],
+      text: json['text'],
+      count: json['count'],
+      id: json['id'],
+      isFav: json['isFav'],
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'category': category,
+        'text': text,
+        'count': count,
+        'id': id,
+        'isFav': isFav,
+      };
 }

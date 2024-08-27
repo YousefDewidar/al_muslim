@@ -1,6 +1,7 @@
 import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/themes/theme_data.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
+import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/home_view.dart';
 import 'package:al_muslim/features/landing/landing_view.dart';
@@ -15,7 +16,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+
   runApp(const AlMuslim());
+
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.initNotification();
 }
@@ -71,8 +74,15 @@ class _AlMuslimState extends State<AlMuslim> {
       }
     }
 
-    return BlocProvider(
-      create: (context) => SettingCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SettingCubit(),
+        ),
+        BlocProvider(
+          create: (context) => FavCubit(),
+        ),
+      ],
       child: BlocConsumer<SettingCubit, SettingState>(
         listener: (context, state) {
           if (state is ThemeChangedState) {
