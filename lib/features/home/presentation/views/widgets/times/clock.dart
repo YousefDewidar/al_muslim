@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:al_muslim/core/helper/lang_converter.dart';
 import 'package:al_muslim/core/helper/time_helper.dart';
 import 'package:al_muslim/core/widgets/space.dart';
+import 'package:al_muslim/features/home/data/model/azan_model.dart';
+import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 
@@ -16,11 +19,15 @@ class _ClockViewState extends State<ClockView> {
   double indicatorVal = 0.0;
   Timer? timer;
 
-  void updateSeconds() {
+  void updateSeconds() async {
+    AzanModel azan = await PrayTimeServices().getDataFromDB();
+
     timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(
-        () {
-          indicatorVal = DateTime.now().second / (60);
+        () {//   (2 /4 =0.5) /// (1/4 =0.25)
+          indicatorVal = (int.parse(azan.timings.asr.substring(0, 2)).toDouble() - DateTime.now().hour) /4;
+          log(indicatorVal.toString());
+          //int.parse(azan.timings.asr.substring(0, 2)).toDouble()- DateTime.now().hour
         },
       );
     });

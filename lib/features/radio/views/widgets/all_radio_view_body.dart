@@ -9,6 +9,7 @@ class AllRadioViewBody extends StatefulWidget {
   @override
   State<AllRadioViewBody> createState() => _AllRadioViewBodyState();
 }
+
 class _AllRadioViewBodyState extends State<AllRadioViewBody> {
   final searchController = TextEditingController();
   List<dynamic> searchedList = [];
@@ -24,7 +25,7 @@ class _AllRadioViewBodyState extends State<AllRadioViewBody> {
         controller: searchController,
         textAlign: TextAlign.right,
         decoration: const InputDecoration(
-          hintTextDirection:TextDirection.rtl ,
+          hintTextDirection: TextDirection.rtl,
           hintText: 'ابحث عن الاذاعه التي ترغب ف الاستماع اليها',
           suffixIcon: Icon(Icons.search),
           border: OutlineInputBorder(
@@ -51,7 +52,10 @@ class _AllRadioViewBodyState extends State<AllRadioViewBody> {
             builder: (context, snapShot) {
               if (snapShot.hasData) {
                 allList = snapShot.data!;
-                return HandelRadioList(searchController: searchController, allList: allList, searchedList: searchedList);
+                return HandelRadioList(
+                    searchController: searchController,
+                    allList: allList,
+                    searchedList: searchedList);
               } else {
                 return const Center(child: CircularProgressIndicator());
               }
@@ -59,6 +63,7 @@ class _AllRadioViewBodyState extends State<AllRadioViewBody> {
       ],
     );
   }
+
   //?search function
   void addSearcherChartoFiltertheList(String searcherChar) {
     searchedList = allList
@@ -88,6 +93,10 @@ class HandelRadioList extends StatelessWidget {
             ? allList.length
             : searchedList.length,
         itemBuilder: (BuildContext context, int index) {
+        
+          allList[0].name = 'اذاعه القران الكريم';
+          allList[0].url = edit();
+
           return CustomTitleCard(
             prefixIcon: Icons.radio,
             categorytTitle: searchController.text.isEmpty
@@ -95,10 +104,13 @@ class HandelRadioList extends StatelessWidget {
                 : searchedList[index].name,
             url: searchController.text.isEmpty
                 ? allList[index].url
-                : searchedList[index].url, pageName: 'radio',
+                : searchedList[index].url,
+            pageName: 'radio',
           );
         },
       ),
     );
   }
+  edit()async {
+          }
 }

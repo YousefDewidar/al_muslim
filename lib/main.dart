@@ -1,6 +1,5 @@
 import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/themes/theme_data.dart';
-import 'package:al_muslim/features/alquran/data/reacters_services.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
@@ -18,8 +17,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   runApp(const AlMuslim());
-  ReactersServices().fetchReacters();
-
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.initNotification();
 }
