@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class PageCover extends StatelessWidget {
+      final String? image; 
+
   const PageCover({
-    super.key,
+    super.key, required this.image,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin:  const EdgeInsets.all(10),
       height: 200,
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            'assets/images/radio_image.png',
+            image ??'assets/images/radio_image.png',
           ),
         ),
       ),

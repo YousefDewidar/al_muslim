@@ -5,9 +5,9 @@ import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
 import 'package:al_muslim/features/qubla/presentation/views/qiblah_compass_view_body.dart';
 import 'package:al_muslim/features/radio/views/all_radios_view.dart';
+import 'package:al_muslim/features/radio/views/radio_view.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
-import 'package:al_muslim/features/settings/presentation/view/setting_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,9 +45,8 @@ class FeaturesGridView extends StatelessWidget {
               title: 'رأديو',
               imagePath: ImageData.radio,
               onTap: () {
-                Get.to(() =>  const AllRadiosView());
+                Get.to(() => const AllRadiosView());
               },
-              
             ),
             FeatureCard(
               title: 'الأذكار',
@@ -57,10 +56,16 @@ class FeaturesGridView extends StatelessWidget {
               },
             ),
             FeatureCard(
-              title: 'الاعدادات',
-              imagePath: ImageData.sitting,
+              title: ' اذاعه مصر',
+              imagePath: ImageData.radioMasr,
               onTap: () {
-                Get.to(() => const SettingView());
+                Get.to(
+                  () => const RadioView(
+                    url:
+                        "https://n01.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABkZRfu5sA1epE8h1pnWdzRw",
+                    image: 'assets/images/masrQuranKreem.png',
+                  ),
+                );
               },
             ),
             FeatureCard(

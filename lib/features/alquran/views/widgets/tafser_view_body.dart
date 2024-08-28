@@ -3,9 +3,25 @@ import 'package:al_muslim/features/alquran/data/model/tafser_model.dart';
 import 'package:al_muslim/features/alquran/data/tafser_services.dart';
 import 'package:flutter/material.dart';
 
-class TafserViewBody extends StatelessWidget {
-  const TafserViewBody({super.key,});
+class TafserViewBody extends StatefulWidget {
+  final int tafserstartIndex;
+  const TafserViewBody({
+    super.key, required this.tafserstartIndex,
+  });
 
+  @override
+  State<TafserViewBody> createState() => _TafserViewBodyState();
+}
+
+class _TafserViewBodyState extends State<TafserViewBody> {
+  late dynamic future;
+  @override
+  void initState() {
+
+    //!i want to put widget.startIndex instead of 1
+    future = TafserServices().fetchTafser(swrahNum:widget.tafserstartIndex);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +29,8 @@ class TafserViewBody extends StatelessWidget {
       children: [
         const CustomAppBar(header: 'التفسير', desc: ''),
         Expanded(
-          child: FutureBuilder(
-              future:TafserServices().getFromDataBase(),
+          child: FutureBuilder<List<TafserModel>>(
+              future: future,
               builder: (context, snapShot) {
                 if (snapShot.hasData) {
                   List<TafserModel> tafser = snapShot.data!;

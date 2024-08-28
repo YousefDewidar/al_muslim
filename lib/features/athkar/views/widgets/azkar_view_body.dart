@@ -23,6 +23,7 @@ class AzkarViewBody extends StatelessWidget {
                   itemCount: azkar.length,
                   itemBuilder: (BuildContext context, int index) {
                     return CustomTitleCard(
+                      startIndex: index,
                       pageName: 'redingAzkar',
                       categorytTitle: azkar[index].category,
                     );

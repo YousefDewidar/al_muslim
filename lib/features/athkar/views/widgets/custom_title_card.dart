@@ -1,6 +1,6 @@
 import 'package:al_muslim/core/widgets/space.dart';
-import 'package:al_muslim/features/alquran/data/tafser_services.dart';
 import 'package:al_muslim/features/alquran/views/fehres_view.dart';
+import 'package:al_muslim/features/alquran/views/listen%20to%20quran/listen_quran_view.dart';
 import 'package:al_muslim/features/alquran/views/tafser_view.dart';
 import 'package:al_muslim/features/athkar/views/all_swar.dart';
 import 'package:al_muslim/features/athkar/views/reading_azkar_view.dart';
@@ -10,28 +10,37 @@ import 'package:get/get.dart';
 
 class CustomTitleCard extends StatelessWidget {
   final String categorytTitle;
-  final String pageName;
+  final String? pageName;
   final String? url;
-  final IconData? icon;
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
+  final int? startIndex;
+  final int? tafserstartIndex;
+  final Function()? onPressed;
+
   const CustomTitleCard({
     super.key,
     required this.categorytTitle,
-    this.icon,
+    this.prefixIcon,
     this.url,
-    required this.pageName,
+    this.pageName,
+    this.startIndex,
+    this.tafserstartIndex,
+    this.suffixIcon,
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    TafserServices().getAllTafser();
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
       child: GestureDetector(
         onTap: () {
           switch (pageName) {
             case 'redingAzkar':
-              Get.to(() => const ReadingAzkarView());
+              Get.to(() => ReadingAzkarView(
+                    startIndex: startIndex ?? 0,
+                  ));
             case 'radio':
               Get.to(() => RadioView(url: url ?? ''));
             case 'fehres':
@@ -39,22 +48,26 @@ class CustomTitleCard extends StatelessWidget {
             case 'tafser':
               Get.to(() => const AllSwarView());
             case 'redingTafser':
-              Get.to(() =>  const TafserView(
-                  ));
+              Get.to(() => TafserView(tafserstartIndex: tafserstartIndex ?? 2));
+            case 'listenQuran':
+              Get.to(() => const ListenQuranView());
             default:
           }
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
+            IconButton(
+              onPressed: onPressed,
+              icon: Icon(
+                suffixIcon ?? Icons.arrow_back_ios,
+                color: Colors.black,
+              ),
             ),
             Row(
               children: [
                 SizedBox(
-                  width: 320,
+                  width: 300,
                   child: Text(
                     textAlign: TextAlign.right,
                     maxLines: 1,
@@ -65,7 +78,7 @@ class CustomTitleCard extends StatelessWidget {
                 ),
                 const SpaceH(10),
                 Icon(
-                  icon,
+                  prefixIcon,
                   color: Colors.black,
                 ),
               ],

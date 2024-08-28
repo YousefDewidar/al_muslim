@@ -7,11 +7,13 @@ import 'package:just_audio/just_audio.dart';
 
 class RadioView extends StatefulWidget {
   final String url;
-  const RadioView({super.key, required this.url});
+  final String? image;
+  const RadioView({super.key, required this.url, this.image});
 
   @override
   State<RadioView> createState() => _RadioViewState();
 }
+
 class _RadioViewState extends State<RadioView> {
   double volumeLevel = .1;
   late AudioPlayer player;
@@ -23,6 +25,7 @@ class _RadioViewState extends State<RadioView> {
     player = AudioPlayer();
     player.setUrl(widget.url);
   }
+
   @override
   void dispose() {
     player.stop();
@@ -35,7 +38,9 @@ class _RadioViewState extends State<RadioView> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const PageCover(),
+          PageCover(
+            image: widget.image,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -90,6 +95,7 @@ class _RadioViewState extends State<RadioView> {
       ),
     );
   }
+
   Widget showVolumeController() {
     return isVolumeClicked
         ? Slider(
@@ -105,5 +111,3 @@ class _RadioViewState extends State<RadioView> {
         : const SizedBox();
   }
 }
-
-
