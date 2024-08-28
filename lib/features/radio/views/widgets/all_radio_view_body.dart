@@ -93,10 +93,6 @@ class HandelRadioList extends StatelessWidget {
             ? allList.length
             : searchedList.length,
         itemBuilder: (BuildContext context, int index) {
-        
-          allList[0].name = 'اذاعه القران الكريم';
-          allList[0].url = edit();
-
           return CustomTitleCard(
             prefixIcon: Icons.radio,
             categorytTitle: searchController.text.isEmpty
