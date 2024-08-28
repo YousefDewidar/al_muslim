@@ -1,3 +1,4 @@
+import 'package:al_muslim/core/helper/time_helper.dart';
 import 'package:al_muslim/features/home/data/model/azan_model.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/times/salah_column.dart';
@@ -7,31 +8,36 @@ class AzanList extends StatelessWidget {
   const AzanList({
     super.key,
   });
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: FutureBuilder<AzanModel>(
-        future: PrayTimeServices().getDataFromDB(),
-        builder: (context, snapShot) {
-          return ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            scrollDirection: Axis.horizontal,
-            itemCount: 5,
-            itemBuilder: (BuildContext context, int index) {
-              return handleSalah(snapShot, index);
-            },
-          );
-        },
+      child: FutureBuilder(
+        future: TimeHelper().getRemaindSalahinfo(),
+        builder: (context, salahNowSnap) => FutureBuilder<AzanModel>(
+          future: PrayTimeServices().getDataFromDB(),
+          builder: (context, snapShot) {
+            return ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              scrollDirection: Axis.horizontal,
+              itemCount: 5,
+              itemBuilder: (BuildContext context, int index) {
+                return handleSalah(snapShot, index, salahNowSnap);
+              },
+            );
+          },
+        ),
       ),
     );
   }
 
-  Widget? handleSalah(AsyncSnapshot<AzanModel> snapShot, int index) {
+  Widget? handleSalah(
+      AsyncSnapshot<AzanModel> snapShot, int index,AsyncSnapshot<Map<String, String>> salahNowSnap) {
     if (snapShot.data == null) {
       return const Center(child: CircularProgressIndicator());
     }
     if (snapShot.hasData) {
-      return returnedSalahColumn(snapShot, index);
+      return returnedSalahColumn(snapShot, index,salahNowSnap);
     } else if (snapShot.hasError) {
       Text(snapShot.data.toString());
     }
@@ -39,7 +45,7 @@ class AzanList extends StatelessWidget {
   }
 
   SalahColumn returnedSalahColumn(
-      AsyncSnapshot<AzanModel> snapShot, int index) {
+      AsyncSnapshot<AzanModel> snapShot, int index,AsyncSnapshot<Map<String, String>> salahNowSnap) {
     AzanModel prayTime = snapShot.data!;
     final List<AzanModel> azan = [
       AzanModel(
@@ -71,6 +77,7 @@ class AzanList extends StatelessWidget {
     ];
     return SalahColumn(
       azan: azan[index],
+      iconCol:salahNowSnap.data!.entries.first.key == azan[index].title? Colors.yellow:Colors.white,
     );
   }
 }

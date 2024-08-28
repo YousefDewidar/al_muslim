@@ -1,6 +1,7 @@
 import 'package:al_muslim/core/helper/lang_converter.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/times/azan_list.dart';
+import 'package:al_muslim/features/home/presentation/views/widgets/times/clock.dart';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:al_muslim/features/settings/presentation/view/setting_view.dart';
@@ -23,30 +24,34 @@ class HomeBgImage extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child:  Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SpaceV(5),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: (){
-                  Get.to(() => const SettingView());
-              }, icon: const Icon(Icons.settings)),
+              SizedBox(
+                width: 50,
+                child: IconButton(
+                  onPressed: () {
+                    Get.to(() => const SettingView());
+                  },
+                  icon: const Icon(Icons.settings, color: Colors.white),
+                ),
+              ),
+              const SizedBox(
+                height: 100,
+                width: 100,
+                child: ClockView(),
+              ),
+              const SpaceH(50),
             ],
-          ),
-          // SizedBox(
-          //   height: 100,
-          //   width: 100,
-          //   child: ClockView(),
-          // ),
-          const Text(
-            '12:00',
-            style: TextStyle(
-                fontSize: 50, color: Colors.white, fontWeight: FontWeight.bold),
           ),
           const SpaceV(5),
           const HijriDate(),
-          const SpaceV(10),
+          const SpaceV(5),
           const AzanList(),
         ],
       ),

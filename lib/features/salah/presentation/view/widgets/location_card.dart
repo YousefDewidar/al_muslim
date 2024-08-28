@@ -1,4 +1,5 @@
-import 'package:al_muslim/core/utils/constants.dart';
+import 'package:al_muslim/core/helper/location.dart';
+import 'package:al_muslim/features/salah/presentation/view/widgets/remain_salah.dart';
 import 'package:flutter/material.dart';
 
 class LocationCard extends StatelessWidget {
@@ -20,33 +21,25 @@ class LocationCard extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: [
-            const Text(
-              'قطور',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                  color: Color(0xCEFFFFFF)),
-            ),
+            FutureBuilder(
+                future: FinalLoc.getLoc(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {}
+                  return Text(
+                    snapshot.hasData
+                        ? snapshot.data ?? 'فشل تحديد موقعك'
+                        : 'جاري تحديد موقعك الحالي',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        color: Color.fromARGB(182, 0, 0, 0)),
+                  );
+                }),
             const Divider(
               color: Color.fromARGB(22, 0, 0, 0),
               height: 20,
             ),
-            Text(
-              'صلاة الفجر بعد',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 23,
-                  color: Constants.kBgColDark),
-            ),
-            Text(
-              '4:35:45',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  letterSpacing: 2,
-                  color: Constants.kBgColDark,
-                  fontFamily: AutofillHints.creditCardExpirationDate),
-            ),
+            const RemainSalah(),
           ],
         ),
       ),

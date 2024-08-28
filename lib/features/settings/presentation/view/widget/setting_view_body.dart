@@ -1,28 +1,16 @@
-import 'dart:async';
-
-import 'package:al_muslim/core/helper/location.dart' as loc;
 import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_font_card.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_theme_cards.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
+
 
 class SettingViewBody extends StatelessWidget {
   const SettingViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Future<String> getLoc() async {
-      Position? pos = await loc.Location().getCurrentLocation();
-      if (pos != null) {
-        List<Placemark>  curLoc = await GetLocationData().getLocation(position: pos);
-        return curLoc.first.locality!;
-      }
-      return 'فشل تحديد موقعك';
-    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -52,7 +40,7 @@ class SettingViewBody extends StatelessWidget {
         const ChangeFontCard(),
         const Spacer(),
         FutureBuilder(
-            future: getLoc(),
+            future: FinalLoc.getLoc(),
             builder: (context, snap) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),

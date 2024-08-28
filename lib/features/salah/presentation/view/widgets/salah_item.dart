@@ -1,6 +1,6 @@
+import 'package:al_muslim/core/helper/time_helper.dart';
 import 'package:al_muslim/core/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class SalahItem extends StatelessWidget {
   const SalahItem({
@@ -13,16 +13,7 @@ class SalahItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String time12() {
-      DateTime timesss = DateFormat("HH:mm").parse(time);
-
-      String time12 = DateFormat("hh:mm a").format(timesss);
-
-      String time12Arabic = time12.replaceAll("AM", "ص").replaceAll("PM", "م");
-
-      return time12Arabic;
-    }
-
+    String salahTime = TimeHelper.time12(time: time);
     return Card(
       child: Container(
         padding: const EdgeInsets.all(8),
@@ -48,7 +39,7 @@ class SalahItem extends StatelessWidget {
                       color: Constants.kBgColDark),
                 ),
                 Text(
-                  time12(),
+                  salahTime,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 23,

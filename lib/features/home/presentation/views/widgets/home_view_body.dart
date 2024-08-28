@@ -13,7 +13,7 @@ class HomeViewBody extends StatelessWidget {
         const HomeBgImage(),
         Container(
           margin:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height * .31),
+              EdgeInsets.only(top: MediaQuery.of(context).size.height * .325),
           decoration: BoxDecoration(
             color: Theme.of(context).scaffoldBackgroundColor,
             borderRadius: const BorderRadius.only(

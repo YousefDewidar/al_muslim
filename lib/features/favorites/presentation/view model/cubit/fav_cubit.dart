@@ -43,7 +43,6 @@ class FavCubit extends Cubit<FavState> {
     allFavList.clear();
     setFavToLDB();
     log(allFavList.toString());
-    // log(doneRemove.toString());
 
     emit(RemoveFav());
   }

@@ -46,3 +46,15 @@ class GetLocationData {
     return placeMark;
   }
 }
+
+class FinalLoc {
+  static Future<String> getLoc() async {
+    Position? pos = await Location().getCurrentLocation();
+    if (pos != null) {
+      List<Placemark> curLoc =
+          await GetLocationData().getLocation(position: pos);
+      return curLoc.first.locality!;
+    }
+    return 'فشل تحديد موقعك';
+  }
+}
