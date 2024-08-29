@@ -18,6 +18,7 @@ class AzanList extends StatelessWidget {
           future: PrayTimeServices().getDataFromDB(),
           builder: (context, snapShot) {
             return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 20),
               scrollDirection: Axis.horizontal,
               itemCount: 5,

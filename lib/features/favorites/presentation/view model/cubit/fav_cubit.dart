@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:al_muslim/features/athkar/data/azkar_model.dart';
 import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_state.dart';
@@ -11,7 +10,6 @@ class FavCubit extends Cubit<FavState> {
   static List<AzkarModel> allFavList = [];
 
   Future<void> setFavToLDB() async {
-    // log(allFavList.toString());
     final prefs = await SharedPreferences.getInstance();
     var jsonList =
         allFavList.map((zekr) => json.encode(zekr.toJson())).toList();
@@ -33,17 +31,13 @@ class FavCubit extends Cubit<FavState> {
   void addToFav({required AzkarModel zekr}) {
     allFavList.add(zekr);
     setFavToLDB();
-    // log(allFavList.toString());
 
     emit(AddFav());
   }
 
   void removeFromFav({required AzkarModel zekr}) {
-    log(allFavList.toString());
     allFavList.clear();
     setFavToLDB();
-    log(allFavList.toString());
-
     emit(RemoveFav());
   }
 

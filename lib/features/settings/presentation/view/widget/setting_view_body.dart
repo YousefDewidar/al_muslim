@@ -5,13 +5,11 @@ import 'package:al_muslim/features/settings/presentation/view/widget/change_font
 import 'package:al_muslim/features/settings/presentation/view/widget/change_theme_cards.dart';
 import 'package:flutter/material.dart';
 
-
 class SettingViewBody extends StatelessWidget {
   const SettingViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

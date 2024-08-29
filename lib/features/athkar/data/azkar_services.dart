@@ -30,11 +30,10 @@ class AzkarServices {
   // }
 //!
   //##################
-  Future<String> getAzkarAsString() async {
+  void setAzkarAsString() async {
     Response response = await dio.get(options.baseUrl);
     SharedPreferences asyncPref = await SharedPreferences.getInstance();
     asyncPref.setString('all_azkar', response.data);
-    return response.data;
   }
 
   Future<List<AzkarModel>> getAzkar() async {

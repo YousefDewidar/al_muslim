@@ -24,7 +24,6 @@ class LocationCard extends StatelessWidget {
             FutureBuilder(
                 future: FinalLoc.getLoc(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {}
                   return Text(
                     snapshot.hasData
                         ? snapshot.data ?? 'فشل تحديد موقعك'

@@ -1,4 +1,7 @@
 import 'package:al_muslim/core/helper/location.dart';
+import 'package:al_muslim/features/athkar/data/azkar_services.dart';
+import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
+import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:flutter/material.dart';
 
 class LandingView extends StatelessWidget {
@@ -6,6 +9,10 @@ class LandingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // set data to local
+    SalahServices().setDayData();
+    PrayTimeServices().getPrayTime();
+    AzkarServices().setAzkarAsString();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -31,7 +38,7 @@ class LandingView extends StatelessWidget {
                 height: 50,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: ()  {
+                  onPressed: () {
                     Location().requestPermission();
                   },
                   style: ButtonStyle(

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:al_muslim/features/radio/views/widgets/custom_button.dart';
 import 'package:al_muslim/features/radio/views/widgets/page_cover.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,6 @@ class _RadioViewState extends State<RadioView> {
   bool isVolumeClicked = false;
   @override
   void initState() {
-    log("after is ${widget.url}");
     super.initState();
     player = AudioPlayer();
     player.setUrl(widget.url);
@@ -141,7 +139,6 @@ class _RadioViewState extends State<RadioView> {
               await player.setVolume(val);
               volumeLevel = val;
               setState(() {});
-              log(val.toString());
             })
         : const SizedBox();
   }

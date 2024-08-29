@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/alquran/data/fehres_service.dart';
@@ -44,13 +43,10 @@ class AllSwarViewBody extends StatelessWidget {
 
   String manageIndex(index) {
     if (index + 1 <= 9) {
-      log('less: $swrahUrl${'00${index + 1}.mp3'}');
       return '$swrahUrl${'00${index + 1}.mp3'}';
     } else if (index >= 10 && index < 100) {
-      log('more:$swrahUrl${'0$index.mp3'}');
       return '$swrahUrl${'0$index.mp3'}';
     } else {
-      log('more:$swrahUrl${'$index.mp3'}');
       return '$swrahUrl${'$index.mp3'}';
     }
   }

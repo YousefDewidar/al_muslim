@@ -5,16 +5,37 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingCubit extends Cubit<SettingState> {
   SettingCubit() : super(SettingInitial());
+  ThemeMode myTheme = ThemeMode.system;
+  double myFont = 20.0;
 
   void setTheme({required ThemeMode theme}) async {
     SharedPreferences asyncPref = await SharedPreferences.getInstance();
     asyncPref.setString('theme', theme.toString());
-    emit(ThemeChangedState(theme));
+    myTheme = theme;
+    initialDataFromLDB();
   }
 
   void setFont({required double font}) async {
     SharedPreferences asyncPref = await SharedPreferences.getInstance();
     asyncPref.setDouble('font', font);
-    emit(FontChangedState(font));
+    myFont = font;
+    initialDataFromLDB();
+  }
+
+// Get data
+
+  void initialDataFromLDB() async {
+    SharedPreferences asyncPref = await SharedPreferences.getInstance();
+    if (asyncPref.getDouble('font') != null) {
+      myFont = asyncPref.getDouble('font')!;
+    }
+    if (asyncPref.getString('theme') == 'ThemeMode.dark') {
+      myTheme = ThemeMode.dark;
+    } else if (asyncPref.getString('theme') == 'ThemeMode.light') {
+      myTheme = ThemeMode.light;
+    } else if (asyncPref.getString('theme') == 'ThemeMode.system') {
+      myTheme = ThemeMode.system;
+    }
+    emit(DoneLoadData());
   }
 }
