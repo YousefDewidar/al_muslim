@@ -1,12 +1,50 @@
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/alquran/data/model/reacters_model.dart';
 import 'package:al_muslim/features/alquran/data/reacters_services.dart';
-import 'package:al_muslim/features/alquran/views/listen%20to%20quran/listen_to_all_swar_view.dart';
+import 'package:al_muslim/features/athkar/views/all_swar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ListenQuranViewBody extends StatelessWidget {
+class ListenQuranViewBody extends StatefulWidget {
   const ListenQuranViewBody({super.key});
+
+  @override
+  State<ListenQuranViewBody> createState() => _ListenQuranViewBodyState();
+}
+
+class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
+  late Future<List<ReactersModel>> future;
+  @override
+  void initState() {
+    future = ReactersServices().fetchReacters();
+    super.initState();
+  }
+
+  final searchController = TextEditingController();
+  List<ReactersModel> searchedList = [];
+  late List<ReactersModel> allList;
+  Widget buildTextFeild() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        onChanged: (searcherChar) {
+          addSearcherChartoFiltertheList(searcherChar);
+        },
+        controller: searchController,
+        textAlign: TextAlign.right,
+        decoration: const InputDecoration(
+          hintTextDirection: TextDirection.rtl,
+          hintText: 'ابحث عن الاذاعه التي ترغب ف الاستماع اليها',
+          suffixIcon: Icon(Icons.search),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,20 +52,28 @@ class ListenQuranViewBody extends StatelessWidget {
       children: [
         const CustomAppBar(
             header: 'القراء', desc: "الاستماع الي مكتبه كبيره من القراء "),
+        buildTextFeild(),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: FutureBuilder(
-                future: ReactersServices().fetchReacters(),
+                future: future,
                 builder: (context, snapShot) {
                   if (snapShot.hasData) {
-                    List<ReactersModel> reacters = snapShot.data!;
+                    allList = snapShot.data!;
                     return ListView.builder(
-                      itemCount: reacters.length,
+                      itemCount: searchedList.isEmpty
+                          ? allList.length
+                          : searchedList.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return CustomReaderRow(
-                          reacters: reacters,
-                          index: index,
+                        return   searchedList.isEmpty ?  CustomReaderRow(
+                          reacters:
+                               allList ,
+                          index: index, url: allList[index].server,
+                        ):CustomReaderRow(
+                          reacters:
+                             searchedList,
+                          index: index, url: searchedList[index].server,
                         );
                       },
                     );
@@ -40,14 +86,23 @@ class ListenQuranViewBody extends StatelessWidget {
       ],
     );
   }
+
+  //?search function
+  void addSearcherChartoFiltertheList(String searcherChar) {
+    searchedList = allList
+        .where((radio) => radio.name.toLowerCase().contains(searcherChar))
+        .toList();
+    setState(() {});
+  }
 }
 
 class CustomReaderRow extends StatelessWidget {
   final int index;
+  final String url;
   const CustomReaderRow({
     super.key,
     required this.reacters,
-    required this.index,
+    required this.index, required this.url,
   });
 
   final List<ReactersModel> reacters;
@@ -56,7 +111,7 @@ class CustomReaderRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => const ListenToAllSwarView());
+        Get.to(() =>  AllSwarView(swarUrl:url ,));
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

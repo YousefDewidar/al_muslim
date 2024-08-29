@@ -1,3 +1,4 @@
+
 import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/features/athkar/views/azkar_view.dart';
 import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
@@ -58,14 +59,10 @@ class FeaturesGridView extends StatelessWidget {
             FeatureCard(
               title: ' اذاعه مصر',
               imagePath: ImageData.radioMasr,
-              onTap: () {
-                Get.to(
-                  () => const RadioView(
-                    url:
-                        "https://n01.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABkZRfu5sA1epE8h1pnWdzRw",
-                    image: 'assets/images/masrQuranKreem.png',
-                  ),
-                );
+              onTap: ()  {
+                Get.to(() => const RadioView(
+                      image: 'assets/images/masrQuranKreem.png', url: '',
+                    ));
               },
             ),
             FeatureCard(

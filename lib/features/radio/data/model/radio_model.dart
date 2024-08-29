@@ -1,7 +1,7 @@
 class RadioModel {
   final int id;
-  final String name;
-  final String url;
+   String name;
+   String url;
 
   RadioModel({required this.id, required this.name, required this.url});
   factory RadioModel.fromJson(json) {

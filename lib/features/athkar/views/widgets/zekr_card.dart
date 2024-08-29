@@ -84,6 +84,7 @@ class _ZekrCardState extends State<ZekrCard> {
                           .removeFromFav(zekr: widget.azkar);
                       widget.isFavvvv = false;
                     }
+                    setState(() {});
                   },
                   color: Colors.orange,
                   icon:

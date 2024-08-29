@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:al_muslim/features/alquran/data/model/reacters_model.dart';
 import 'package:dio/dio.dart';
@@ -12,7 +11,6 @@ class ReactersServices {
     for (var item in response.data['reciters']) {
       reacters.add(item);
     }
-    log(reacters.length.toString());
     List<ReactersModel> reactersdata = [];
     for (int i = 0; i < reacters.length; i++) {
       reactersdata.add(ReactersModel.fromJson(reacters[i]));
