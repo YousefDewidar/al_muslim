@@ -32,21 +32,21 @@ class AzanList extends StatelessWidget {
     );
   }
 
-  Widget? handleSalah(
-      AsyncSnapshot<AzanModel> snapShot, int index,AsyncSnapshot<Map<String, String>> salahNowSnap) {
+  Widget? handleSalah(AsyncSnapshot<AzanModel> snapShot, int index,
+      AsyncSnapshot<Map<String, String>> salahNowSnap) {
     if (snapShot.data == null) {
       return const Center(child: CircularProgressIndicator());
     }
     if (snapShot.hasData) {
-      return returnedSalahColumn(snapShot, index,salahNowSnap);
+      return returnedSalahColumn(snapShot, index, salahNowSnap);
     } else if (snapShot.hasError) {
       Text(snapShot.data.toString());
     }
     return null;
   }
 
-  SalahColumn returnedSalahColumn(
-      AsyncSnapshot<AzanModel> snapShot, int index,AsyncSnapshot<Map<String, String>> salahNowSnap) {
+  SalahColumn returnedSalahColumn(AsyncSnapshot<AzanModel> snapShot, int index,
+      AsyncSnapshot<Map<String, String>> salahNowSnap) {
     AzanModel prayTime = snapShot.data!;
     final List<AzanModel> azan = [
       AzanModel(
@@ -78,7 +78,9 @@ class AzanList extends StatelessWidget {
     ];
     return SalahColumn(
       azan: azan[index],
-      iconCol:salahNowSnap.data!.entries.first.key == azan[index].title? Colors.yellow:Colors.white,
+      iconCol: salahNowSnap.data!.entries.first.key == azan[index].title
+          ? Colors.yellow
+          : Colors.white,
     );
   }
 }

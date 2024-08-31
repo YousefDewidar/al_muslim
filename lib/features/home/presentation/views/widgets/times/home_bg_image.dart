@@ -4,8 +4,10 @@ import 'package:al_muslim/features/home/presentation/views/widgets/times/azan_li
 import 'package:al_muslim/features/home/presentation/views/widgets/times/clock.dart';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
+import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
 import 'package:al_muslim/features/settings/presentation/view/setting_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 class HomeBgImage extends StatelessWidget {
@@ -15,12 +17,15 @@ class HomeBgImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeMode themeMode = BlocProvider.of<SettingCubit>(context).myTheme;
     return Container(
       padding: const EdgeInsets.only(top: 40),
       height: MediaQuery.of(context).size.height * .39,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/home.jpg'),
+          image: AssetImage(themeMode == ThemeMode.dark
+              ? 'assets/images/home_test1.jpg'
+              : 'assets/images/home.jpg'),
           fit: BoxFit.cover,
         ),
       ),
