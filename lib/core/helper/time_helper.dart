@@ -35,17 +35,31 @@ class TimeHelper {
 
     for (var pray in prayTimes.entries) {
       DateTime prayerDateTime = parsePrayerTime(pray.value);
+
       if (prayerDateTime.isAfter(now)) {
-        final hour = int.parse(pray.value.split(':')[0]);
-        final min = int.parse(pray.value.split(':')[1]);
-        final dd = DateTime(now.year, now.month, now.day, hour, min, 0);
-        String salahAfter =
-            '${(now.hour - dd.hour).abs()}:${((now.minute - dd.minute).abs()).toString().padLeft(2, '0')}:${((60 - now.second).abs()).toString().padLeft(2, '0')}';
         String nextSalahName = pray.key;
+        String remaind = prayerDateTime.difference(now).abs().toString();
+        final hour = remaind.split(':')[0].padLeft(2, '0');
+        final min = remaind.split(':')[1].padLeft(2, '0');
+        String salahAfter =
+            '$hour:$min:${((60 - now.second).abs()).toString().padLeft(2, '0')}';
 
         return {nextSalahName: salahAfter};
       }
     }
-    return {'':''};
+    if (true) {
+      DateTime fajrDateTime = parsePrayerTime(azan.timings.fajr);
+      String remaind = fajrDateTime
+          .add(const Duration(days: 1))
+          .difference(now)
+          .abs()
+          .toString();
+      final hour = remaind.split(':')[0].padLeft(2, '0');
+      final min = remaind.split(':')[1].padLeft(2, '0');
+      String salahfajrAfter =
+          '$hour:$min:${((60 - now.second).abs()).toString().padLeft(2, '0')}';
+
+      return {'الفجر': salahfajrAfter};
+    }
   }
 }

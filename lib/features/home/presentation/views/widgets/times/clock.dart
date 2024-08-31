@@ -52,15 +52,35 @@ class _ClockViewState extends State<ClockView> {
         future: TimeHelper().getRemaindSalahinfo(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final hour = LangConverter().convertToArabic(
-                int.parse(snapshot.data!.entries.first.value.split(':')[0]));
-            final min = LangConverter().convertToArabic(
-                int.parse(snapshot.data!.entries.first.value.split(':')[1]));
+            String salahAfter = '';
+            String hour = LangConverter()
+                .convertToArabic(
+                    int.parse(snapshot.data!.entries.first.value.split(':')[0]))
+                .toString();
+            String min = LangConverter()
+                .convertToArabic(
+                    int.parse(snapshot.data!.entries.first.value.split(':')[1]))
+                .toString();
+            if (hour == '') {
+              hour = '';
+            } else {
+              hour = '$hourس';
+            }
+            if (min == '') {
+              min = '';
+            } else {
+              min = '$minد';
+            }
+            if (hour == '' && min == '') {
+              salahAfter = '${snapshot.data!.entries.first.key}\nحالا';
+            } else {
+              salahAfter = '${snapshot.data!.entries.first.key} بعد';
+            }
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '${snapshot.data!.entries.first.key} بعد',
+                  salahAfter,
                   style: const TextStyle(
                     fontSize: 20,
                     color: Color.fromARGB(255, 248, 248, 248),
@@ -68,7 +88,7 @@ class _ClockViewState extends State<ClockView> {
                   ),
                 ),
                 Text(
-                  '$hourس$minد',
+                  '$hour$min',
                   style: const TextStyle(
                       fontSize: 26,
                       color: Color.fromARGB(255, 248, 248, 248),

@@ -1,16 +1,17 @@
-
 import 'package:al_muslim/core/utils/images_data.dart';
+import 'package:al_muslim/core/widgets/network_check_card.dart';
 import 'package:al_muslim/features/athkar/views/azkar_view.dart';
 import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
 import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
-import 'package:al_muslim/features/qubla/presentation/views/qiblah_compass_view_body.dart';
+import 'package:al_muslim/features/qubla/presentation/views/qibla_view.dart';
 import 'package:al_muslim/features/radio/views/all_radios_view.dart';
 import 'package:al_muslim/features/radio/views/radio_view.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class FeaturesGridView extends StatelessWidget {
   const FeaturesGridView({
@@ -45,8 +46,15 @@ class FeaturesGridView extends StatelessWidget {
             FeatureCard(
               title: 'رأديو',
               imagePath: ImageData.radio,
-              onTap: () {
-                Get.to(() => const AllRadiosView());
+              onTap: () async {
+                bool isConnected =
+                    await InternetConnectionChecker().hasConnection;
+                if (isConnected) {
+                  Get.to(() => const AllRadiosView());
+                } else {
+                  // ignore: use_build_context_synchronously
+                  NetworkCheck.networkCheck(context);
+                }
               },
             ),
             FeatureCard(
@@ -59,10 +67,16 @@ class FeaturesGridView extends StatelessWidget {
             FeatureCard(
               title: ' اذاعه مصر',
               imagePath: ImageData.radioMasr,
-              onTap: ()  {
-                Get.to(() => const RadioView(
-                      image: 'assets/images/masrQuranKreem.png', url: '',
-                    ));
+              onTap: () async {
+                bool isConnected =
+                    await InternetConnectionChecker().hasConnection;
+                if (isConnected) {
+                  Get.to(() => const RadioView(
+                      image: 'assets/images/masrQuranKreem.png', url: ''));
+                } else {
+                  // ignore: use_build_context_synchronously
+                  NetworkCheck.networkCheck(context);
+                }
               },
             ),
             FeatureCard(
@@ -76,7 +90,7 @@ class FeaturesGridView extends StatelessWidget {
               title: 'القبلة',
               imagePath: ImageData.qibla,
               onTap: () {
-                Get.to(() => const QuiblaViewBody());
+                Get.to(() => const QiblaView());
               },
             ),
             FeatureCard(

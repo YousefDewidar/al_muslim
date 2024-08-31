@@ -24,8 +24,7 @@ class QuranViewBody extends StatelessWidget {
       children: [
         const CustomAppBar(
           header: 'القران الكريم',
-          desc:
-              'هنا ستجد كل ما يخص القران الكريم\n من تفسير وتلاوه واستماع وغيره ',
+          desc: 'هنا ستجد كل ما يخص القران الكريم',
         ),
         Expanded(
           child: ListView.builder(

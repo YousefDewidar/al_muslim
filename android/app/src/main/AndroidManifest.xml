@@ -2,6 +2,11 @@
     <!-- Uncomment if needed -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/> 
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+     <!-- Permissions for internet_connection_checker -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    
     <application
         android:label="al_muslim"
         android:name="${applicationName}"

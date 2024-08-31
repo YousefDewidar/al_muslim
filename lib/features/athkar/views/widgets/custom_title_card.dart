@@ -1,3 +1,4 @@
+import 'package:al_muslim/core/widgets/network_check_card.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/views/listen%20to%20quran/listen_quran_view.dart';
 import 'package:al_muslim/features/alquran/views/tafser_view.dart';
@@ -7,6 +8,7 @@ import 'package:al_muslim/features/home/presentation/views/home_view.dart';
 import 'package:al_muslim/features/radio/views/radio_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class CustomTitleCard extends StatelessWidget {
   final String categorytTitle;
@@ -48,16 +50,22 @@ class CustomTitleCard extends StatelessWidget {
             case 'radio':
               Get.to(() => RadioView(url: url ?? ''));
             case 'fehres':
-            //!!!!!!!!!!!!!!!will change with all swar view
+              //!!!!!!!!!!!!!!!will change with all swar view
               Get.to(() => const HomeView());
             case 'tafser':
-              Get.to(() => const AllSwarView(
-                    pageRoute: 'redingTafser',
-                  ));
+              checkNet(
+                context,
+                const AllSwarView(
+                  pageRoute: 'redingTafser',
+                ),
+              );
+
             case 'redingTafser':
-              Get.to(() => TafserView(tafserstartIndex: tafserstartIndex ?? 2));
+              checkNet(
+                  context, TafserView(tafserstartIndex: tafserstartIndex ?? 2));
+
             case 'listenQuran':
-              Get.to(() => const ListenQuranView());
+              checkNet(context, const ListenQuranView());
             case 'listenToSwrah':
               Get.to(() => RadioView(
                     url:
@@ -99,5 +107,15 @@ class CustomTitleCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void checkNet(context, Widget page) async {
+    bool isConnected = await InternetConnectionChecker().hasConnection;
+    if (isConnected) {
+      Get.to(() => page);
+    } else {
+      // ignore: use_build_context_synchronously
+      NetworkCheck.networkCheck(context);
+    }
   }
 }

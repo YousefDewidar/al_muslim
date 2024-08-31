@@ -1,7 +1,10 @@
+import 'package:al_muslim/core/storage/storage_service.dart';
+import 'package:al_muslim/core/widgets/network_check_card.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/hadith/presentation/view/reading_hadith_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HadithItem extends StatelessWidget {
   const HadithItem({
@@ -18,8 +21,15 @@ class HadithItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: () {
-        Get.to(() => ReadingHadithView(sahehName: sahehName, title: title));
+      onTap: () async {
+        bool isConnected = await InternetConnectionChecker().hasConnection;
+        bool downloaded = await StorageService.hasDataInLDB(key: sahehName);
+        if (isConnected || downloaded) {
+          Get.to(() => ReadingHadithView(sahehName: sahehName, title: title));
+        } else {
+          // ignore: use_build_context_synchronously
+          NetworkCheck.networkCheck(context);
+        }
       },
       child: Container(
         decoration: BoxDecoration(

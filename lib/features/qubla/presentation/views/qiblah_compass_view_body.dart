@@ -33,83 +33,84 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            const CustomAppBar(
-                header: 'القبلة', desc: 'الاتجاه الدقيق لقبلة الصلاة'),
-            StreamBuilder<QiblahDirection>(
-                stream: FlutterQiblah.qiblahStream,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final direction = snapshot.data;
-                    animation = Tween(
-                            begin: begin,
-                            end: (direction!.qiblah * (pi / 180) * -1))
-                        .animate(_animationController!);
-                    begin = (direction.qiblah * (pi / 180) * -1);
-                    _animationController!.forward(from: 0);
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 100,
-                          width: 150,
-                          child: direction.direction.round() == 137
-                              ? Image.asset('assets/images/qibla.png')
-                              : const SizedBox(),
-                        ),
-                        Text(
-                          '${direction.direction.round()}°',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(fontFamily: 'IBMPlex', fontSize: 42),
-                        ),
-                        SizedBox(
-                          height: 300,
-                          child: AnimatedBuilder(
-                            animation: animation!,
-                            builder: (context, child) {
-                              return Transform.rotate(
-                                  angle: animation!.value,
-                                  child: Image.asset(
-                                      'assets/images/compass_without_needel.png'));
-                            },
-                          ),
-                        ),
-                        Text(
-                          'السهم يشير الى اتجاه القبلة دائما',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(fontFamily: 'IBMPlex', fontSize: 23),
-                        ),
-                        const SpaceV(5),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(
-                            textAlign: TextAlign.center,
-                            'يشير السهم الي اتجاه القبله وللحصول علي نتيجه دقيقه حرك جهازك يمينا او يسارا بشكل دائري  واحرص علي ان يكون جهازك بعيد عن اي اجهزه الكترونيه او مجال مغناطيسي  حول الجهاز حتي لا يوثر علي دقة البوصلة',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(fontFamily: 'IBMPlex'),
-                          ),
-                        ),
-                      ],
-                    );
-                  } else {
-                    return const Center(
+    return Column(
+      children: [
+        const CustomAppBar(
+            header: 'القبلة', desc: 'الاتجاه الدقيق لقبلة الصلاة'),
+        StreamBuilder<QiblahDirection>(
+            stream: FlutterQiblah.qiblahStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final direction = snapshot.data;
+                animation = Tween(
+                        begin: begin,
+                        end: (direction!.qiblah * (pi / 180) * -1))
+                    .animate(_animationController!);
+                begin = (direction.qiblah * (pi / 180) * -1);
+                _animationController!.forward(from: 0);
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 100,
+                      width: 150,
+                      child: direction.direction.round() == 137
+                          ? Image.asset('assets/images/qibla.png')
+                          : const SizedBox(),
+                    ),
+                    Text(
+                      '${direction.direction.round()}°',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(fontFamily: 'IBMPlex', fontSize: 42),
+                    ),
+                    SizedBox(
+                      height: 300,
+                      child: AnimatedBuilder(
+                        animation: animation!,
+                        builder: (context, child) {
+                          return Transform.rotate(
+                              angle: animation!.value,
+                              child: Image.asset(
+                                  'assets/images/compass_without_needel.png'));
+                        },
+                      ),
+                    ),
+                    Text(
+                      'السهم يشير الى اتجاه القبلة دائما',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(fontFamily: 'IBMPlex', fontSize: 23),
+                    ),
+                    const SpaceV(5),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        'يشير السهم الي اتجاه القبله وللحصول علي نتيجه دقيقه حرك جهازك يمينا او يسارا بشكل دائري  واحرص علي ان يكون جهازك بعيد عن اي اجهزه الكترونيه او مجال مغناطيسي  حول الجهاز حتي لا يوثر علي دقة البوصلة',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(fontFamily: 'IBMPlex'),
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                return const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
                         child: CircularProgressIndicator(
                       color: Colors.white,
-                    ));
-                  }
-                }),
-          ],
-        ),
-      ),
+                    )),
+                  ],
+                );
+              }
+            }),
+      ],
     );
   }
 }
