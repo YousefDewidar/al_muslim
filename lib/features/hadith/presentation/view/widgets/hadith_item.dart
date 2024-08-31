@@ -1,5 +1,5 @@
 import 'package:al_muslim/core/storage/storage_service.dart';
-import 'package:al_muslim/core/widgets/network_check_card.dart';
+import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/hadith/presentation/view/reading_hadith_view.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ class HadithItem extends StatelessWidget {
           Get.to(() => ReadingHadithView(sahehName: sahehName, title: title));
         } else {
           // ignore: use_build_context_synchronously
-          NetworkCheck.networkCheck(context);
+          InsideNotification.networkCheck(context);
         }
       },
       child: Container(

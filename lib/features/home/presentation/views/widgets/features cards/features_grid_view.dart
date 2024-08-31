@@ -1,5 +1,5 @@
 import 'package:al_muslim/core/utils/images_data.dart';
-import 'package:al_muslim/core/widgets/network_check_card.dart';
+import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/features/athkar/views/azkar_view.dart';
 import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
 import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
@@ -53,7 +53,7 @@ class FeaturesGridView extends StatelessWidget {
                   Get.to(() => const AllRadiosView());
                 } else {
                   // ignore: use_build_context_synchronously
-                  NetworkCheck.networkCheck(context);
+                  InsideNotification.networkCheck(context);
                 }
               },
             ),
@@ -75,7 +75,7 @@ class FeaturesGridView extends StatelessWidget {
                       image: 'assets/images/masrQuranKreem.png', url: ''));
                 } else {
                   // ignore: use_build_context_synchronously
-                  NetworkCheck.networkCheck(context);
+                  InsideNotification.networkCheck(context);
                 }
               },
             ),

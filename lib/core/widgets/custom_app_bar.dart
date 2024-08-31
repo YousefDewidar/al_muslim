@@ -21,8 +21,8 @@ class CustomAppBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 25),
       height: desc == ''
-          ? MediaQuery.of(context).size.height * .14
-          : MediaQuery.of(context).size.height * .14,
+          ? MediaQuery.of(context).size.height * .13
+          : MediaQuery.of(context).size.height * .13,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Theme.of(context).cardTheme.color!.withOpacity(.8),
@@ -59,10 +59,8 @@ class CustomAppBar extends StatelessWidget {
                       maxWidth: MediaQuery.of(context).size.width * .62),
                   child: Text(
                     header,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineLarge!
-                        .copyWith(fontWeight: FontWeight.bold, height: 1.5,fontSize: 30),
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                        fontWeight: FontWeight.bold, height: 1.5, fontSize: 30),
                     textDirection: TextDirection.rtl,
                     overflow: TextOverflow.ellipsis,
                   ),

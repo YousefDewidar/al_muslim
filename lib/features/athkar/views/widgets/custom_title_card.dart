@@ -1,4 +1,4 @@
-import 'package:al_muslim/core/widgets/network_check_card.dart';
+import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/views/listen%20to%20quran/listen_quran_view.dart';
 import 'package:al_muslim/features/alquran/views/tafser_view.dart';
@@ -112,7 +112,7 @@ class CustomTitleCard extends StatelessWidget {
       Get.to(() => page);
     } else {
       // ignore: use_build_context_synchronously
-      NetworkCheck.networkCheck(context);
+      InsideNotification.networkCheck(context);
     }
   }
 }

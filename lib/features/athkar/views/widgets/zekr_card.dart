@@ -1,4 +1,4 @@
-import 'package:al_muslim/core/widgets/share_notification.dart';
+import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/features/athkar/data/azkar_model.dart';
 import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion_button.dart';
@@ -57,7 +57,7 @@ class _ZekrCardState extends State<ZekrCard> {
               children: [
                 CirculeActionButton(
                   onPressed: () {
-                    ShareNotification.shareMethod(
+                    InsideNotification.shareMethod(
                         message: widget.azkar.text, context: context);
                   },
                   color: Colors.orange,

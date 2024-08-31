@@ -1,4 +1,4 @@
-import 'package:al_muslim/core/widgets/share_notification.dart';
+import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion_button.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +54,7 @@ class _RandomCardState extends State<RandomCard> {
                   padding: const EdgeInsets.all(10.0),
                   child: CirculeActionButton(
                     onTap: () async {
-                      ShareNotification.shareMethod(
+                      InsideNotification.shareMethod(
                           message: ayat[ayah], context: context);
                     },
                     color: Colors.orange,

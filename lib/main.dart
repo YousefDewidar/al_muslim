@@ -7,6 +7,7 @@ import 'package:al_muslim/features/landing/landing_view.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as nav;
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -14,6 +15,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 void main() async {
   runApp(const AlMuslim());
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await NotificationService.initNotification();
 }
 
@@ -46,9 +48,10 @@ class AlMuslim extends StatelessWidget {
             theme:
                 CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
                     .lightData(context),
-
-            //Todo: اتوقع في غلط هنا
             home: FutureBuilder(
+              //Todo: اتوقع في غلط هنا
+              //Todo:   عاوزك تحط الموقع في لوكال ولو موجود هاته لو مش موجود افتح الموقع وهاته
+              //Todo:  هنعمل الكلام دا مع بعض
               future: Location().getPermision(),
               builder: (contex, snapshot) {
                 if (Location.hasPermision) {

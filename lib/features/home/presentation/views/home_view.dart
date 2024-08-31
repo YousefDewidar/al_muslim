@@ -1,3 +1,4 @@
+import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/home_view_body.dart';
@@ -5,6 +6,8 @@ import 'package:al_muslim/features/salah/presentation/view%20model/salah_service
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,9 +20,15 @@ class HomeView extends StatelessWidget {
           finalizeDuration: Duration(seconds: 1),
         ),
         onRefresh: () async {
-          SalahServices().setDayData();
-          PrayTimeServices().getPrayTime();
-          AzkarServices().setAzkarAsString();
+          bool isConnected = await InternetConnectionChecker().hasConnection;
+          if (isConnected) {
+            SalahServices().setDayData();
+            PrayTimeServices().getPrayTime();
+            AzkarServices().setAzkarAsString();
+          } else {
+            // ignore: use_build_context_synchronously
+            InsideNotification.networkCheck(context);
+          }
         },
         builder: (BuildContext context, Widget child,
             IndicatorController controller) {
