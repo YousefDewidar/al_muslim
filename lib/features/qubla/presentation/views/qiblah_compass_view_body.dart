@@ -34,6 +34,7 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const CustomAppBar(
             header: 'القبلة', desc: 'الاتجاه الدقيق لقبلة الصلاة'),
@@ -99,15 +100,10 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
                   ],
                 );
               } else {
-                return const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                        child: CircularProgressIndicator(
-                      color: Colors.white,
-                    )),
-                  ],
-                );
+                return const Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.white,
+                ));
               }
             }),
       ],

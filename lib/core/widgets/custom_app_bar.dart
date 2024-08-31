@@ -33,28 +33,39 @@ class CustomAppBar extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
+          textDirection: TextDirection.rtl,
+          alignment: Alignment.center,
           children: [
             hasDownload
-                ? GestureDetector(
-                    onTap: downloadButt,
-                    child: Icon(
-                      size: 41,
-                      downloadIcon,
-                      color: const Color.fromARGB(172, 0, 0, 0),
+                ? Positioned(
+                    top: 15,
+                    left: 10,
+                    child: GestureDetector(
+                      onTap: downloadButt,
+                      child: Icon(
+                        size: 41,
+                        downloadIcon,
+                        color: const Color.fromARGB(172, 0, 0, 0),
+                      ),
                     ),
                   )
                 : const SpaceH(30),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  header,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineLarge!
-                      .copyWith(fontWeight: FontWeight.bold, height: 1.5),
+                Container(
+                  constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * .62),
+                  child: Text(
+                    header,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineLarge!
+                        .copyWith(fontWeight: FontWeight.bold, height: 1.5,fontSize: 30),
+                    textDirection: TextDirection.rtl,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 desc == ''
                     ? const SpaceV(0)
@@ -68,7 +79,7 @@ class CustomAppBar extends StatelessWidget {
                       ),
               ],
             ),
-            const IconBack(),
+            const Positioned(right: 10, top: 15, child: IconBack()),
           ],
         ),
       ),

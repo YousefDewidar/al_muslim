@@ -59,7 +59,6 @@ class CustomTitleCard extends StatelessWidget {
                   pageRoute: 'redingTafser',
                 ),
               );
-
             case 'redingTafser':
               checkNet(
                   context, TafserView(tafserstartIndex: tafserstartIndex ?? 2));
@@ -75,7 +74,6 @@ class CustomTitleCard extends StatelessWidget {
           }
         },
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
               onPressed: onPressed,
@@ -84,24 +82,23 @@ class CustomTitleCard extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 300,
-                  child: Text(
-                    textAlign: TextAlign.right,
-                    maxLines: 1,
-                    overflow: TextOverflow.visible,
-                    categorytTitle,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ),
-                const SpaceH(10),
-                Icon(
-                  prefixIcon,
-                  color: Colors.black,
-                )
-              ],
+            const Spacer(),
+            Container(
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * .65),
+              child: Text(
+                categorytTitle,
+                textAlign: TextAlign.right,
+                textDirection: TextDirection.rtl,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            const SpaceH(8),
+            Icon(
+              prefixIcon,
+              color: Colors.black,
             ),
           ],
         ),

@@ -1,7 +1,7 @@
+import 'package:al_muslim/core/widgets/share_notification.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion_button.dart';
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
 
 class RandomCard extends StatefulWidget {
   const RandomCard({
@@ -54,11 +54,8 @@ class _RandomCardState extends State<RandomCard> {
                   padding: const EdgeInsets.all(10.0),
                   child: CirculeActionButton(
                     onTap: () async {
-                      final res = await Share.share(ayat[ayah],
-                          subject: 'اكتشف تطبيق المسلم من هنا ');
-                      if (res.status == ShareResultStatus.success) {
-                        const SnackBar(content: Text('تم ارسال الرسالة بنجاح'));
-                      }
+                      ShareNotification.shareMethod(
+                          message: ayat[ayah], context: context);
                     },
                     color: Colors.orange,
                     icon: Icons.share,
