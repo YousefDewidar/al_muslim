@@ -10,7 +10,7 @@ class TafserView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: SafeArea(child: TafserViewBody(tafserstartIndex:tafserstartIndex)),
+      body: TafserViewBody(tafserstartIndex:tafserstartIndex),
     );
   }
 }

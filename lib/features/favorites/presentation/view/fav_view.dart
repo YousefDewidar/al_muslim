@@ -6,9 +6,8 @@ class FavView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-        child: Scaffold(
-      body: FavViewBody(),
-    ));
+    return const Scaffold(
+          body: FavViewBody(),
+        );
   }
 }

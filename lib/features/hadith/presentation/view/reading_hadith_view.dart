@@ -9,11 +9,10 @@ class ReadingHadithView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: ReadingHadithViewBody(
-      sahehName: sahehName,
-      title: title,
-    )));
+    return Scaffold(
+        body: ReadingHadithViewBody(
+          sahehName: sahehName,
+          title: title,
+        ));
   }
 }

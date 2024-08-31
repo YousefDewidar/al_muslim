@@ -28,6 +28,7 @@ class QuranViewBody extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
+            padding: EdgeInsets.zero,
             itemCount: allAboutQuran.length,
             itemBuilder: (BuildContext context, int index) {
               return CustomTitleCard(

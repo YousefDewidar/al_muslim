@@ -32,6 +32,7 @@ class ReadingAzkarViewBody extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
+                    padding: EdgeInsets.zero,
                     itemCount: azkar.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ZekrCard(azkar: azkar[startIndex],isFavvvv:azkar[startIndex].isFav);

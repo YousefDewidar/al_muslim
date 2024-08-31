@@ -7,7 +7,7 @@ class AllRadiosView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(child: AllRadioViewBody()),
+      body: AllRadioViewBody(),
     );
   }
 }

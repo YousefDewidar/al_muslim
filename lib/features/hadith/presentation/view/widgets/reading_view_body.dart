@@ -57,6 +57,7 @@ class _ReadingHadithViewBodyState extends State<ReadingHadithViewBody> {
                   desc: 'عدد الأحاديث : $hadithListCount'),
               Expanded(
                 child: ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemCount: hadith.length,
                   itemBuilder: (BuildContext context, int index) {
                     return HadithCard(

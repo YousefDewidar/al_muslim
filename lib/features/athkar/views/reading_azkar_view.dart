@@ -10,11 +10,9 @@ class ReadingAzkarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
-      child: Scaffold(
-        body: ReadingAzkarViewBody(
-          startIndex: startIndex,
-        ),
+    return  Scaffold(
+      body: ReadingAzkarViewBody(
+        startIndex: startIndex,
       ),
     );
   }

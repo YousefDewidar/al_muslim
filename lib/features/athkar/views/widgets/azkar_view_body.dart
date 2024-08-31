@@ -20,6 +20,7 @@ class AzkarViewBody extends StatelessWidget {
               if (snapShot.hasData) {
                 List<AzkarModel> azkar = snapShot.data!;
                 return ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemCount: azkar.length,
                   itemBuilder: (BuildContext context, int index) {
                     return CustomTitleCard(

@@ -6,6 +6,6 @@ class SalahView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(child: Scaffold(body: SalahViewBody()));
+    return const Scaffold(body: SalahViewBody());
   }
 }

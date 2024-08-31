@@ -12,35 +12,27 @@ class SalahViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        const Positioned(
-          top: 5,
-          right: 5,
-          child: IconBack(),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
-          child: FutureBuilder(
-              future: SalahServices().getDayDataFormLDB(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    children: [
-                      DayRow(dayData: snapshot.data!),
-                      const SpaceV(16),
-                      const LocationCard(),
-                      SalahGridView(dayData: snapshot.data!),
-                      const AlsunahCard(),
-                    ],
-                  );
-                } else {
-                  return const Center(
-                      child: CircularProgressIndicator(color: Colors.orange));
-                }
-              }),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
+      child: FutureBuilder(
+          future: SalahServices().getDayDataFormLDB(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                children: [
+                  const SpaceV(15),
+                  DayRow(dayData: snapshot.data!),
+                  const SpaceV(16),
+                  const LocationCard(),
+                  SalahGridView(dayData: snapshot.data!),
+                  const AlsunahCard(),
+                ],
+              );
+            } else {
+              return const Center(
+                  child: CircularProgressIndicator(color: Colors.orange));
+            }
+          }),
     );
   }
 }

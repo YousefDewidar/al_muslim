@@ -11,11 +11,10 @@ class AllSwarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: SafeArea(
-          child: AllSwarViewBody(
-        pageRoute: pageRoute??'listenToSwrah',
-        swrahUrl: swarUrl,
-      )),
+      body: AllSwarViewBody(
+              pageRoute: pageRoute??'listenToSwrah',
+              swrahUrl: swarUrl,
+            ),
     );
   }
 }

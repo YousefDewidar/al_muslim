@@ -46,6 +46,8 @@ class AlMuslim extends StatelessWidget {
             theme:
                 CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
                     .lightData(context),
+
+            //Todo: اتوقع في غلط هنا
             home: FutureBuilder(
               future: Location().getPermision(),
               builder: (contex, snapshot) {

@@ -6,10 +6,8 @@ class AzkarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: AzkarViewBody(),
-      ),
+    return const Scaffold(
+      body: AzkarViewBody(),
     );
   }
 }

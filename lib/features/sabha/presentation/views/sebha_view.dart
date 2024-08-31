@@ -21,52 +21,50 @@ class _SebhaViewState extends State<SebhaView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: InkWell(
-            onTap: () {
-              count++;
-              setState(() {});
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomAppBar(
-                    downloadButt: () {
-                      count = 0;
-                      setState(() {});
-                    },
-                    downloadIcon: Icons.repeat,
-                    hasDownload: true,
-                    header: 'السبحة',
-                    desc: ''),
-                Text(
-                  widget.zkr,
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(100.0),
-                  child: Text(
-                    '$count',
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                  Get.off(() => AllAzkarView(zekrCount: count));
+    return Scaffold(
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: InkWell(
+          onTap: () {
+            count++;
+            setState(() {});
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomAppBar(
+                  downloadButt: () {
+                    count = 0;
+                    setState(() {});
                   },
-                  child: SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Image.asset('assets/icons/prayer-beads.png'),
-                  ),
+                  downloadIcon: Icons.repeat,
+                  hasDownload: true,
+                  header: 'السبحة',
+                  desc: ''),
+              Text(
+                widget.zkr,
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(100.0),
+                child: Text(
+                  '$count',
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
-                const SpaceV(20),
-              ],
-            ),
+              ),
+              GestureDetector(
+                onTap: () {
+                Get.off(() => AllAzkarView(zekrCount: count));
+                },
+                child: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: Image.asset('assets/icons/prayer-beads.png'),
+                ),
+              ),
+              const SpaceV(20),
+            ],
           ),
         ),
       ),

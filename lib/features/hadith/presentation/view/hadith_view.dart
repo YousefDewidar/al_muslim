@@ -6,10 +6,8 @@ class HadithView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: HadithViewBody(),
-      ),
+    return const Scaffold(
+      body: HadithViewBody(),
     );
   }
 }

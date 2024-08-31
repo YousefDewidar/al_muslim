@@ -14,11 +14,12 @@ class HadithViewBody extends StatelessWidget {
         const CustomAppBar(
             header: 'الأحاديث',
             desc: "جميع الأحاديث التي تمنحك فهما أعمق لسيرة النبي"),
-        const SpaceV(30),
+        const SpaceV(20),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14.0),
             child: GridView.count(
+              padding: EdgeInsets.zero,
               crossAxisCount: 3,
               childAspectRatio: 3 / 4.2,
               mainAxisSpacing: 22,

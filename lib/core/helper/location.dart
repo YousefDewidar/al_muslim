@@ -5,7 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 class Location {
   static bool hasPermision = false;
 
-  Future getPermision() async {
+  Future<void> getPermision() async {
     if (await Permission.location.serviceStatus.isEnabled) {
       var status = await Permission.location.status;
       if (status.isGranted) {

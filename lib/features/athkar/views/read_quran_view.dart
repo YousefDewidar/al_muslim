@@ -6,6 +6,6 @@ class ReadQuranView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SafeArea(child: ReadQuranViewBody()),);
+    return const Scaffold(body: ReadQuranViewBody(),);
   }
 }
