@@ -44,18 +44,20 @@ class _SebhaViewState extends State<SebhaView> {
                   desc: ''),
               Text(
                 widget.zkr,
-                style: Theme.of(context).textTheme.displaySmall,
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                    color: Theme.of(context).textTheme.headlineSmall!.color!),
               ),
               Padding(
                 padding: const EdgeInsets.all(100.0),
                 child: Text(
                   '$count',
-                  style: Theme.of(context).textTheme.displayLarge,
+                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                      color: Theme.of(context).textTheme.headlineSmall!.color!),
                 ),
               ),
               GestureDetector(
                 onTap: () {
-                Get.off(() => AllAzkarView(zekrCount: count));
+                  Get.off(() => const AllAzkarView());
                 },
                 child: SizedBox(
                   height: 100,

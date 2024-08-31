@@ -53,7 +53,7 @@ class DayRow extends StatelessWidget {
               ),
             ],
           ),
-          const IconBack(),
+          const IconBack(col: Colors.white),
         ],
       ),
     );

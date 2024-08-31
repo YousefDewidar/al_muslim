@@ -39,7 +39,7 @@ class CustomTitleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
       child: GestureDetector(
         onTap: () {
           switch (pageName) {
@@ -79,7 +79,6 @@ class CustomTitleCard extends StatelessWidget {
               onPressed: onPressed,
               icon: Icon(
                 suffixIcon ?? Icons.arrow_back_ios,
-                color: Colors.black,
               ),
             ),
             const Spacer(),
@@ -95,10 +94,9 @@ class CustomTitleCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
-            const SpaceH(8),
+            const SpaceH(10),
             Icon(
               prefixIcon,
-              color: Colors.black,
             ),
           ],
         ),

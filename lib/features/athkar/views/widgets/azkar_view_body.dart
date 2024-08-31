@@ -12,7 +12,7 @@ class AzkarViewBody extends StatelessWidget {
     return Column(children: [
       const CustomAppBar(
           header: 'الاذكار',
-          desc: ' اذكار لمختلف المواقف والاحداث فى الحياه اليوميه,'),
+          desc: 'اذكار لمختلف المواقف والاحداث فى الحياه اليوميه'),
       Expanded(
         child: FutureBuilder<List<AzkarModel>>(
             future: AzkarServices().getAzkar(),

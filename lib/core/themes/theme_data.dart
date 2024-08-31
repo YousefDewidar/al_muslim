@@ -7,46 +7,48 @@ class CustomThemeData {
   CustomThemeData(this.myFont);
   ThemeData darkData(context) {
     return ThemeData(
-        scaffoldBackgroundColor: Constants.kBgColDark,
-        // ###################
-        // ###################
-        textTheme: GoogleFonts.amiriTextTheme(
-          Theme.of(context).textTheme.copyWith(
-                headlineSmall: const TextStyle(color: Colors.white),
-                bodyLarge: const TextStyle(color: Colors.white),
-                headlineMedium: const TextStyle(color: Colors.white),
-                titleLarge: const TextStyle(color: Colors.black),
-                titleMedium: const TextStyle(color: Colors.white),
-                // $$$$$$$$$$$$$$$$$$$$$$$$$$$
-                labelLarge: const TextStyle(color: Colors.white)
-                    .copyWith(fontFamily: 'IBMPlex', fontSize: myFont),
-              ),
-        ),
-
-        // ###################
-        cardTheme: CardTheme(
-          color: Constants.kPrimaryColDark,
-        ),
-
-        // ###################
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: const WidgetStatePropertyAll(Colors.white),
-            backgroundColor: WidgetStatePropertyAll(
-              Constants.kButtonCol,
+      scaffoldBackgroundColor: Constants.kBgColDark,
+      // ###################
+      // ###################
+      textTheme: GoogleFonts.amiriTextTheme(
+        Theme.of(context).textTheme.copyWith(
+              headlineSmall: const TextStyle(color: Colors.white),
+              bodyLarge: const TextStyle(color: Colors.white),
+              headlineMedium: const TextStyle(color: Colors.white),
+              titleLarge: const TextStyle(color: Colors.black),
+              titleMedium: const TextStyle(color: Colors.white),
+              // $$$$$$$$$$$$$$$$$$$$$$$$$$$
+              labelLarge: const TextStyle(color: Colors.white)
+                  .copyWith(fontFamily: 'IBMPlex', fontSize: myFont),
             ),
+      ),
+
+      // ###################
+      cardTheme: CardTheme(
+        color: Constants.kPrimaryColDark,
+      ),
+
+      // ###################
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: const WidgetStatePropertyAll(Colors.white),
+          backgroundColor: WidgetStatePropertyAll(
+            Constants.kButtonCol,
           ),
         ),
+      ),
 
-        // ###################
-        iconButtonTheme: const IconButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: WidgetStatePropertyAll(Colors.white),
-          ),
+      // ###################
+      iconButtonTheme: const IconButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: WidgetStatePropertyAll(Colors.white),
         ),
+      ),
+      primaryIconTheme:const IconThemeData(color: Colors.white),
 
-        // ###################
-        iconTheme: const IconThemeData(color: Colors.white));
+      // ###################
+      iconTheme: const IconThemeData(color: Colors.white),
+    );
     //####################
   }
 
@@ -83,11 +85,12 @@ class CustomThemeData {
       ),
 
       // ###################
-      iconButtonTheme: IconButtonThemeData(
+      iconButtonTheme: const IconButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: WidgetStatePropertyAll(Constants.kGreenCol),
+          foregroundColor: WidgetStatePropertyAll(Colors.white),
         ),
       ),
+      primaryIconTheme:const IconThemeData(color: Colors.white),
 
       // ###################
       iconTheme: const IconThemeData(color: Colors.white),

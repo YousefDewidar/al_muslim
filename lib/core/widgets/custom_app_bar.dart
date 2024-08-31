@@ -22,10 +22,10 @@ class CustomAppBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 25),
       height: desc == ''
           ? MediaQuery.of(context).size.height * .13
-          : MediaQuery.of(context).size.height * .13,
+          : MediaQuery.of(context).size.height * .14,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).cardTheme.color!.withOpacity(.8),
+        color: Theme.of(context).cardTheme.color!.withOpacity(.93),
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(40),
           bottomRight: Radius.circular(40),
@@ -88,7 +88,9 @@ class CustomAppBar extends StatelessWidget {
 class IconBack extends StatelessWidget {
   const IconBack({
     super.key,
+    this.col = Colors.black,
   });
+  final Color col;
 
   @override
   Widget build(BuildContext context) {
@@ -100,11 +102,11 @@ class IconBack extends StatelessWidget {
         height: 37,
         width: 37,
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.black),
+            border: Border.all(color: col),
             borderRadius: BorderRadius.circular(10)),
-        child: const Icon(
+        child: Icon(
           Icons.arrow_forward,
-          color: Colors.black,
+          color: col,
         ),
       ),
     );

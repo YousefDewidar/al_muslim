@@ -38,7 +38,13 @@ class _ZekrCardState extends State<ZekrCard> {
         margin: const EdgeInsets.all(20),
         width: double.infinity,
         decoration: BoxDecoration(
-            border: Border.all(), borderRadius: BorderRadius.circular(20)),
+            border: Border.all(
+                color: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .color!
+                    .withOpacity(.4)),
+            borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
             Padding(
@@ -71,7 +77,12 @@ class _ZekrCardState extends State<ZekrCard> {
                   height: 80,
                   width: 80,
                   decoration: BoxDecoration(
-                      border: Border.all(),
+                      border: Border.all(
+                          color: Theme.of(context)
+                              .textTheme
+                              .headlineSmall!
+                              .color!
+                              .withOpacity(.4)),
                       borderRadius: BorderRadius.circular(40)),
                   child: Text(
                     isFinished ? 'تم' : '$count',

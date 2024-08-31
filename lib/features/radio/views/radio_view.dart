@@ -6,7 +6,7 @@ import 'package:just_audio/just_audio.dart';
 class RadioView extends StatefulWidget {
   final String url;
   final String? image;
-  const RadioView({super.key, required  this.url, this.image});
+  const RadioView({super.key, required this.url, this.image});
 
   @override
   State<RadioView> createState() => _RadioViewState();
@@ -44,7 +44,7 @@ class _RadioViewState extends State<RadioView> {
               icon: const Icon(Icons.arrow_forward_ios))
         ],
         centerTitle: true,
-        title: const Text('اهلا'),
+        title: Text('اهلا', style: Theme.of(context).textTheme.headlineSmall!),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

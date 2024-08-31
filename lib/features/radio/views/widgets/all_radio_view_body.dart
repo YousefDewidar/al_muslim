@@ -24,11 +24,13 @@ class _AllRadioViewBodyState extends State<AllRadioViewBody> {
         },
         controller: searchController,
         textAlign: TextAlign.right,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           hintTextDirection: TextDirection.rtl,
           hintText: 'ابحث عن الاذاعه التي ترغب ف الاستماع اليها',
-          suffixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(
+          hintStyle:
+              Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 16),
+          suffixIcon: const Icon(Icons.search),
+          border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(20),
             ),
@@ -89,6 +91,7 @@ class HandelRadioList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
+        padding: EdgeInsets.zero,
         itemCount: searchController.text.isEmpty
             ? allList.length
             : searchedList.length,
@@ -107,6 +110,6 @@ class HandelRadioList extends StatelessWidget {
       ),
     );
   }
-  edit()async {
-          }
+
+  edit() async {}
 }
