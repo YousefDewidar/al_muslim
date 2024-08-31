@@ -25,6 +25,7 @@ class CustomThemeData {
 
       // ###################
       cardTheme: CardTheme(
+        elevation: 2.1,
         color: Constants.kPrimaryColDark,
       ),
 
@@ -81,6 +82,7 @@ class CustomThemeData {
 
       // ###################
       cardTheme: CardTheme(
+        elevation: 2.1,
         color: Constants.kPrimaryColLight,
       ),
 
