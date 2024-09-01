@@ -1,8 +1,8 @@
 import 'package:al_muslim/core/utils/strings.dart';
-import 'package:al_muslim/core/widgets/icon_back.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 
 class AllAzkarView extends StatelessWidget {
   const AllAzkarView({super.key});
@@ -20,8 +20,14 @@ class AllAzkarView extends StatelessWidget {
         automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        actions: const [
-          IconBack(),
+        actions: [
+          IconButton(
+            iconSize: 20,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_forward_ios_rounded),
+          )
         ],
       ),
       body: Padding(
