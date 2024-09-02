@@ -28,7 +28,7 @@ class AzkarServices {
   //   log(azkarModelList[0].category.toString());
   //   return azkarModelList;
   // }
-//!
+//!         
   //##################
   void setAzkarAsString() async {
     Response response = await dio.get(options.baseUrl);

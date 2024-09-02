@@ -16,6 +16,8 @@ class PrayTimeServices {
     );
   }
 
+  
+
   Future<AzanModel> getDataFromDB() async {
     dynamic prayMap = await StorageService.getFromLDB(key: 'pray_times');
     AzanModel azan = AzanModel.fromJson(prayMap);

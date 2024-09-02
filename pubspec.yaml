@@ -47,6 +47,7 @@ flutter:
 
   assets:
     - assets/images/radio/
+    - assets/images/
     - assets/logo/
     - assets/icons/
   fonts:
