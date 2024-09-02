@@ -1,8 +1,9 @@
 import 'package:al_muslim/core/helper/lang_converter.dart';
-import 'package:al_muslim/core/widgets/custom_app_bar.dart';
+import 'package:al_muslim/core/widgets/icon_back.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:flutter/material.dart';
+
 
 class DayRow extends StatelessWidget {
   const DayRow({
@@ -53,7 +54,7 @@ class DayRow extends StatelessWidget {
               ),
             ],
           ),
-          const IconBack(col: Colors.white),
+          const IconBackk(),
         ],
       ),
     );
