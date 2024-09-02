@@ -1,9 +1,8 @@
-
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/views/listen%20to%20quran/listen_quran_view.dart';
-import 'package:al_muslim/features/alquran/views/read_quran_view.dart';
-import 'package:al_muslim/features/alquran/views/tafser_view.dart';
+import 'package:al_muslim/features/alquran/views/readQuran/views/read_quran_view.dart';
+import 'package:al_muslim/features/alquran/views/tafserQuran/views/tafser_view.dart';
 import 'package:al_muslim/features/athkar/views/all_swar.dart';
 import 'package:al_muslim/features/athkar/views/reading_azkar_view.dart';
 import 'package:al_muslim/features/radio/views/radio_view.dart';
@@ -20,7 +19,7 @@ class CustomTitleCard extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final int? startIndex;
-  final int? tafserstartIndex;
+  final int? pagestartIndex;
   final Function()? onPressed;
 
   const CustomTitleCard({
@@ -30,7 +29,7 @@ class CustomTitleCard extends StatelessWidget {
     this.url,
     this.pageName,
     this.startIndex,
-    this.tafserstartIndex,
+    this.pagestartIndex,
     this.suffixIcon,
     this.onPressed,
     this.swrahUrl,
@@ -51,7 +50,9 @@ class CustomTitleCard extends StatelessWidget {
             case 'radio':
               Get.to(() => RadioView(url: url ?? ''));
             case 'fehres':
-              Get.to(() =>  const ReadQuranView());
+              Get.to(() => const AllSwarView(
+                    pageRoute: 'readQuran',
+                  ));
             case 'tafser':
               checkNet(
                 context,
@@ -60,9 +61,10 @@ class CustomTitleCard extends StatelessWidget {
                 ),
               );
             case 'redingTafser':
-              checkNet(
-                  context, TafserView(tafserstartIndex: tafserstartIndex ?? 2));
-
+                Get.to(() => TafserView(tafserstartIndex: pagestartIndex ?? 2));
+                //! there is a problem here page dont open i this it because ti take too long to check internet connection
+              // checkNet(
+              //     context, TafserView(tafserstartIndex: tafserstartIndex ?? 2));
             case 'listenQuran':
               checkNet(context, const ListenQuranView());
             case 'listenToSwrah':
@@ -70,6 +72,8 @@ class CustomTitleCard extends StatelessWidget {
                     url:
                         swrahUrl ?? 'https://server6.mp3quran.net/akdr/001.mp3',
                   ));
+            case 'readQuran':
+              Get.to(() =>  ReadQuranView(requiredPage:pagestartIndex??3));
             default:
           }
         },

@@ -1,4 +1,4 @@
-import 'package:al_muslim/features/alquran/views/widgets/tafser_view_body.dart';
+import 'package:al_muslim/features/alquran/views/tafserQuran/views/widgets/tafser_view_body.dart';
 import 'package:flutter/material.dart';
 
 class TafserView extends StatelessWidget {

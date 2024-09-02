@@ -1,6 +1,6 @@
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/alquran/data/model/all_model.dart';
-import 'package:al_muslim/features/athkar/views/widgets/custom_title_card.dart';
+import 'package:al_muslim/core/widgets/custom_title_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 

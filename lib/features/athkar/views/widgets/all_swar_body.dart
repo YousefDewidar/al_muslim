@@ -2,7 +2,7 @@
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/alquran/data/model/fehres_model.dart';
-import 'package:al_muslim/features/athkar/views/widgets/custom_title_card.dart';
+import 'package:al_muslim/core/widgets/custom_title_card.dart';
 import 'package:flutter/material.dart';
 
 class AllSwarViewBody extends StatelessWidget {
@@ -28,7 +28,7 @@ class AllSwarViewBody extends StatelessWidget {
                         swrahUrl: manageIndex(index),
                         categorytTitle: allSwar[index].name,
                         pageName: pageRoute,
-                        tafserstartIndex: index + 1,
+                        pagestartIndex: index + 1,
                       );
                     },
                   );
