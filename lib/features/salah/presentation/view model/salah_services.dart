@@ -15,6 +15,7 @@ class SalahServices {
             'https://api.aladhan.com/v1/timingsByCity/$formattedDate?city=cairo&country=$loc&method=8');
   }
 
+  
   Future<DayData> getDayDataFormLDB() async {
     var data = await StorageService.getFromLDB(key: 'salah');
 

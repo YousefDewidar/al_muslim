@@ -1,9 +1,12 @@
 import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/themes/theme_data.dart';
+import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
+import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/home_view.dart';
 import 'package:al_muslim/features/landing/landing_view.dart';
+import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_state.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +15,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as nav;
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
+import 'features/athkar/data/azkar_services.dart';
+
 //Todo:  متنساش تمسح اي صوره انت ضيفتها ومستخدمتهاش
 
 void main() async {
   runApp(const AlMuslim());
+  //? call azkar for the first time
+  AzkarServices().getAzkar();
+  //?call day hijri date
+  SalahServices().getDayDataFormLDB();
+  //?pray time services
+  PrayTimeServices().getPrayTime();
+  //?call all swar services
+  FehresService().getAllSwar();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await NotificationService.initNotification();
