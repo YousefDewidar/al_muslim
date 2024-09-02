@@ -43,9 +43,15 @@ class _SebhaViewState extends State<SebhaView> {
                   header: 'السبحة',
                   desc: ''),
               Text(
+                textAlign: TextAlign.center,
                 widget.zkr,
-                style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                    color: Theme.of(context).textTheme.headlineSmall!.color!),
+                style: Theme.of(context)
+                    .textTheme
+                    .displaySmall!
+                    .copyWith(
+                        color:
+                            Theme.of(context).textTheme.headlineSmall!.color!)
+                    .copyWith(height: 2),
               ),
               Padding(
                 padding: const EdgeInsets.all(100.0),

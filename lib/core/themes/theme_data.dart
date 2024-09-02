@@ -89,13 +89,13 @@ class CustomThemeData {
       // ###################
       iconButtonTheme: const IconButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: WidgetStatePropertyAll(Colors.white),
+          foregroundColor: WidgetStatePropertyAll(Colors.black),
         ),
       ),
-      primaryIconTheme:const IconThemeData(color: Colors.white),
+      primaryIconTheme:const IconThemeData(color: Colors.black),
 
       // ###################
-      iconTheme: const IconThemeData(color: Colors.white),
+      iconTheme: const IconThemeData(color: Colors.black),
     );
   }
 }
