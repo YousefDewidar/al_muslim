@@ -1,6 +1,7 @@
 import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/features/athkar/views/all_azkar_page.dart';
+import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
 import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
 import 'package:al_muslim/features/home/data/masr_quran_services.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
@@ -108,7 +109,12 @@ class FeaturesGridView extends StatelessWidget {
               title: 'المفضلة',
               imagePath: ImageData.bookmark,
               onTap: () {
-                // Get.to(() => const FavView());
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: const FavView()),
+                );
               },
             ),
             FeatureCard(
@@ -118,7 +124,8 @@ class FeaturesGridView extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageTransition(
-                      type: PageTransitionType.rightToLeft, child: const QiblaView()),
+                      type: PageTransitionType.rightToLeft,
+                      child: const QiblaView()),
                 );
               },
             ),
@@ -129,7 +136,8 @@ class FeaturesGridView extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageTransition(
-                      type: PageTransitionType.rightToLeft, child: const SebhaView()),
+                      type: PageTransitionType.rightToLeft,
+                      child: const SebhaView()),
                 );
               },
             ),
