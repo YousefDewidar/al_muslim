@@ -6,8 +6,8 @@ import 'package:al_muslim/features/alquran/views/tafserQuran/views/tafser_view.d
 import 'package:al_muslim/features/alquran/views/all_swar.dart';
 import 'package:al_muslim/features/radio/views/radio_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:page_transition/page_transition.dart';
 
 class CustomTitleCard extends StatelessWidget {
   final String categorytTitle;
@@ -43,11 +43,24 @@ class CustomTitleCard extends StatelessWidget {
         onTap: () {
           switch (pageName) {
             case 'radio':
-              Get.to(() => RadioView(url: url ?? ''));
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: RadioView(url: url ?? ''),
+                ),
+              );
+
             case 'fehres':
-              Get.to(() => const AllSwarView(
-                    pageRoute: 'readQuran',
-                  ));
+              Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: const AllSwarView(
+                      pageRoute: 'readQuran',
+                    )),
+              );
+
             case 'tafser':
               checkNet(
                 context,
@@ -56,19 +69,37 @@ class CustomTitleCard extends StatelessWidget {
                 ),
               );
             case 'redingTafser':
-                Get.to(() => TafserView(tafserstartIndex: pagestartIndex ?? 2));
-                //! there is a problem here page dont open i this it because ti take too long to check internet connection
-              // checkNet(
-              //     context, TafserView(tafserstartIndex: tafserstartIndex ?? 2));
+              Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: TafserView(tafserstartIndex: pagestartIndex ?? 2)),
+              );
+
+            //! there is a problem here page dont open i this it because ti take too long to check internet connection
+            // checkNet(
+            //     context, TafserView(tafserstartIndex: tafserstartIndex ?? 2));
             case 'listenQuran':
               checkNet(context, const ListenQuranView());
             case 'listenToSwrah':
-              Get.to(() => RadioView(
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: RadioView(
                     url:
                         swrahUrl ?? 'https://server6.mp3quran.net/akdr/001.mp3',
-                  ));
+                  ),
+                ),
+              );
+
             case 'readQuran':
-              Get.to(() =>  ReadQuranView(requiredPage:pagestartIndex??3));
+              Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: ReadQuranView(requiredPage: pagestartIndex ?? 3)),
+              );
             default:
           }
         },
@@ -106,7 +137,12 @@ class CustomTitleCard extends StatelessWidget {
   void checkNet(context, Widget page) async {
     bool isConnected = await InternetConnectionChecker().hasConnection;
     if (isConnected) {
-      Get.to(() => page);
+      Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: page,
+          ));
     } else {
       // ignore: use_build_context_synchronously
       InsideNotification.networkCheck(context);

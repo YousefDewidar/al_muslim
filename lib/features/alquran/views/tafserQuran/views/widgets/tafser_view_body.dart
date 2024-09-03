@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 class TafserViewBody extends StatefulWidget {
   final int tafserstartIndex;
   const TafserViewBody({
-    super.key, required this.tafserstartIndex,
+    super.key,
+    required this.tafserstartIndex,
   });
 
   @override
@@ -17,9 +18,8 @@ class _TafserViewBodyState extends State<TafserViewBody> {
   late dynamic future;
   @override
   void initState() {
-
     //!i want to put widget.startIndex instead of 1
-    future = TafserServices().fetchTafser(swrahNum:widget.tafserstartIndex);
+    future = TafserServices().fetchTafser(swrahNum: widget.tafserstartIndex);
     super.initState();
   }
 
@@ -35,6 +35,7 @@ class _TafserViewBodyState extends State<TafserViewBody> {
                 if (snapShot.hasData) {
                   List<TafserModel> tafser = snapShot.data!;
                   return ListView.builder(
+                    padding: EdgeInsets.zero,
                     itemCount: tafser.length,
                     itemBuilder: (BuildContext context, int index) {
                       return TafserCard(tafser: tafser[index]);

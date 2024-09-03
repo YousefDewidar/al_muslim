@@ -8,7 +8,7 @@ import 'package:al_muslim/features/settings/presentation/view%20model/cubit/sett
 import 'package:al_muslim/features/settings/presentation/view/setting_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HomeBgImage extends StatelessWidget {
   const HomeBgImage({
@@ -41,7 +41,13 @@ class HomeBgImage extends StatelessWidget {
                 width: 50,
                 child: IconButton(
                   onPressed: () {
-                    Get.to(() => const SettingView());
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: const SettingView(),
+                      ),
+                    );
                   },
                   icon: const Icon(Icons.settings, color: Colors.white),
                 ),

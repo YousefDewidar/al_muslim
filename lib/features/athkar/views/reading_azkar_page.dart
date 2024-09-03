@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 class AzkarRead extends StatefulWidget {
   final int startIndex;
   final String zecrCategory;
-  const AzkarRead({super.key, required this.startIndex, required this.zecrCategory});
+  const AzkarRead(
+      {super.key, required this.startIndex, required this.zecrCategory});
 
   @override
   State<AzkarRead> createState() => _AzkarReadState();
@@ -16,18 +17,19 @@ class _AzkarReadState extends State<AzkarRead> {
   late Future<List<AllAzkarModel>> future;
   @override
   void initState() {
- future=AzkarServices().getAllAzkarInfo(widget.startIndex);
-     super.initState();
+    future = AzkarServices().getAllAzkarInfo(widget.startIndex);
+    super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title:  Text(widget.zecrCategory),
+          title: Text(widget.zecrCategory),
         ),
         body: FutureBuilder(
-            future:future,
+            future: future,
             builder: (context, snapShot) {
               if (snapShot.hasData) {
                 return ListView.builder(

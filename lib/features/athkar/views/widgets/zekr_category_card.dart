@@ -27,9 +27,8 @@ class ZekrCategoryCard extends StatelessWidget {
                 zecrCategory: categoryName,
               ),
             ),
-          );   
-
-     },
+          );
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -3,8 +3,8 @@ import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/hadith/presentation/view/reading_hadith_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HadithItem extends StatelessWidget {
   const HadithItem({
@@ -25,7 +25,12 @@ class HadithItem extends StatelessWidget {
         bool isConnected = await InternetConnectionChecker().hasConnection;
         bool downloaded = await StorageService.hasDataInLDB(key: sahehName);
         if (isConnected || downloaded) {
-          Get.to(() => ReadingHadithView(sahehName: sahehName, title: title));
+          Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: ReadingHadithView(sahehName: sahehName, title: title)),
+          );
         } else {
           // ignore: use_build_context_synchronously
           InsideNotification.networkCheck(context);

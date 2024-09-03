@@ -10,8 +10,8 @@ import 'package:al_muslim/features/radio/views/masr_radio_view.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:page_transition/page_transition.dart';
 
 class FeaturesGridView extends StatelessWidget {
   const FeaturesGridView({
@@ -33,14 +33,24 @@ class FeaturesGridView extends StatelessWidget {
               title: 'الأحاديث',
               imagePath: ImageData.book,
               onTap: () {
-                Get.to(() => const HadithView());
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: const HadithView()),
+                );
               },
             ),
             FeatureCard(
               title: 'الصلاة',
               imagePath: ImageData.prayTime,
               onTap: () {
-                Get.to(() => const SalahView());
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: const SalahView()),
+                );
               },
             ),
             FeatureCard(
@@ -50,7 +60,12 @@ class FeaturesGridView extends StatelessWidget {
                 bool isConnected =
                     await InternetConnectionChecker().hasConnection;
                 if (isConnected) {
-                  Get.to(() => const AllRadiosView());
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: const AllRadiosView()),
+                  );
                 } else {
                   // ignore: use_build_context_synchronously
                   InsideNotification.networkCheck(context);
@@ -61,25 +76,34 @@ class FeaturesGridView extends StatelessWidget {
               title: 'الأذكار',
               imagePath: ImageData.pray,
               onTap: () {
-                Get.to(() => const ALlAzkarView());
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: const ALlAzkarView()),
+                );
               },
             ),
             FutureBuilder(
-              future: MasrQuranServices().fetchUrl(),
-              builder: (context,snapShot) {
-                return FeatureCard(
-                  title: ' اذاعه مصر',
-                  imagePath: ImageData.radioMasr,
-                  onTap: () async {
-                    if(snapShot.hasData){
-                      Get.to(() =>  RadioMasrView(url:snapShot.data!));
-                    }else{
-                      return ;
-                    }
-                  },
-                );
-              }
-            ),
+                future: MasrQuranServices().fetchUrl(),
+                builder: (context, snapShot) {
+                  return FeatureCard(
+                    title: ' اذاعه مصر',
+                    imagePath: ImageData.radioMasr,
+                    onTap: () async {
+                      if (snapShot.hasData) {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: RadioMasrView(url: snapShot.data!)),
+                        );
+                      } else {
+                        return;
+                      }
+                    },
+                  );
+                }),
             FeatureCard(
               title: 'المفضلة',
               imagePath: ImageData.bookmark,
@@ -91,14 +115,22 @@ class FeaturesGridView extends StatelessWidget {
               title: 'القبلة',
               imagePath: ImageData.qibla,
               onTap: () {
-                Get.to(() => const QiblaView());
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft, child: const QiblaView()),
+                );
               },
             ),
             FeatureCard(
               title: 'السبحة',
               imagePath: ImageData.thbha,
               onTap: () {
-                Get.to(() => const SebhaView());
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft, child: const SebhaView()),
+                );
               },
             ),
           ],

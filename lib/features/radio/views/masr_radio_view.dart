@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:al_muslim/features/radio/views/widgets/custom_button.dart';
 import 'package:al_muslim/features/radio/views/widgets/page_cover.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +23,6 @@ class _RadioMasrViewState extends State<RadioMasrView> {
   @override
   void initState() {
     super.initState();
-    log(widget.url);
     player = AudioPlayer();
     player.setUrl('https://n0d.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABkbQKcI4ABaY4JFeSI-ZWgA');
     //https://Qurango.net/radio/alzain_mohammad_ahmad

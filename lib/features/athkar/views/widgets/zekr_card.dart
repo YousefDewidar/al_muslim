@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:al_muslim/features/athkar/data/azkar_all_model.dart';
 import 'package:flutter/material.dart';
 
@@ -36,10 +34,7 @@ class _ZekrCardState extends State<ZekrCard> {
                 color: Colors.amber,
                 onPressed: () {
                   isFav = !isFav;
-                  setState(() {
-                    widget.azkar.isFav = isFav;
-                  });
-                  log(widget.azkar.isFav.toString());
+                  setState(() {});
                 },
                 icon: Icon(isFav ? Icons.favorite : Icons.favorite_outline))
           ],

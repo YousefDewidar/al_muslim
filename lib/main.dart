@@ -8,10 +8,6 @@ import 'package:al_muslim/features/settings/presentation/view%20model/cubit/sett
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart' as nav;
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-
-//Todo:  متنساش تمسح اي صوره انت ضيفتها ومستخدمتهاش
 
 void main() async {
   runApp(const AlMuslim());
@@ -43,9 +39,7 @@ class AlMuslim extends StatelessWidget {
       child: BlocBuilder<SettingCubit, SettingState>(
         builder: (context, state) {
           BlocProvider.of<SettingCubit>(context).initialDataFromLDB();
-          return GetMaterialApp(
-            defaultTransition: nav.Transition.rightToLeft,
-            transitionDuration: const Duration(milliseconds: 400),
+          return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'المسلم',
             themeMode: BlocProvider.of<SettingCubit>(context).myTheme,

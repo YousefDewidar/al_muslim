@@ -2,7 +2,7 @@ import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/views/quran_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:page_transition/page_transition.dart';
 
 class QuranCard extends StatelessWidget {
   const QuranCard({
@@ -14,7 +14,13 @@ class QuranCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: GestureDetector(
-        onTap: () =>Get.to(()=>const QuranView()),
+        onTap: () {
+          Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.rightToLeft, child: const QuranView()),
+          );
+        },
         child: Card(
           child: Container(
             height: MediaQuery.of(context).size.width / 5,

@@ -1,8 +1,7 @@
 import 'package:al_muslim/core/utils/strings.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
+import 'package:page_transition/page_transition.dart';
 
 class AllAzkarView extends StatelessWidget {
   const AllAzkarView({super.key});
@@ -41,7 +40,12 @@ class AllAzkarView extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * .1,
                 child: GestureDetector(
                   onTap: () {
-                    Get.off(() => SebhaView(zkr: azkar[index]));
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: SebhaView(zkr: azkar[index])),
+                    );
                   },
                   child: Card(
                     child: Padding(

@@ -3,7 +3,7 @@ import 'package:al_muslim/features/alquran/data/model/reacters_model.dart';
 import 'package:al_muslim/features/alquran/data/reacters_services.dart';
 import 'package:al_muslim/features/alquran/views/all_swar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:page_transition/page_transition.dart';
 
 class ListenQuranViewBody extends StatefulWidget {
   const ListenQuranViewBody({super.key});
@@ -25,7 +25,7 @@ class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
   late List<ReactersModel> allList;
   Widget buildTextFeild() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
       child: TextField(
         onChanged: (searcherChar) {
           addSearcherChartoFiltertheList(searcherChar);
@@ -34,7 +34,7 @@ class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
         textAlign: TextAlign.right,
         decoration: const InputDecoration(
           hintTextDirection: TextDirection.rtl,
-          hintText: 'ابحث عن الاذاعه التي ترغب ف الاستماع اليها',
+          hintText: 'ابحث عن الشيخ الذي ترغب ف الاستماع اليه',
           suffixIcon: Icon(Icons.search),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(
@@ -62,19 +62,22 @@ class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
                   if (snapShot.hasData) {
                     allList = snapShot.data!;
                     return ListView.builder(
+                      padding: EdgeInsets.zero,
                       itemCount: searchedList.isEmpty
                           ? allList.length
                           : searchedList.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return   searchedList.isEmpty ?  CustomReaderRow(
-                          reacters:
-                               allList ,
-                          index: index, url: allList[index].server,
-                        ):CustomReaderRow(
-                          reacters:
-                             searchedList,
-                          index: index, url: searchedList[index].server,
-                        );
+                        return searchedList.isEmpty
+                            ? CustomReaderRow(
+                                reacters: allList,
+                                index: index,
+                                url: allList[index].server,
+                              )
+                            : CustomReaderRow(
+                                reacters: searchedList,
+                                index: index,
+                                url: searchedList[index].server,
+                              );
                       },
                     );
                   } else {
@@ -102,7 +105,8 @@ class CustomReaderRow extends StatelessWidget {
   const CustomReaderRow({
     super.key,
     required this.reacters,
-    required this.index, required this.url,
+    required this.index,
+    required this.url,
   });
 
   final List<ReactersModel> reacters;
@@ -111,7 +115,14 @@ class CustomReaderRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() =>  AllSwarView(swarUrl:url ,));
+        Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: AllSwarView(
+                swarUrl: url,
+              )),
+        );
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -125,7 +136,7 @@ class CustomReaderRow extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(reacters[index].name,
-                    style: Theme.of(context).textTheme.headlineLarge),
+                    style: Theme.of(context).textTheme.headlineMedium),
               ),
               const Icon(
                 Icons.volume_down,

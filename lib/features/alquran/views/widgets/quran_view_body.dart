@@ -10,7 +10,7 @@ class QuranViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<AllModel> allAboutQuran = [
-      AllModel(title: 'الفهرس', icon: Icons.book, routeName: 'fehres'),
+      AllModel(title: 'قراءة القران الكريم', icon: Icons.book, routeName: 'fehres'),
       AllModel(
           title: 'استماع القران الكريم',
           icon: Icons.headphones_outlined,
@@ -23,11 +23,12 @@ class QuranViewBody extends StatelessWidget {
     return Column(
       children: [
         const CustomAppBar(
-          header: 'القران الكريم',
-          desc: 'هنا ستجد كل ما يخص القران الكريم',
+          header: 'القرآن الكريم',
+          desc: 'هنا ستجد كل ما يخص القرآن الكريم',
         ),
         Expanded(
           child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             itemCount: allAboutQuran.length,
             itemBuilder: (BuildContext context, int index) {

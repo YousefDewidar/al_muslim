@@ -4,7 +4,6 @@ import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:flutter/material.dart';
 
-
 class DayRow extends StatelessWidget {
   const DayRow({
     super.key,
@@ -45,7 +44,7 @@ class DayRow extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Text(
-                    dayData.date.date,
+                    DateTime.now().toString().split(' ')[0],
                     style: const TextStyle(
                         fontSize: 15,
                         fontFamily: AutofillHints.addressCityAndState),

@@ -1,7 +1,7 @@
 import 'package:al_muslim/core/utils/constants.dart';
 import 'package:al_muslim/features/salah/presentation/view/sunah_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:page_transition/page_transition.dart';
 
 class AlsunahCard extends StatelessWidget {
   const AlsunahCard({
@@ -13,7 +13,11 @@ class AlsunahCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: () {
-        Get.to(() => const SunahView());
+        Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.rightToLeft, child: const SunahView()),
+        );
       },
       child: Card(
         child: SizedBox(

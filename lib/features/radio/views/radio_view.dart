@@ -17,6 +17,7 @@ class _RadioViewState extends State<RadioView> {
   late AudioPlayer player;
   bool isPlayed = false;
   bool isVolumeClicked = false;
+  
   @override
   void initState() {
     super.initState();

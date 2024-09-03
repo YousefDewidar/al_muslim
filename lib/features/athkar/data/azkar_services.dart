@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:al_muslim/features/athkar/data/azkar_all_model.dart';
 import 'package:al_muslim/features/athkar/data/azkar_cateogry_model.dart';
 import 'package:dio/dio.dart';
@@ -33,7 +32,6 @@ class AzkarServices {
       AllAzkarModel da = AllAzkarModel.fromJson(item);
       info.add(da);
     }
-    log(info[0].text);
 
     return info;
   }

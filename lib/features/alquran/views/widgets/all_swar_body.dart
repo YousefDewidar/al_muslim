@@ -22,6 +22,7 @@ class AllSwarViewBody extends StatelessWidget {
                 if (snapShot.hasData) {
                   List<SwarModel> allSwar = snapShot.data!;
                   return ListView.builder(
+                    padding: EdgeInsets.zero,
                     itemCount: allSwar.length,
                     itemBuilder: (BuildContext context, int index) {
                       return CustomTitleCard(
@@ -33,7 +34,7 @@ class AllSwarViewBody extends StatelessWidget {
                     },
                   );
                 } else {
-                  return Center(child: Text(snapShot.data.toString()));
+                  return Center(child: Text(snapShot.error.toString()));
                 }
               }),
         )
