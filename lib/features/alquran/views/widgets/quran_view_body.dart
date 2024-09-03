@@ -33,6 +33,7 @@ class QuranViewBody extends StatelessWidget {
             itemCount: allAboutQuran.length,
             itemBuilder: (BuildContext context, int index) {
               return CustomTitleCard(
+              
                 startIndex: index,
                 pageName: allAboutQuran[index].routeName,
                 categorytTitle: allAboutQuran[index].title,

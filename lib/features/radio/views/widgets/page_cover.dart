@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
 class PageCover extends StatelessWidget {
-      final String? image; 
+  final String? image;
 
   const PageCover({
-    super.key, required this.image,
+    super.key,
+    required this.image,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:  const EdgeInsets.all(10),
-      height: 200,
-      decoration:  BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+      height: 300,
+      decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
           image: AssetImage(
-            image ??'assets/images/radio_image.png',
+            image ??
+                'assets/images/—Pngtree—beautiful al quran kareem islamic_6848467.png',
           ),
         ),
       ),

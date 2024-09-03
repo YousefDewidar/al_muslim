@@ -13,6 +13,8 @@ class CustomTitleCard extends StatelessWidget {
   final String categorytTitle;
   final String? image;
   final String? pageName;
+  final String? suraName;
+
   final String? swrahUrl;
   final String? url;
   final IconData? prefixIcon;
@@ -33,6 +35,7 @@ class CustomTitleCard extends StatelessWidget {
     this.onPressed,
     this.swrahUrl,
     this.image,
+    this.suraName,
   });
 
   @override
@@ -47,7 +50,10 @@ class CustomTitleCard extends StatelessWidget {
                 context,
                 PageTransition(
                   type: PageTransitionType.rightToLeft,
-                  child: RadioView(url: url ?? ''),
+                  child: RadioView(
+                    url: url ?? '',
+                    sura: '',
+                  ),
                 ),
               );
 
@@ -89,6 +95,7 @@ class CustomTitleCard extends StatelessWidget {
                   child: RadioView(
                     url:
                         swrahUrl ?? 'https://server6.mp3quran.net/akdr/001.mp3',
+                    sura: suraName ?? '',
                   ),
                 ),
               );
