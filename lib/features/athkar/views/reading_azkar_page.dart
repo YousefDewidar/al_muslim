@@ -17,7 +17,7 @@ class _AzkarReadState extends State<AzkarRead> {
   late Future<List<AllAzkarModel>> future;
   @override
   void initState() {
-    future = AzkarServices().getAllAzkarInfo(widget.startIndex);
+    future = AzkarServices(). getAllInfoFromDB(widget.startIndex);
     super.initState();
   }
 
@@ -25,6 +25,7 @@ class _AzkarReadState extends State<AzkarRead> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           centerTitle: true,
           title: Text(widget.zecrCategory),
         ),

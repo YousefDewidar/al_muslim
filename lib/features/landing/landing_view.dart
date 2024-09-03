@@ -1,7 +1,9 @@
 import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
+import 'package:al_muslim/features/home/presentation/views/home_view.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LandingView extends StatelessWidget {
   const LandingView({super.key});
@@ -11,7 +13,7 @@ class LandingView extends StatelessWidget {
     // set data to local
     SalahServices().setDayData();
     PrayTimeServices().getPrayTime();
-    //! at end return 
+    //! at end return
     // AzkarServices().setAzkarAsString();
     return Scaffold(
       body: Padding(
@@ -38,8 +40,19 @@ class LandingView extends StatelessWidget {
                 height: 50,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     Location().requestPermission();
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.setBool('hasSeenLandingPage', true);
+                    if (prefs.getBool('hasSeenLandingPage') == true) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomeView()));
+                    } else {
+                      const Text('error nav.');
+                    }
                   },
                   style: ButtonStyle(
                     shape: WidgetStateProperty.all(ContinuousRectangleBorder(

@@ -11,7 +11,7 @@ class FehresService {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('fehres', jsonEncode(response.data));
   }
-
+  
   Future<List<SwarModel>> getFromDataBase() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     Map<String, dynamic> response = jsonDecode(pref.getString('fehres') ?? '');

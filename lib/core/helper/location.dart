@@ -24,7 +24,7 @@ class Location {
     return permision;
   }
 
-//?make sure location is active ifNot send to setting to activate
+//?make sure location is active if Not send to setting to activate
   Future<void> enabelLocaion() async {
     bool isEnabel = await Geolocator.isLocationServiceEnabled();
     if (!isEnabel) {
@@ -40,12 +40,11 @@ class Location {
         (permission == LocationPermission.whileInUse ||
             permission == LocationPermission.always)) {
       Position position = await Geolocator.getCurrentPosition(
-          // locationSettings: const LocationSettings(
-          //   accuracy: LocationAccuracy.best,
-          // ),
+        desiredAccuracy: LocationAccuracy.best,
           );
       return position;
     } else {
+      
       await enabelLocaion();
       return null;
     }
