@@ -3,8 +3,7 @@ import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/views/listen%20to%20quran/listen_quran_view.dart';
 import 'package:al_muslim/features/alquran/views/readQuran/views/read_quran_view.dart';
 import 'package:al_muslim/features/alquran/views/tafserQuran/views/tafser_view.dart';
-import 'package:al_muslim/features/athkar/views/all_swar.dart';
-import 'package:al_muslim/features/athkar/views/reading_azkar_view.dart';
+import 'package:al_muslim/features/alquran/views/all_swar.dart';
 import 'package:al_muslim/features/radio/views/radio_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,10 +42,6 @@ class CustomTitleCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           switch (pageName) {
-            case 'redingAzkar':
-              Get.to(() => ReadingAzkarView(
-                    startIndex: startIndex ?? 0,
-                  ));
             case 'radio':
               Get.to(() => RadioView(url: url ?? ''));
             case 'fehres':

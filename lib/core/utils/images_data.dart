@@ -9,7 +9,7 @@ class ImageData {
   static String prayTime = 'assets/icons/prayer-mat.png';
   static String radio = 'assets/icons/radio.png';
   static String qibla = 'assets/icons/Qibla.png';
-  static String radioMasr = 'assets/images/radio/radio_masr.png';
+  static String radioMasr = 'assets/images/radio_masr.png';
 
   // =============== hadith =====================
 

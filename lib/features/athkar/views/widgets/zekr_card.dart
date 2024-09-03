@@ -1,117 +1,48 @@
-import 'package:al_muslim/core/widgets/isnside_noti.dart';
-import 'package:al_muslim/features/athkar/data/azkar_model.dart';
-import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:developer';
 
-// ignore: must_be_immutable
+import 'package:al_muslim/features/athkar/data/azkar_all_model.dart';
+import 'package:flutter/material.dart';
+
 class ZekrCard extends StatefulWidget {
-  final AzkarModel azkar;
-  bool isFavvvv;
-  ZekrCard({super.key, required this.azkar, required this.isFavvvv});
+  final AllAzkarModel azkar;
+  const ZekrCard({super.key, required this.azkar});
 
   @override
   State<ZekrCard> createState() => _ZekrCardState();
 }
 
 class _ZekrCardState extends State<ZekrCard> {
-  bool isFinished = false;
-  int count = 0;
-  @override
-  void initState() {
-    count = widget.azkar.count;
-    super.initState();
-  }
-
+  bool isFav = false;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        count--;
-        if (count == 0) {
-          isFinished = true;
-        }
-        setState(() {});
-      },
-      child: Container(
-        margin: const EdgeInsets.all(20),
-        width: double.infinity,
+    return Container(
+        margin: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            border: Border.all(
-                color: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .color!
-                    .withOpacity(.4)),
-            borderRadius: BorderRadius.circular(20)),
+            border: Border.all(),
+            borderRadius: const BorderRadius.all(Radius.circular(16))),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                widget.azkar.text,
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge!
-                    .copyWith(height: 1.8),
-              ),
+            Text(
+              widget.azkar.text,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 15),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CirculeActionButton(
-                  onPressed: () {
-                    InsideNotification.shareMethod(
-                        message: widget.azkar.text, context: context);
-                  },
-                  color: Colors.orange,
-                  icon: Icons.share,
-                  radius: 20,
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                  height: 80,
-                  width: 80,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Theme.of(context)
-                              .textTheme
-                              .headlineSmall!
-                              .color!
-                              .withOpacity(.4)),
-                      borderRadius: BorderRadius.circular(40)),
-                  child: Text(
-                    isFinished ? 'تم' : '$count',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                ),
-                CirculeActionButton(
-                  onPressed: () {
-                    if (!widget.isFavvvv) {
-                      BlocProvider.of<FavCubit>(context)
-                          .addToFav(zekr: widget.azkar);
-                      widget.isFavvvv = true;
-                    } else {
-                      BlocProvider.of<FavCubit>(context)
-                          .removeFromFav(zekr: widget.azkar);
-                      widget.isFavvvv = false;
-                    }
-                    setState(() {});
-                  },
-                  color: Colors.orange,
-                  icon:
-                      widget.isFavvvv ? Icons.favorite : Icons.favorite_outline,
-                  radius: 20,
-                ),
-              ],
-            )
+            CircleAvatar(
+              child: Text(widget.azkar.count.toString()),
+            ),
+            IconButton(
+                padding: const EdgeInsets.all(20),
+                color: Colors.amber,
+                onPressed: () {
+                  isFav = !isFav;
+                  setState(() {
+                    widget.azkar.isFav = isFav;
+                  });
+                  log(widget.azkar.isFav.toString());
+                },
+                icon: Icon(isFav ? Icons.favorite : Icons.favorite_outline))
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
