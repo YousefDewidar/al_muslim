@@ -9,15 +9,7 @@ class ZekrCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.all(10),
-      height: 50,
-      decoration: const BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-      ),
-      child: GestureDetector(
+    return GestureDetector(
         onTap: () {
           Navigator.push(
             context,
@@ -29,6 +21,14 @@ class ZekrCategoryCard extends StatelessWidget {
             ),
           );
         },
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        height: 50,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
