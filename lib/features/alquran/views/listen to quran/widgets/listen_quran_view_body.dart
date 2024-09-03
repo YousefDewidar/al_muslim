@@ -1,7 +1,7 @@
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/alquran/data/model/reacters_model.dart';
 import 'package:al_muslim/features/alquran/data/reacters_services.dart';
-import 'package:al_muslim/features/athkar/views/all_swar.dart';
+import 'package:al_muslim/features/alquran/views/all_swar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

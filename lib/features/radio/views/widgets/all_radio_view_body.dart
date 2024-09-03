@@ -1,5 +1,6 @@
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/custom_title_card.dart';
+import 'package:al_muslim/features/radio/data/model/radio_model.dart';
 import 'package:al_muslim/features/radio/data/radio_services.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,12 @@ class _AllRadioViewBodyState extends State<AllRadioViewBody> {
   final searchController = TextEditingController();
   List<dynamic> searchedList = [];
   late List<dynamic> allList;
+  late Future<List<RadioModel>> future;
+  @override
+  void initState() {
+    future = RadioServices().getRadioData();
+    super.initState();
+  }
 
   Widget buildTextFeild() {
     return Padding(
@@ -50,7 +57,7 @@ class _AllRadioViewBodyState extends State<AllRadioViewBody> {
         ),
         buildTextFeild(),
         FutureBuilder(
-            future: RadioServices().getRadioData(),
+            future: future,
             builder: (context, snapShot) {
               if (snapShot.hasData) {
                 allList = snapShot.data!;

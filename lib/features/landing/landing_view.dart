@@ -1,5 +1,4 @@
 import 'package:al_muslim/core/helper/location.dart';
-import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,8 @@ class LandingView extends StatelessWidget {
     // set data to local
     SalahServices().setDayData();
     PrayTimeServices().getPrayTime();
-    AzkarServices().setAzkarAsString();
+    //! at end return 
+    // AzkarServices().setAzkarAsString();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),

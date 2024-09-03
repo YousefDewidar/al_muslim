@@ -11,13 +11,13 @@ class PageCover extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin:  const EdgeInsets.all(10),
-      height: 500,
+      height: 200,
       decoration:  BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
           fit: BoxFit.cover,
           image: AssetImage(
-            image ??'assets/images/ai_radio.jpg',
+            image ??'assets/images/radio_image.png',
           ),
         ),
       ),

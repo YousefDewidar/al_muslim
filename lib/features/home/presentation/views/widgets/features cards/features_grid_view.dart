@@ -1,12 +1,12 @@
 import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
-import 'package:al_muslim/features/athkar/views/azkar_view.dart';
-import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
+import 'package:al_muslim/features/athkar/views/all_azkar_page.dart';
 import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
+import 'package:al_muslim/features/home/data/masr_quran_services.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
 import 'package:al_muslim/features/qubla/presentation/views/qibla_view.dart';
 import 'package:al_muslim/features/radio/views/all_radios_view.dart';
-import 'package:al_muslim/features/radio/views/radio_view.dart';
+import 'package:al_muslim/features/radio/views/masr_radio_view.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
 import 'package:flutter/material.dart';
@@ -61,29 +61,30 @@ class FeaturesGridView extends StatelessWidget {
               title: 'الأذكار',
               imagePath: ImageData.pray,
               onTap: () {
-                Get.to(() => const AzkarView());
+                Get.to(() => const ALlAzkarView());
               },
             ),
-            FeatureCard(
-              title: ' اذاعه مصر',
-              imagePath: ImageData.radioMasr,
-              onTap: () async {
-                bool isConnected =
-                    await InternetConnectionChecker().hasConnection;
-                if (isConnected) {
-                  Get.to(() => const RadioView(
-                      image: 'assets/images/masrQuranKreem.png', url: ''));
-                } else {
-                  // ignore: use_build_context_synchronously
-                  InsideNotification.networkCheck(context);
-                }
-              },
+            FutureBuilder(
+              future: MasrQuranServices().fetchUrl(),
+              builder: (context,snapShot) {
+                return FeatureCard(
+                  title: ' اذاعه مصر',
+                  imagePath: ImageData.radioMasr,
+                  onTap: () async {
+                    if(snapShot.hasData){
+                      Get.to(() =>  RadioMasrView(url:snapShot.data!));
+                    }else{
+                      return ;
+                    }
+                  },
+                );
+              }
             ),
             FeatureCard(
               title: 'المفضلة',
               imagePath: ImageData.bookmark,
               onTap: () {
-                Get.to(() => const FavView());
+                // Get.to(() => const FavView());
               },
             ),
             FeatureCard(

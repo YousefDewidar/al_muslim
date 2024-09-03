@@ -6,7 +6,6 @@ class ReactersServices {
   Dio dio = Dio();
   Future<List<ReactersModel>> fetchReacters() async {
     Response response = await dio.get('https://mp3quran.net/api/v3/reciters');
-    //response.data==Map<String,dynamic>
     List<Map<String, dynamic>> reacters = [];
     for (var item in response.data['reciters']) {
       reacters.add(item);
