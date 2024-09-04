@@ -22,6 +22,13 @@ class _ChangeThemeCardState extends State<ChangeThemeCard> {
     initialDataFromLDB();
     super.initState();
   }
+  @override
+  void dispose() {
+    super.dispose();
+    setState(() {
+      
+    });
+  }
 
   void initialDataFromLDB() async {
     SharedPreferences asyncPref = await SharedPreferences.getInstance();

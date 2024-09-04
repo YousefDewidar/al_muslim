@@ -69,19 +69,24 @@ class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
                       itemBuilder: (BuildContext context, int index) {
                         return searchedList.isEmpty
                             ? CustomReaderRow(
+                              racter: allList[index].name,
                                 reacters: allList,
                                 index: index,
                                 url: allList[index].server,
                               )
                             : CustomReaderRow(
+                              racter: searchedList[index].name,
                                 reacters: searchedList,
                                 index: index,
                                 url: searchedList[index].server,
                               );
                       },
                     );
-                  } else {
+                  } else if(snapShot.connectionState==ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
+                  }
+                   else  {
+                    return const Center(child:Text('تاكد من اتصالك بالانترنت للاستماع الي القران '));
                   }
                 }),
           ),
@@ -102,11 +107,12 @@ class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
 class CustomReaderRow extends StatelessWidget {
   final int index;
   final String url;
+  final String racter;
   const CustomReaderRow({
     super.key,
     required this.reacters,
     required this.index,
-    required this.url,
+    required this.url, required this.racter,
   });
 
   final List<ReactersModel> reacters;
@@ -120,6 +126,7 @@ class CustomReaderRow extends StatelessWidget {
           PageTransition(
               type: PageTransitionType.rightToLeft,
               child: AllSwarView(
+                reacterName:racter,
                 swarUrl: url,
               )),
         );
@@ -129,7 +136,6 @@ class CustomReaderRow extends StatelessWidget {
         children: [
           const Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: Colors.black,
           ),
           Row(
             children: [
@@ -141,7 +147,6 @@ class CustomReaderRow extends StatelessWidget {
               const Icon(
                 Icons.volume_down,
                 size: 30,
-                color: Colors.black,
               ),
             ],
           )

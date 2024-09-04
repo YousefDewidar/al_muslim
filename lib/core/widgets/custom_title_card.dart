@@ -1,4 +1,3 @@
-import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/views/listen%20to%20quran/listen_quran_view.dart';
 import 'package:al_muslim/features/alquran/views/readQuran/views/read_quran_view.dart';
@@ -6,7 +5,6 @@ import 'package:al_muslim/features/alquran/views/tafserQuran/views/tafser_view.d
 import 'package:al_muslim/features/alquran/views/all_swar.dart';
 import 'package:al_muslim/features/radio/views/radio_view.dart';
 import 'package:flutter/material.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:page_transition/page_transition.dart';
 
 class CustomTitleCard extends StatelessWidget {
@@ -14,6 +12,7 @@ class CustomTitleCard extends StatelessWidget {
   final String? image;
   final String? pageName;
   final String? suraName;
+  final String? reacterName;
 
   final String? swrahUrl;
   final String? url;
@@ -36,86 +35,98 @@ class CustomTitleCard extends StatelessWidget {
     this.swrahUrl,
     this.image,
     this.suraName,
+    this.reacterName,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
-      child: GestureDetector(
-        onTap: () {
-          switch (pageName) {
-            case 'radio':
-              Navigator.push(
-                context,
-                PageTransition(
+    return GestureDetector(
+      onTap: () {
+        switch (pageName) {
+          case 'radio':
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: RadioView(
+                  url: url ?? '',
+                  sura: '',
+                  reacterName: reacterName ?? '',
+                ),
+              ),
+            );
+
+          case 'fehres':
+            Navigator.push(
+              context,
+              PageTransition(
                   type: PageTransitionType.rightToLeft,
-                  child: RadioView(
-                    url: url ?? '',
-                    sura: '',
-                  ),
-                ),
-              );
+                  child: const AllSwarView(
+                    pageRoute: 'readQuran',
+                    reacterName: '',
+                  )),
+            );
 
-            case 'fehres':
-              Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: const AllSwarView(
-                      pageRoute: 'readQuran',
-                    )),
-              );
-
-            case 'tafser':
-              checkNet(
-                context,
-                const AllSwarView(
-                  pageRoute: 'redingTafser',
-                ),
-              );
-            case 'redingTafser':
-              Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: TafserView(tafserstartIndex: pagestartIndex ?? 2)),
-              );
-
-            //! there is a problem here page dont open i this it because ti take too long to check internet connection
-            // checkNet(
-            //     context, TafserView(tafserstartIndex: tafserstartIndex ?? 2));
-            case 'listenQuran':
-              checkNet(context, const ListenQuranView());
-            case 'listenToSwrah':
-              Navigator.push(
-                context,
-                PageTransition(
+          case 'tafser':
+            Navigator.push(
+              context,
+              PageTransition(
                   type: PageTransitionType.rightToLeft,
-                  child: RadioView(
-                    url:
-                        swrahUrl ?? 'https://server6.mp3quran.net/akdr/001.mp3',
-                    sura: suraName ?? '',
-                  ),
-                ),
-              );
+                  child: const AllSwarView(
+                    reacterName: '',
+                    pageRoute: 'redingTafser',
+                  )),
+            );
+          case 'redingTafser':
+            Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: TafserView(tafserstartIndex: pagestartIndex ?? 2)),
+            );
 
-            case 'readQuran':
-              Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: ReadQuranView(requiredPage: pagestartIndex ?? 3)),
-              );
-            default:
-          }
-        },
+          case 'listenQuran':
+            Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: const ListenQuranView(
+                  )),
+            );
+          case 'listenToSwrah':
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: RadioView(
+                  url: swrahUrl ?? 'https://server6.mp3quran.net/akdr/001.mp3',
+                  sura: suraName ?? '',
+                  reacterName: reacterName ?? '',
+                ),
+              ),
+            );
+
+          case 'readQuran':
+            Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: ReadQuranView(requiredPage: pagestartIndex ?? 3)),
+            );
+          default:
+        }
+      },
+      child: Container(
+        color: Colors.transparent,
+        margin: const EdgeInsets.all(8),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
         child: Row(
           children: [
             IconButton(
               onPressed: onPressed,
               icon: Icon(
                 suffixIcon ?? Icons.arrow_back_ios,
+                color: Theme.of(context).textTheme.labelLarge!.color,
               ),
             ),
             const Spacer(),
@@ -128,31 +139,15 @@ class CustomTitleCard extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.labelLarge!,
               ),
             ),
             const SpaceH(10),
-            Icon(
-              prefixIcon,
-            ),
+            Icon(prefixIcon,
+                color: Theme.of(context).textTheme.labelLarge!.color),
           ],
         ),
       ),
     );
-  }
-
-  void checkNet(context, Widget page) async {
-    bool isConnected = await InternetConnectionChecker().hasConnection;
-    if (isConnected) {
-      Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: page,
-          ));
-    } else {
-      // ignore: use_build_context_synchronously
-      InsideNotification.networkCheck(context);
-    }
   }
 }

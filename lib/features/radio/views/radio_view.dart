@@ -10,11 +10,13 @@ class RadioView extends StatefulWidget {
   final String url;
   final String sura;
   final String? image;
+  final String reacterName;
   const RadioView({
     super.key,
     required this.url,
     this.image,
     this.sura = '',
+    required this.reacterName,
   });
 
   @override
@@ -44,22 +46,39 @@ class _RadioViewState extends State<RadioView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const CustomAppBar(header: 'اهلا بكم ', desc: ''),
+          const SpaceV(20),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: IconBack(
+              col: Theme.of(context).textTheme.labelLarge!.color!,
+            ),
+          ),
           const Spacer(),
           PageCover(
             image: widget.image,
           ),
           const SpaceV(10),
-          Text(
-            'سورة ${widget.sura}',
-            style:
-                Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 25),
+          SizedBox(
+            width: double.infinity,
+            child: Text(
+              textAlign: TextAlign.center,
+              widget.sura.isEmpty ? '' : 'سورة ${widget.sura}',
+              style:
+                  Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 25),
+            ),
           ),
-          Text(
-            'القارئ : ماهر المعيقلي',
-            style:
-                Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 19),
+          SizedBox(
+            width: double.infinity,
+            child: Text(
+              textAlign: TextAlign.center,
+              widget.sura.isEmpty
+                  ? 'إذاعة :${widget.reacterName.replaceAll('إذاعة', '')}'
+                  : 'القارئ :${widget.reacterName.replaceAll('إذاعة', '')}',
+              style:
+                  Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 19),
+            ),
           ),
           const SpaceV(100),
           Row(

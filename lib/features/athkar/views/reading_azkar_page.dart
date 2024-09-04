@@ -27,7 +27,10 @@ class _AzkarReadState extends State<AzkarRead> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           centerTitle: true,
-          title: Text(widget.zecrCategory),
+          title: Text(widget.zecrCategory,style: Theme.of(context)
+                  .textTheme
+                  .labelLarge!
+                  .copyWith(fontFamily: 'IBMPlex', height: 1.6),),
         ),
         body: FutureBuilder(
             future: future,

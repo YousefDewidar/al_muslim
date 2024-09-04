@@ -11,38 +11,39 @@ class AzanList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: FutureBuilder(
-        future: TimeHelper().getRemaindSalahinfo(),
-        builder: (context, salahNowSnap) => FutureBuilder<AzanModel>(
-          future: PrayTimeServices().getDataFromDB(),
-          builder: (context, snapShot) {
-            return ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return handleSalah(snapShot, index, salahNowSnap);
-              },
-            );
-          },
-        ),
+    return FutureBuilder(
+      future: TimeHelper().getRemaindSalahinfo(),
+      builder: (context, salahNowSnap) => FutureBuilder<AzanModel>(
+        future: PrayTimeServices().getDataFromDB(),
+        builder: (context, snapShot) {
+          return Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.08),
+              child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  return handleSalah(snapShot, index, salahNowSnap);
+                },
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 
   Widget? handleSalah(AsyncSnapshot<AzanModel> snapShot, int index,
       AsyncSnapshot<Map<String, String>> salahNowSnap) {
-    if (snapShot.data == null) {
+    if (snapShot.connectionState == ConnectionState.waiting) {
       return const Center(child: CircularProgressIndicator());
-    }
-    if (snapShot.hasData) {
+    } else if (snapShot.hasData) {
       return returnedSalahColumn(snapShot, index, salahNowSnap);
-    } else if (snapShot.hasError) {
-      Text(snapShot.data.toString());
+    } else {
+      return Text(snapShot.error.toString());
     }
-    return null;
   }
 
   SalahColumn returnedSalahColumn(AsyncSnapshot<AzanModel> snapShot, int index,

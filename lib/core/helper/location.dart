@@ -28,7 +28,7 @@ class Location {
   Future<void> enabelLocaion() async {
     bool isEnabel = await Geolocator.isLocationServiceEnabled();
     if (!isEnabel) {
-      await Geolocator.openAppSettings();
+      await Geolocator.openLocationSettings();
     }
   }
 

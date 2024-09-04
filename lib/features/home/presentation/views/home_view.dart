@@ -10,7 +10,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +21,6 @@ class HomeView extends StatelessWidget {
           if (isConnected) {
             SalahServices().setDayData();
             PrayTimeServices().getPrayTime();
-            //! return at end
-            // AzkarServices().setAzkarAsString();
             String location = await FinalLoc.getLoc();
             InsideNotification.insideNotificationCard(
                 content: '$location الموقع الحالي هو ',
