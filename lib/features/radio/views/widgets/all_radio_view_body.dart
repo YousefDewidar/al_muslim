@@ -104,6 +104,7 @@ class HandelRadioList extends StatelessWidget {
             : searchedList.length,
         itemBuilder: (BuildContext context, int index) {
           return CustomTitleCard(
+            reacterName:allList[index].name ,
             prefixIcon: Icons.radio,
             categorytTitle: searchController.text.isEmpty
                 ? allList[index].name

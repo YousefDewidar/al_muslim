@@ -1,21 +1,29 @@
 import 'package:al_muslim/core/helper/location.dart';
+import 'package:al_muslim/features/alquran/data/fehres_service.dart';
+import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/home_view.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LandingView extends StatelessWidget {
+class LandingView extends StatefulWidget {
   const LandingView({super.key});
 
   @override
+  State<LandingView> createState() => _LandingViewState();
+}
+
+class _LandingViewState extends State<LandingView> {
+  bool isLoading = false;
+
+  @override
   Widget build(BuildContext context) {
-    // set data to local
-    SalahServices().setDayData();
-    PrayTimeServices().getPrayTime();
-    //! at end return
-    // AzkarServices().setAzkarAsString();
+    if (!Location.hasPermision) {
+      Location().enabelLocaion();
+    }
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -41,30 +49,48 @@ class LandingView extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    Location().requestPermission();
+                    isLoading = true;
+                    setState(() {});
+
+                    //?
+                    PrayTimeServices().getPrayTime();
+                    SalahServices().setDayData();
+                    AzkarServices().getAllCategory();
+                    AzkarServices().getAllAzkarInfo(0);
+                    FehresService().getAllSwar();
+                    //?
+                    Location().getPermision();
+
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                     prefs.setBool('hasSeenLandingPage', true);
-                    if (prefs.getBool('hasSeenLandingPage') == true) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomeView()));
-                    } else {
-                      const Text('error nav.');
-                    }
+
+                    Future.delayed(
+                      const Duration(seconds: 5),
+                      () => Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeView(),
+                        ),
+                      ),
+                    );
                   },
                   style: ButtonStyle(
                     shape: WidgetStateProperty.all(ContinuousRectangleBorder(
                         borderRadius: BorderRadius.circular(30))),
                   ),
-                  child: Text(
-                    'حدد موقعك ',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
+                  child: isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ))
+                      : Text(
+                          'حدد موقعك ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
                 ),
               ),
             ),

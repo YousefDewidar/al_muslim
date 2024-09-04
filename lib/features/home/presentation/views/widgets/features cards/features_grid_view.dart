@@ -68,7 +68,6 @@ class FeaturesGridView extends StatelessWidget {
                         child: const AllRadiosView()),
                   );
                 } else {
-                  // ignore: use_build_context_synchronously
                   InsideNotification.networkCheck(context);
                 }
               },

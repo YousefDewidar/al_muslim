@@ -41,8 +41,11 @@ class _TafserViewBodyState extends State<TafserViewBody> {
                       return TafserCard(tafser: tafser[index]);
                     },
                   );
-                } else {
+                } else if (snapShot.connectionState ==
+                    ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
+                } else {
+                  return const Center(child: Text('تاكد من اتصالك بالانترنت'));
                 }
               }),
         )
@@ -64,7 +67,8 @@ class TafserCard extends StatelessWidget {
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          border: Border.all(),
+          border:
+              Border.all(color: Theme.of(context).textTheme.labelLarge!.color!),
           borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Column(
         children: [
@@ -73,15 +77,18 @@ class TafserCard extends StatelessWidget {
             '${tafser.ayanTitle}(${tafser.ayahNum})',
             style: Theme.of(context)
                 .textTheme
-                .titleLarge!
-                .copyWith(fontFamily: 'IBMPlex'),
+                .labelLarge!
+                .copyWith(fontFamily: 'IBMPlex', height: 1.8),
             textAlign: TextAlign.center,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Text(
               tafser.ayahTafser,
-              style: const TextStyle(fontFamily: 'IBMPlex'),
+              style: Theme.of(context)
+                  .textTheme
+                  .labelLarge!
+                  .copyWith(fontFamily: 'IBMPlex', fontSize: 15),
               textAlign: TextAlign.center,
               //translation
             ),

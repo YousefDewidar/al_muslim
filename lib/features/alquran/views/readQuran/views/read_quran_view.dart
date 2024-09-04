@@ -1,3 +1,5 @@
+import 'package:al_muslim/core/widgets/custom_app_bar.dart';
+import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/views/readQuran/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:quran/quran.dart' as quran;
@@ -11,20 +13,26 @@ class ReadQuranView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PageController pageContorller = PageController(initialPage:requiredPage-1 );
+    PageController pageContorller =
+        PageController(initialPage: requiredPage - 1);
     final screenSize = MediaQuery.of(context).size;
-    final screenpadding = MediaQuery.of(context).padding;
 
     return Scaffold(
       body: PageView.builder(
-        reverse: true,
+          reverse: true,
           controller: pageContorller,
           itemBuilder: (context, surahIndex) {
             return Padding(
-              padding: surahIndex == 0
-                  ? EdgeInsets.only(top: screenpadding.top * 6)
-                  : const EdgeInsets.all(16.0),
-              child: Column(children: [
+              padding: const EdgeInsets.all(16.0),
+              child:
+                  Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: IconBack(
+                    col: Theme.of(context).textTheme.labelLarge!.color!,
+                  ),
+                ),
+                const SpaceV(20),
                 HeaderWidget(
                   pageIndex: surahIndex,
                 ),
@@ -45,15 +53,19 @@ class ReadQuranView extends StatelessWidget {
                                 text: quran
                                     .getVerse(surahIndex + 1, verseIndex + 1)
                                     .toString(),
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelLarge!
+                                    .copyWith(
+                                      height: 2,
+                                    ),
                                 children: [
                                   TextSpan(
                                       text: quran
                                           .getVerseEndSymbol(verseIndex + 1),
-                                      style: const TextStyle(fontSize: 20)),
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                      )),
                                 ]),
                           ]),
                         ),
@@ -88,7 +100,7 @@ class Basmalah extends StatelessWidget {
             bottom: 2),
         child: Image.asset(
           "assets/images/Basmala.png",
-          color: Colors.black,
+          color: Theme.of(context).textTheme.labelLarge!.color,
           width: MediaQuery.of(context).size.width * .4,
         ),
       ),

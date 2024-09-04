@@ -4,7 +4,8 @@ import 'package:quran/quran.dart';
 class HeaderWidget extends StatelessWidget {
   final int pageIndex;
   const HeaderWidget({
-    super.key, required this.pageIndex,
+    super.key,
+    required this.pageIndex,
   });
 
   @override
@@ -25,26 +26,15 @@ class HeaderWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(
-                  textAlign: TextAlign.center,
-                  'عدد اياتها \n ${getVerseCount(pageIndex+1)}',
-                  style:  const TextStyle(
-                      fontSize: 5, fontWeight:FontWeight.bold),
-                ),
                 Center(
-                    child: RichText(
-                        text: TextSpan(
-                  text: ' ${getSurahNameArabic(pageIndex+1)}',
-
-                  // textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontFamily: "arsura", fontSize: 22, color: Colors.black),
-                ))),
-                 Text(
-                  'ترتيبها\n ${pageIndex+1}  ',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 10,
+                  child: RichText(
+                    text: TextSpan(
+                      text: ' ${getSurahNameArabic(pageIndex + 1)}',
+                      style:  TextStyle(
+                          fontFamily: "arsura",
+                          fontSize: 22,
+                          color: Theme.of(context).textTheme.labelLarge!.color,),
+                    ),
                   ),
                 ),
               ],

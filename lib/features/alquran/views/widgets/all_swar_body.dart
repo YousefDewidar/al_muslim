@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 class AllSwarViewBody extends StatelessWidget {
   final String pageRoute;
   final String? swrahUrl;
-  const AllSwarViewBody({super.key, required this.pageRoute, this.swrahUrl});
+  final String reacterName;
+  const AllSwarViewBody({super.key, required this.pageRoute, this.swrahUrl,required this.reacterName});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class AllSwarViewBody extends StatelessWidget {
                         swrahUrl: manageIndex(index),
                         categorytTitle: allSwar[index].name,
                         pageName: pageRoute,
-                        pagestartIndex: index + 1,
+                        pagestartIndex: index + 1, reacterName: reacterName,
                       );
                     },
                   );
