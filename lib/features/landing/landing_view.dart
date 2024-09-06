@@ -20,7 +20,7 @@ class _LandingViewState extends State<LandingView> {
   @override
   Widget build(BuildContext context) {
     if (!Location.hasPermision) {
-      Location().enabelLocaion();
+      // Location().enabelLocaion();
     }
     return Scaffold(
       backgroundColor: Colors.white,

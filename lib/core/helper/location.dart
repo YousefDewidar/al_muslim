@@ -25,7 +25,7 @@ class Location {
   }
 
 //?make sure location is active if Not send to setting to activate
-  Future<void> enabelLocaion() async {
+  Future<void> openLocationSettings() async {
     bool isEnabel = await Geolocator.isLocationServiceEnabled();
     if (!isEnabel) {
       await Geolocator.openLocationSettings();
@@ -45,7 +45,7 @@ class Location {
       return position;
     } else {
       
-      await enabelLocaion();
+      await openLocationSettings();
       return null;
     }
   }

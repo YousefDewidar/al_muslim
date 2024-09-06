@@ -2,7 +2,7 @@ import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/themes/theme_data.dart';
 import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
 import 'package:al_muslim/features/home/presentation/views/home_view.dart';
-import 'package:al_muslim/features/landing/landing_view.dart';
+import 'package:al_muslim/features/landing/new_landing_view.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_state.dart';
 import 'package:flutter/material.dart';
@@ -59,9 +59,9 @@ class _AlMuslimState extends State<AlMuslim> {
             debugShowCheckedModeBanner: false,
             title: 'المسلم',
             themeMode: BlocProvider.of<SettingCubit>(context).myTheme,
-            darkTheme:
-                CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
-                    .darkData(context),
+            // darkTheme:
+            //     CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
+            //         .darkData(context),
             theme:
                 CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
                     .lightData(context),
@@ -74,9 +74,10 @@ class _AlMuslimState extends State<AlMuslim> {
 
   Widget startPage() {
     if (hasSeenLandingPage == true) {
+      //! replace whith home view
       return const HomeView();
     } else {
-      return const LandingView();
+      return const NewLandingView();
     }
   }
 }
