@@ -1,5 +1,6 @@
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/custom_title_card.dart';
+import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/radio/data/model/radio_model.dart';
 import 'package:al_muslim/features/radio/data/radio_services.dart';
 import 'package:flutter/material.dart';
@@ -65,8 +66,21 @@ class _AllRadioViewBodyState extends State<AllRadioViewBody> {
                     searchController: searchController,
                     allList: allList,
                     searchedList: searchedList);
-              } else {
+              } else if (snapShot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
+              } else {
+                return Column(
+                  children: [
+                    const SpaceV(250),
+                    const Text('🛜',
+                        style: TextStyle(fontSize: 25),
+                        textAlign: TextAlign.center),
+                    Text(
+                      'تأكد من اتصالك بالإنترنت',
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                  ],
+                );
               }
             }),
       ],
@@ -104,7 +118,7 @@ class HandelRadioList extends StatelessWidget {
             : searchedList.length,
         itemBuilder: (BuildContext context, int index) {
           return CustomTitleCard(
-            reacterName:allList[index].name ,
+            reacterName: allList[index].name,
             prefixIcon: Icons.radio,
             categorytTitle: searchController.text.isEmpty
                 ? allList[index].name

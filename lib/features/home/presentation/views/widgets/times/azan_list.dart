@@ -16,19 +16,15 @@ class AzanList extends StatelessWidget {
       builder: (context, salahNowSnap) => FutureBuilder<AzanModel>(
         future: PrayTimeServices().getDataFromDB(),
         builder: (context, snapShot) {
-          return Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.08),
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  return handleSalah(snapShot, index, salahNowSnap);
-                },
-              ),
-            ),
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              handleSalah(snapShot, 0, salahNowSnap)!,
+              handleSalah(snapShot, 1, salahNowSnap)!,
+              handleSalah(snapShot, 2, salahNowSnap)!,
+              handleSalah(snapShot, 3, salahNowSnap)!,
+              handleSalah(snapShot, 4, salahNowSnap)!,
+            ],
           );
         },
       ),

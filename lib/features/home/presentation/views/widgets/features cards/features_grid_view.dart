@@ -10,8 +10,8 @@ import 'package:al_muslim/features/radio/views/all_radios_view.dart';
 import 'package:al_muslim/features/radio/views/masr_radio_view.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:page_transition/page_transition.dart';
 
 class FeaturesGridView extends StatelessWidget {
@@ -57,19 +57,13 @@ class FeaturesGridView extends StatelessWidget {
             FeatureCard(
               title: 'رأديو',
               imagePath: ImageData.radio,
-              onTap: () async {
-                bool isConnected =
-                    await InternetConnectionChecker().hasConnection;
-                if (isConnected) {
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        child: const AllRadiosView()),
-                  );
-                } else {
-                  InsideNotification.networkCheck(context);
-                }
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: const AllRadiosView()),
+                );
               },
             ),
             FeatureCard(
@@ -85,25 +79,30 @@ class FeaturesGridView extends StatelessWidget {
               },
             ),
             FutureBuilder(
-                future: MasrQuranServices().fetchUrl(),
-                builder: (context, snapShot) {
-                  return FeatureCard(
-                    title: ' اذاعه مصر',
-                    imagePath: ImageData.radioMasr,
-                    onTap: () async {
-                      if (snapShot.hasData) {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: RadioMasrView(url: snapShot.data!)),
-                        );
-                      } else {
-                        return;
-                      }
-                    },
-                  );
-                }),
+              future: MasrQuranServices().fetchUrl(),
+              builder: (context, snapShot) {
+                return FeatureCard(
+                  title: ' اذاعه مصر',
+                  imagePath: ImageData.radioMasr,
+                  onTap: () async {
+                    if (snapShot.hasData) {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: RadioMasrView(url: snapShot.data!)),
+                      );
+                    } else {
+                      InsideNotification.insideNotificationCard(
+                          contentType: ContentType.warning,
+                          context: context,
+                          title: 'حدث خطأ',
+                          content: 'تأكد من اتصالك بالانترنت');
+                    }
+                  },
+                );
+              },
+            ),
             FeatureCard(
               title: 'المفضلة',
               imagePath: ImageData.bookmark,

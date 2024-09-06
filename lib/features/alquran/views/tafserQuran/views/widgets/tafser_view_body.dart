@@ -18,7 +18,6 @@ class _TafserViewBodyState extends State<TafserViewBody> {
   late dynamic future;
   @override
   void initState() {
-    //!i want to put widget.startIndex instead of 1
     future = TafserServices().fetchTafser(swrahNum: widget.tafserstartIndex);
     super.initState();
   }
@@ -43,9 +42,14 @@ class _TafserViewBodyState extends State<TafserViewBody> {
                   );
                 } else if (snapShot.connectionState ==
                     ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                      child: CircularProgressIndicator(color: Colors.amber));
                 } else {
-                  return const Center(child: Text('تاكد من اتصالك بالانترنت'));
+                  return Center(
+                      child: Text(
+                    'تاكد من اتصالك بالانترنت',
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ));
                 }
               }),
         )

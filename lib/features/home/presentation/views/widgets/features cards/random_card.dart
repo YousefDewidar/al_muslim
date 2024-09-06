@@ -109,7 +109,7 @@ class _RandomCardState extends State<RandomCard> {
               child: Text(
                 textAlign: TextAlign.center,
                 ayat[ayah],
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(height: 2),
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(height: 1.5),
               ),
             ),
           ],

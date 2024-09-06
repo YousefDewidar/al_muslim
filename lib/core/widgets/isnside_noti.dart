@@ -1,9 +1,10 @@
+import 'package:al_muslim/core/widgets/custom_app_bar.dart';
+import 'package:al_muslim/core/widgets/space.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
 class InsideNotification {
-  
   static void shareMethod(
       {required String message, required BuildContext context}) async {
     final res =
@@ -17,15 +18,6 @@ class InsideNotification {
         contentType: ContentType.success,
       );
     }
-  }
-
-  static void networkCheck(BuildContext context) {
-    insideNotificationCard(
-      context: context,
-      content: '  تأكد من اتصالك بالانتر نت واعد المحاولة',
-      contentType: ContentType.warning,
-      title: '  !انتبه',
-    );
   }
 
   static void insideNotificationCard(
@@ -57,6 +49,34 @@ class InsideNotification {
       () {
         ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
       },
+    );
+  }
+}
+
+class CheakNetworkWidget extends StatelessWidget {
+  const CheakNetworkWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SpaceV(40),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 160),
+          child: IconBack(col: Theme.of(context).textTheme.labelLarge!.color!),
+        ),
+        const Spacer(),
+        const Text('🛜',
+            style: TextStyle(fontSize: 25), textAlign: TextAlign.center),
+        const SpaceV(10),
+        Text('تأكد من اتصالك بالانترنت واعد المحاولة',
+            style: Theme.of(context).textTheme.labelLarge,
+            textAlign: TextAlign.center),
+        const Spacer(),
+      ],
     );
   }
 }

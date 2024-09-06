@@ -22,13 +22,6 @@ class _ChangeThemeCardState extends State<ChangeThemeCard> {
     initialDataFromLDB();
     super.initState();
   }
-  @override
-  void dispose() {
-    super.dispose();
-    setState(() {
-      
-    });
-  }
 
   void initialDataFromLDB() async {
     SharedPreferences asyncPref = await SharedPreferences.getInstance();
@@ -58,6 +51,7 @@ class _ChangeThemeCardState extends State<ChangeThemeCard> {
             child: Row(
               children: [
                 Radio(
+                  activeColor: Colors.purple,
                   value: options[0],
                   groupValue: curOption,
                   onChanged: (value) {
@@ -97,6 +91,7 @@ class _ChangeThemeCardState extends State<ChangeThemeCard> {
             child: Row(
               children: [
                 Radio(
+                    activeColor: Colors.purple,
                     value: options[1],
                     groupValue: curOption,
                     onChanged: (value) {
@@ -135,6 +130,7 @@ class _ChangeThemeCardState extends State<ChangeThemeCard> {
             child: Row(
               children: [
                 Radio(
+                    activeColor: Colors.purple,
                     value: options[2],
                     groupValue: curOption,
                     onChanged: (value) {
