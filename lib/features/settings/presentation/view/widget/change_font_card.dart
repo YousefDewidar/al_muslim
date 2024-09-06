@@ -1,3 +1,4 @@
+import 'package:al_muslim/core/utils/constants.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,6 +56,8 @@ class _ChangeFontCardState extends State<ChangeFontCard> {
                 ),
               ),
               Slider(
+                inactiveColor: Constants.kBgColDark,
+                activeColor: Colors.purple,
                 max: 27,
                 min: 19,
                 value: val,

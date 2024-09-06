@@ -100,11 +100,12 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
                   ],
                 );
               } else {
-                return Center(child: Text(snapshot.error.toString())
-                    //  CircularProgressIndicator(
-                    //   color: Colors.white,
-                    // ),
-                    );
+                return const Column(
+                  children: [
+                    SpaceV(50),
+                    CircularProgressIndicator(color: Colors.amber),
+                  ],
+                );
               }
             }),
       ],

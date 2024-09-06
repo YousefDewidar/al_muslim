@@ -1,4 +1,5 @@
 import 'package:al_muslim/core/helper/location.dart';
+import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
@@ -74,6 +75,7 @@ class _LandingViewState extends State<LandingView> {
                         ),
                       ),
                     );
+                    await NotificationService.createNotification();
                   },
                   style: ButtonStyle(
                     shape: WidgetStateProperty.all(ContinuousRectangleBorder(

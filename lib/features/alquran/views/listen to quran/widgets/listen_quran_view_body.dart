@@ -32,11 +32,13 @@ class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
         },
         controller: searchController,
         textAlign: TextAlign.right,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           hintTextDirection: TextDirection.rtl,
           hintText: 'ابحث عن الشيخ الذي ترغب ف الاستماع اليه',
-          suffixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(
+          hintStyle:
+              Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 16),
+          suffixIcon: const Icon(Icons.search),
+          border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(20),
             ),
@@ -69,24 +71,28 @@ class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
                       itemBuilder: (BuildContext context, int index) {
                         return searchedList.isEmpty
                             ? CustomReaderRow(
-                              racter: allList[index].name,
+                                racter: allList[index].name,
                                 reacters: allList,
                                 index: index,
                                 url: allList[index].server,
                               )
                             : CustomReaderRow(
-                              racter: searchedList[index].name,
+                                racter: searchedList[index].name,
                                 reacters: searchedList,
                                 index: index,
                                 url: searchedList[index].server,
                               );
                       },
                     );
-                  } else if(snapShot.connectionState==ConnectionState.waiting) {
+                  } else if (snapShot.connectionState ==
+                      ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
-                  }
-                   else  {
-                    return const Center(child:Text('تاكد من اتصالك بالانترنت للاستماع الي القران '));
+                  } else {
+                    return Center(
+                      child: Text('تأكد من اتصالك بالانترنت واعد المحاولة',
+                          style: Theme.of(context).textTheme.labelLarge,
+                          textAlign: TextAlign.center),
+                    );
                   }
                 }),
           ),
@@ -112,7 +118,8 @@ class CustomReaderRow extends StatelessWidget {
     super.key,
     required this.reacters,
     required this.index,
-    required this.url, required this.racter,
+    required this.url,
+    required this.racter,
   });
 
   final List<ReactersModel> reacters;
@@ -126,7 +133,7 @@ class CustomReaderRow extends StatelessWidget {
           PageTransition(
               type: PageTransitionType.rightToLeft,
               child: AllSwarView(
-                reacterName:racter,
+                reacterName: racter,
                 swarUrl: url,
               )),
         );

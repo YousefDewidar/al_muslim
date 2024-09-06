@@ -1,5 +1,6 @@
 import 'package:al_muslim/core/storage/storage_service.dart';
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
+import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/features/hadith/data/model/hadith_model.dart';
 import 'package:al_muslim/features/hadith/presentation/view%20model/hadith_services.dart';
 import 'package:al_muslim/features/hadith/presentation/view/widgets/hadith_card.dart';
@@ -68,10 +69,12 @@ class _ReadingHadithViewBodyState extends State<ReadingHadithViewBody> {
               ),
             ],
           );
-        } else {
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(color: Colors.orange),
           );
+        } else {
+          return const CheakNetworkWidget();
         }
       },
     );

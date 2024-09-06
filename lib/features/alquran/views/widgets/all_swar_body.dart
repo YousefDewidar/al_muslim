@@ -8,7 +8,11 @@ class AllSwarViewBody extends StatelessWidget {
   final String pageRoute;
   final String? swrahUrl;
   final String reacterName;
-  const AllSwarViewBody({super.key, required this.pageRoute, this.swrahUrl,required this.reacterName});
+  const AllSwarViewBody(
+      {super.key,
+      required this.pageRoute,
+      this.swrahUrl,
+      required this.reacterName});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,8 @@ class AllSwarViewBody extends StatelessWidget {
                         swrahUrl: manageIndex(index),
                         categorytTitle: allSwar[index].name,
                         pageName: pageRoute,
-                        pagestartIndex: index + 1, reacterName: reacterName,
+                        pagestartIndex: index + 1,
+                        reacterName: reacterName,
                       );
                     },
                   );

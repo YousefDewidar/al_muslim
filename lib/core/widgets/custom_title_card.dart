@@ -90,8 +90,7 @@ class CustomTitleCard extends StatelessWidget {
               context,
               PageTransition(
                   type: PageTransitionType.rightToLeft,
-                  child: const ListenQuranView(
-                  )),
+                  child: const ListenQuranView()),
             );
           case 'listenToSwrah':
             Navigator.push(

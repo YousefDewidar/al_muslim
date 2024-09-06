@@ -28,7 +28,7 @@ class NotificationService {
         ),
       ],
     );
-    await createNotification();
+    // await createNotification();
   }
 
   static Future<void> createNotification() async {

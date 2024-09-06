@@ -6,16 +6,20 @@ class AllSwarView extends StatelessWidget {
   final String? swarUrl;
   final String? reacterName;
   const AllSwarView({
-    super.key, this.pageRoute, this.swarUrl, this.reacterName,
+    super.key,
+    this.pageRoute,
+    this.swarUrl,
+    this.reacterName,
   });
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: AllSwarViewBody(
-              pageRoute: pageRoute??'listenToSwrah',
-              swrahUrl: swarUrl, reacterName:reacterName! ,
-            ),
+        pageRoute: pageRoute ?? 'listenToSwrah',
+        swrahUrl: swarUrl,
+        reacterName: reacterName!,
+      ),
     );
   }
 }

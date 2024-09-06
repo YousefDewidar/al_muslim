@@ -1,9 +1,6 @@
-import 'package:al_muslim/core/storage/storage_service.dart';
-import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/hadith/presentation/view/reading_hadith_view.dart';
 import 'package:flutter/material.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:page_transition/page_transition.dart';
 
 class HadithItem extends StatelessWidget {
@@ -21,20 +18,13 @@ class HadithItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: () async {
-        bool isConnected = await InternetConnectionChecker().hasConnection;
-        bool downloaded = await StorageService.hasDataInLDB(key: sahehName);
-        if (isConnected || downloaded) {
-          Navigator.push(
-            context,
-            PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: ReadingHadithView(sahehName: sahehName, title: title)),
-          );
-        } else {
-          // ignore: use_build_context_synchronously
-          InsideNotification.networkCheck(context);
-        }
+      onTap: () {
+        Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: ReadingHadithView(sahehName: sahehName, title: title)),
+        );
       },
       child: Container(
         decoration: BoxDecoration(

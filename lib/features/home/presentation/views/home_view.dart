@@ -28,7 +28,11 @@ class HomeView extends StatelessWidget {
                 context: context,
                 title: 'تم تحديث البيانات بنجاح');
           } else {
-            InsideNotification.networkCheck(context);
+            InsideNotification.insideNotificationCard(
+                contentType: ContentType.warning,
+                context: context,
+                title: 'حدث خطأ',
+                content: 'تأكد من اتصالك بالانترنت');
           }
         },
         child: ListView(
