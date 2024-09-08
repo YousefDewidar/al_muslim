@@ -27,36 +27,43 @@ class _NewLandingViewState extends State<NewLandingView> {
           Image.asset('assets/images/landing_masged.png'),
           LandingListTile(
             buttonChild:
-                hasPermission ? const Text('تم التفعيل ') : const Text('تفعيل'),
+                hasLocation ? const Text('تم التفعيل ') : const Text('تفعيل'),
             title: 'يجب تفعيل الموقع للاستمرار ف تسجيل الدخول',
-            onPressed: () {
-              Location().openLocationSettings();
+            onPressed: () async{
+              await Location().openLocationSettings();
+              hasLocation = Location.isEnabel;
+              setState(() {});
               //Load Data
               PrayTimeServices().getPrayTime();
               SalahServices().setDayData();
-              hasPermission = true;
-              setState(() {});
             },
           ),
           LandingListTile(
             title: 'يجب اعطاء صلاحيه الموقع  للاستمرار ',
-            onPressed: () {
-              Location().getPermision();
+            onPressed: ()async {
+              if (hasLocation == false) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('يجب تفعيل الموقع اولا'),
+                  ),
+                );
+              }
+              await Location().getPermision();
+              hasPermission = Location.hasPermision;
+              setState(() {});
               //load Data
               AzkarServices().getAllCategory();
               AzkarServices().getAllAzkarInfo(0);
               FehresService().getAllSwar();
-              setState(() {});
-              hasLocation = true;
             },
             buttonChild:
-                hasLocation ? const Text('تم التفعيل ') : const Text('تفعيل'),
+                hasPermission ? const Text('تم التفعيل ') : const Text('تفعيل'),
           ),
           ElevatedButton(
             onPressed: () async {
               SharedPreferences prefs = await SharedPreferences.getInstance();
               prefs.setBool('hasSeenLandingPage', true);
-              if (hasPermission == true) {
+              if (hasPermission == true && hasLocation == true) {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => const HomeView()));
               }
