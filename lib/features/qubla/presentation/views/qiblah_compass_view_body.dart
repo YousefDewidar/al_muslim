@@ -86,6 +86,14 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
                           .copyWith(fontFamily: 'IBMPlex', fontSize: 23),
                     ),
                     const SpaceV(5),
+                    Text(
+                      '  ∞ يجب التاكد من تدوير الهاتف قبل الاستخدام علي شكل  ',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(fontFamily: 'IBMPlex',fontWeight: FontWeight.bold),
+                    ),
+                    const SpaceV(5),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(

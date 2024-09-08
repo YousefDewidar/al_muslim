@@ -4,6 +4,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class Location {
   static bool hasPermision = false;
+  static bool isEnabel = false;
 
   Future<void> getPermision() async {
     if (await Permission.location.serviceStatus.isEnabled) {
@@ -25,11 +26,11 @@ class Location {
   }
 
 //?make sure location is active if Not send to setting to activate
-  Future<void> enabelLocaion() async {
-    bool isEnabel = await Geolocator.isLocationServiceEnabled();
+  Future<void> openLocationSettings() async {
+     isEnabel = await Geolocator.isLocationServiceEnabled();
     if (!isEnabel) {
       await Geolocator.openLocationSettings();
-    }
+    } 
   }
 
   //?to get current location after checking of location is activate
@@ -41,11 +42,10 @@ class Location {
             permission == LocationPermission.always)) {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best,
-          );
+      );
       return position;
     } else {
-      
-      await enabelLocaion();
+      await openLocationSettings();
       return null;
     }
   }

@@ -1,9 +1,13 @@
 import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/space.dart';
+import 'package:al_muslim/features/landing/widgets/landing_list_tile.dart';
+import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
+import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_state.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_font_card.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_theme_cards.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingViewBody extends StatelessWidget {
   const SettingViewBody({super.key});
@@ -36,6 +40,16 @@ class SettingViewBody extends StatelessWidget {
           ),
         ),
         const ChangeFontCard(),
+        //!!! refresh data in setting 
+        // BlocBuilder<SettingCubit, SettingState>(
+        //   builder: (context, state) {
+        //     return LandingListTile(
+        //       buttonChild: const Text('تحديث'),
+        //       title: 'تحديث البيانات',
+        //       onPressed: () {},
+        //     );
+        //   },
+        // ),
         const Spacer(),
         FutureBuilder(
             future: FinalLoc.getLoc(),
