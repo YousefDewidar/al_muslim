@@ -11,6 +11,7 @@
         android:label="al_muslim"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        
 
         <!-- Notification Receivers -->
         <receiver android:name="me.carda.awesome_notifications.notifications.receivers.ActionReceiver"

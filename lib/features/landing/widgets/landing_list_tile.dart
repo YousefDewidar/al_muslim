@@ -5,7 +5,10 @@ class LandingListTile extends StatelessWidget {
   final Widget buttonChild;
   final Function() onPressed;
   const LandingListTile({
-    super.key, required this.title, required this.onPressed, required this.buttonChild,
+    super.key,
+    required this.title,
+    required this.onPressed,
+    required this.buttonChild,
   });
 
   @override
@@ -16,10 +19,10 @@ class LandingListTile extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .titleMedium!
-            .copyWith(fontWeight: FontWeight.bold),
+            .copyWith(fontWeight: FontWeight.bold, fontSize: 15),
       ),
       leading: ElevatedButton(
-        onPressed:onPressed,
+        onPressed: onPressed,
         child: buttonChild,
       ),
     );

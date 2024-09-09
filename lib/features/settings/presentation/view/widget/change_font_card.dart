@@ -49,10 +49,10 @@ class _ChangeFontCardState extends State<ChangeFontCard> {
                 child: Text(
                   textAlign: TextAlign.center,
                   'بسم الله الرحمن الرحيم',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .copyWith(fontFamily: 'IBMPlex', fontSize: size),
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                      fontFamily: 'IBMPlex',
+                      fontSize: size,
+                      color: Colors.black),
                 ),
               ),
               Slider(

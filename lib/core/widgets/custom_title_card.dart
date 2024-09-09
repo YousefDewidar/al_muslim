@@ -109,7 +109,7 @@ class CustomTitleCard extends StatelessWidget {
             Navigator.push(
               context,
               PageTransition(
-                  type: PageTransitionType.rightToLeft,
+                  type: PageTransitionType.fade,
                   child: ReadQuranView(requiredPage: pagestartIndex ?? 3)),
             );
           default:

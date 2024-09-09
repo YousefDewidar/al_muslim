@@ -15,7 +15,7 @@ class ChangeThemeCard extends StatefulWidget {
 
 class _ChangeThemeCardState extends State<ChangeThemeCard> {
   static List<String> options = ['op1', 'op2', 'op3'];
-  String curOption = options[2];
+  String curOption = options[0];
 
   @override
   void initState() {

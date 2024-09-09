@@ -76,7 +76,7 @@ class CustomThemeData {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           foregroundColor: const WidgetStatePropertyAll(Colors.white),
-          backgroundColor: WidgetStatePropertyAll(Constants.kGreenCol),
+          backgroundColor: WidgetStatePropertyAll(Constants.kButtonCol),
         ),
       ),
 

@@ -2,10 +2,6 @@ import 'package:al_muslim/features/settings/presentation/view%20model/cubit/sett
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:al_muslim/features/alquran/data/fehres_service.dart';
-import 'package:al_muslim/features/athkar/data/azkar_services.dart';
-import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
-import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 
 class SettingCubit extends Cubit<SettingState> {
   SettingCubit() : super(SettingInitial());
@@ -42,14 +38,5 @@ class SettingCubit extends Cubit<SettingState> {
       myTheme = ThemeMode.system;
     }
     emit(DoneLoadData());
-  }
-
-  void refreshData() {
-    AzkarServices().getAllCategory();
-    AzkarServices().getAllAzkarInfo(0);
-    FehresService().getAllSwar();
-    PrayTimeServices().getPrayTime();
-    SalahServices().setDayData();
-    emit(RefreshDone( isRefreshed: true));
   }
 }
