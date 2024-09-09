@@ -44,7 +44,7 @@ class MainWidget extends StatefulWidget {
 }
 
 class _MainWidgetState extends State<MainWidget> {
-  bool hasSeenLandingPage = false;
+  bool hasSeenLandingPage = true;
 
   @override
   void initState() {
@@ -52,7 +52,6 @@ class _MainWidgetState extends State<MainWidget> {
     _checkLandingPage();
   }
 
-//save Location in local
   Future<void> _checkLandingPage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     hasSeenLandingPage = prefs.getBool('hasSeenLandingPage') ?? false;

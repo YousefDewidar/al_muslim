@@ -4,7 +4,7 @@ import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:intl/intl.dart';
 
 class SalahServices {
-  void setDayData() async {
+  Future<void> setDayData() async {
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd-MM-yyyy').format(now);
     String loc = await FinalLoc.getLoc();

@@ -31,41 +31,39 @@ class AllAzkarView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Expanded(
-          child: ListView.builder(
-            itemCount: ConstStrings.azkar.length,
-            itemBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: MediaQuery.of(context).size.height * .1,
-                width: MediaQuery.of(context).size.width * .1,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                          type: PageTransitionType.fade,
-                          child: SebhaView(zkr: azkar[index])),
-                    );
-                  },
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            textDirection: TextDirection.rtl,
-                            azkar[index],
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                        ],
-                      ),
+        child: ListView.builder(
+          itemCount: ConstStrings.azkar.length,
+          itemBuilder: (BuildContext context, int index) {
+            return SizedBox(
+              height: MediaQuery.of(context).size.height * .1,
+              width: MediaQuery.of(context).size.width * .1,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.fade,
+                        child: SebhaView(zkr: azkar[index])),
+                  );
+                },
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          textDirection: TextDirection.rtl,
+                          azkar[index],
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

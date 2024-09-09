@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
@@ -20,21 +22,7 @@ class NewLandingView extends StatefulWidget {
 class _NewLandingViewState extends State<NewLandingView> {
   bool hasPermission = false;
   bool hasLocation = false;
-  bool downloaded = false;
-
-  @override
-  void initState() {
-    if (hasLocation) {
-      PrayTimeServices().getPrayTime();
-      SalahServices().setDayData();
-      AzkarServices().getAllCategory();
-      AzkarServices().getAllAzkarInfo(0);
-      FehresService().getAllSwar();
-      downloaded = true;
-      setState(() {});
-    }
-    super.initState();
-  }
+  bool downloading = false;
 
   void mm() async {
     hasLocation = await Geolocator.isLocationServiceEnabled();
@@ -42,6 +30,13 @@ class _NewLandingViewState extends State<NewLandingView> {
     Permission.location.request().then((val) {
       hasPermission = (val == PermissionStatus.granted);
     });
+  }
+
+  @override
+  void dispose() {
+    log('message');
+    downloading = false;
+    super.dispose();
   }
 
   @override
@@ -58,50 +53,43 @@ class _NewLandingViewState extends State<NewLandingView> {
             title: 'يجب تفعيل الموقع للاستمرار ف تسجيل الدخول',
             onPressed: () async {
               await Location().openLocationSettings();
-              if (!downloaded) {
-                PrayTimeServices().getPrayTime();
-                SalahServices().setDayData();
+              setState(() {});
+            },
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              if (hasLocation) {
+                downloading = true;
+                setState(() {});
+                await PrayTimeServices().getPrayTime();
+                await SalahServices().setDayData();
                 AzkarServices().getAllCategory();
                 AzkarServices().getAllAzkarInfo(0);
                 FehresService().getAllSwar();
-                downloaded = true;
-                setState(() {});
               }
-            
-            },
-          ),
-          // LandingListTile(
-          //   title: 'يجب اعطاء صلاحيه الموقع  للاستمرار ',
-          //   onPressed: () async {
-          //     if (hasLocation == false) {
-          //       InsideNotification.insideNotificationCard(
-          //         content: 'يجب تفعيل الموقع اولا',
-          //         contentType: ContentType.help,
-          //         context: context,
-          //         title: "خطأ",
-          //       );
-          //     }
-          //     await Location().getPermision();
-          //     hasPermission = Location.hasPermision;
-          //     setState(() {});
-          //     //load Data
-          //     AzkarServices().getAllCategory();
-          //     AzkarServices().getAllAzkarInfo(0);
-          //     FehresService().getAllSwar();
-          //   },
-          //   buttonChild:
-          //       hasPermission ? const Text('تم التفعيل ') : const Text('تفعيل'),
-          // ),
-          ElevatedButton(
-            onPressed: () async {
               SharedPreferences prefs = await SharedPreferences.getInstance();
               if (hasPermission == true && hasLocation == true) {
                 prefs.setBool('hasSeenLandingPage', true);
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const HomeView()));
+                Future.delayed(
+                  const Duration(seconds: 2),
+                  () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeView()));
+                  },
+                );
               }
             },
-            child: const Text('دخول'),
+            child: downloading
+                ? const SizedBox(
+                  width: 25,
+                  height: 25,
+                  child: CircularProgressIndicator(
+                      color: Colors.orange,
+                    ),
+                )
+                : const Text('دخول'),
           )
         ],
       ),
