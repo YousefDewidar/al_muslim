@@ -1,13 +1,16 @@
 import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/themes/theme_data.dart';
 import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
+import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/home_view.dart';
 import 'package:al_muslim/features/landing/new_landing_view.dart';
+import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
 import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -50,13 +53,22 @@ class _MainWidgetState extends State<MainWidget> {
   void initState() {
     super.initState();
     _checkLandingPage();
+    updatePrayDate();
   }
 
   Future<void> _checkLandingPage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     hasSeenLandingPage = prefs.getBool('hasSeenLandingPage') ?? false;
-    // prefs.clear();
     setState(() {});
+  }
+
+  updatePrayDate() async {
+    bool isConnected = await InternetConnectionChecker().hasConnection;
+    if (isConnected && hasSeenLandingPage) {
+      SalahServices().setDayData();
+      PrayTimeServices().getPrayTime();
+      await NotificationService.createNotification();
+    }
   }
 
   @override

@@ -1,5 +1,7 @@
+import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/radio/views/widgets/custom_button.dart';
 import 'package:al_muslim/features/radio/views/widgets/page_cover.dart';
+import 'package:al_muslim/features/radio/views/widgets/play_card.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -16,16 +18,19 @@ class RadioMasrView extends StatefulWidget {
 
 class _RadioMasrViewState extends State<RadioMasrView> {
   late Future<String> future;
-  double volumeLevel = .1;
+  double volumeLevel = .5;
   late AudioPlayer player;
   bool isPlayed = false;
   bool isVolumeClicked = false;
+
   @override
   void initState() {
     super.initState();
     player = AudioPlayer();
-    player.setUrl('https://n0d.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABkbQKcI4ABaY4JFeSI-ZWgA');
-    //https://Qurango.net/radio/alzain_mohammad_ahmad
+    player.setVolume(.8);
+    player.setUrl(
+      'https://n0d.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABkbQKcI4ABaY4JFeSI-ZWgA',
+    );
   }
 
   @override
@@ -52,80 +57,69 @@ class _RadioMasrViewState extends State<RadioMasrView> {
               style: Theme.of(context).textTheme.headlineSmall!),
         ),
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const PageCover(
-            image: 'assets/images/masrQuranKreem.png',
-          ),
-          const Spacer(),
-          Container(
-            height: 125,
-            width: 300,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/wood.jpg'),
-                    fit: BoxFit.cover),
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: Colors.white),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomButton(
-                          onPressed: () async {
-                            isVolumeClicked = !isVolumeClicked;
-                            setState(() {});
-                          },
-                          icon: volumeLevel == 0.0
-                              ? const Icon(
-                                  Icons.volume_off,
-                                )
-                              : const Icon(
-                                  Icons.volume_up,
-                                )),
-                      CustomButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.skip_previous_rounded),
-                      ),
-                      CircleAvatar(
-                        radius: 35,
-                        backgroundColor:
-                            const Color.fromARGB(255, 187, 113, 48),
-                        child: CustomButton(
-                          onPressed: () async {
-                            isPlayed = !isPlayed;
-                            isPlayed ? player.play() : player.pause();
-                            setState(() async {});
-                          },
-                          icon: isPlayed
-                              ? const Icon(
-                                  Icons.pause,
-                                  size: 35,
-                                  color: Colors.white,
-                                )
-                              : const Icon(
-                                  Icons.play_arrow,
-                                  size: 35,
-                                  color: Colors.white,
-                                ),
-                        ),
-                      ),
-                      CustomButton(
-                        icon: const Icon(Icons.skip_next_rounded),
-                        onPressed: () {},
-                      ),
-                      CustomButton(
-                        icon: const Icon(Icons.repeat_one, size: 30),
-                        onPressed: () {},
-                      ),
-                    ],
+          Column(
+            children: [
+              const PageCover(
+                image:
+                    'assets/images/—Pngtree—beautiful al quran kareem islamic_6848467.png',
+              ),
+              const SpaceV(100),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomButton(
+                      onPressed: () async {
+                        isVolumeClicked = !isVolumeClicked;
+                        volumeLevel = player.volume;
+                        setState(() {});
+                      },
+                      icon: volumeLevel == 0.0
+                          ? Icon(
+                              Icons.volume_off,
+                              color:
+                                  Theme.of(context).textTheme.labelLarge!.color,
+                            )
+                          : Icon(
+                              Icons.volume_up,
+                              color:
+                                  Theme.of(context).textTheme.labelLarge!.color,
+                            )),
+                  CustomButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.skip_previous_rounded,
+                      color: Theme.of(context).textTheme.labelLarge!.color,
+                    ),
                   ),
-                ),
-                showVolumeController()
-              ],
-            ),
+                  PlayCard(
+                    isPlay: isPlayed,
+                    onPressed: () async {
+                      isPlayed = !isPlayed;
+                      isPlayed ? player.play() : player.pause();
+                      setState(() {});
+                    },
+                  ),
+                  CustomButton(
+                    icon: Icon(
+                      Icons.skip_next_rounded,
+                      color: Theme.of(context).textTheme.labelLarge!.color,
+                    ),
+                    onPressed: () {},
+                  ),
+                  CustomButton(
+                    icon: Icon(
+                      Icons.repeat_one,
+                      size: 30,
+                      color: Theme.of(context).textTheme.labelLarge!.color,
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              showVolumeController(),
+              const SpaceV(25),
+            ],
           ),
-          const Spacer(),
         ]));
   }
 

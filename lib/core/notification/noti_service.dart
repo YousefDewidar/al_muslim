@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:al_muslim/core/helper/location.dart' as loc;
 import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
@@ -15,7 +17,6 @@ class NotificationService {
         }
       },
     );
-  
     await AwesomeNotifications().initialize(
       null,
       [
@@ -29,7 +30,6 @@ class NotificationService {
         ),
       ],
     );
-    // await createNotification();
   }
 
   static Future<void> createNotification() async {
@@ -48,7 +48,8 @@ class NotificationService {
         title: 'أذان الفجر',
         body: 'يحين الآن موعد اذان الفجر حسب توقيت $loc',
       ),
-      schedule: NotificationCalendar.fromDate(repeats: true, date: fajr),
+      schedule: NotificationCalendar.fromDate(
+          repeats: true, date: fajr.subtract(const Duration(minutes: 4))),
     );
     await AwesomeNotifications().createNotification(
         content: NotificationContent(
@@ -57,7 +58,8 @@ class NotificationService {
           title: 'أذان الظهر',
           body: 'يحين الآن موعد اذان الظهر حسب توقيت $loc',
         ),
-        schedule: NotificationCalendar.fromDate(date: dhuhr));
+        schedule: NotificationCalendar.fromDate(
+            date: dhuhr.subtract(const Duration(minutes: 4))));
     await AwesomeNotifications().createNotification(
         content: NotificationContent(
           id: 3,
@@ -65,7 +67,8 @@ class NotificationService {
           title: 'أذان العصر',
           body: 'يحين الآن موعد اذان العصر حسب توقيت $loc',
         ),
-        schedule: NotificationCalendar.fromDate(date: asr));
+        schedule: NotificationCalendar.fromDate(
+            date: asr.subtract(const Duration(minutes: 4))));
     await AwesomeNotifications().createNotification(
         content: NotificationContent(
           id: 4,
@@ -73,7 +76,8 @@ class NotificationService {
           title: 'أذان المغرب',
           body: 'يحين الآن موعد اذان المغرب حسب توقيت $loc',
         ),
-        schedule: NotificationCalendar.fromDate(date: maghrib));
+        schedule: NotificationCalendar.fromDate(
+            date: maghrib.subtract(const Duration(minutes: 4))));
     await AwesomeNotifications().createNotification(
         content: NotificationContent(
           id: 5,
@@ -81,7 +85,8 @@ class NotificationService {
           title: 'أذان العشاء',
           body: 'يحين الآن موعد اذان العشاء حسب توقيت $loc',
         ),
-        schedule: NotificationCalendar.fromDate(date: isha));
+        schedule: NotificationCalendar.fromDate(
+            date: isha.subtract(const Duration(minutes: 4))));
   }
 
   static DateTime convertFromStringToData({required String salah}) {

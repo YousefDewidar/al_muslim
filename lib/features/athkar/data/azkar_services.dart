@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:al_muslim/features/athkar/data/azkar_all_model.dart';
 import 'package:al_muslim/features/athkar/data/azkar_cateogry_model.dart';
 import 'package:dio/dio.dart';
@@ -19,7 +18,6 @@ class AzkarServices {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String data = pref.getString('category')!;
     List<dynamic> dataList = jsonDecode(data);
-    log(data.runtimeType.toString());
 
     List<AzkarCategoryModel> categries = [];
     for (Map<String, dynamic> item in dataList) {

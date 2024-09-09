@@ -45,7 +45,7 @@ class CustomThemeData {
           foregroundColor: WidgetStatePropertyAll(Colors.white),
         ),
       ),
-      primaryIconTheme:const IconThemeData(color: Colors.white),
+      primaryIconTheme: const IconThemeData(color: Colors.white),
 
       // ###################
       iconTheme: const IconThemeData(color: Colors.white),
@@ -92,7 +92,7 @@ class CustomThemeData {
           foregroundColor: WidgetStatePropertyAll(Colors.black),
         ),
       ),
-      primaryIconTheme:const IconThemeData(color: Colors.black),
+      primaryIconTheme: const IconThemeData(color: Colors.black),
 
       // ###################
       iconTheme: const IconThemeData(color: Colors.black),

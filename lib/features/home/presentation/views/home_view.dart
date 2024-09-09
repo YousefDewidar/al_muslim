@@ -1,11 +1,11 @@
 import 'package:al_muslim/core/helper/location.dart';
+import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HomeView extends StatelessWidget {
@@ -27,6 +27,7 @@ class HomeView extends StatelessWidget {
                 contentType: ContentType.success,
                 context: context,
                 title: 'تم تحديث البيانات بنجاح');
+            await NotificationService.createNotification();
           } else {
             InsideNotification.insideNotificationCard(
                 contentType: ContentType.warning,

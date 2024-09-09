@@ -1,6 +1,6 @@
-import 'dart:developer';
 
 import 'package:al_muslim/core/helper/location.dart';
+import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
@@ -34,7 +34,6 @@ class _NewLandingViewState extends State<NewLandingView> {
 
   @override
   void dispose() {
-    log('message');
     downloading = false;
     super.dispose();
   }
@@ -63,6 +62,7 @@ class _NewLandingViewState extends State<NewLandingView> {
                 setState(() {});
                 await PrayTimeServices().getPrayTime();
                 await SalahServices().setDayData();
+                await NotificationService.createNotification();
                 AzkarServices().getAllCategory();
                 AzkarServices().getAllAzkarInfo(0);
                 FehresService().getAllSwar();
@@ -70,25 +70,19 @@ class _NewLandingViewState extends State<NewLandingView> {
               SharedPreferences prefs = await SharedPreferences.getInstance();
               if (hasPermission == true && hasLocation == true) {
                 prefs.setBool('hasSeenLandingPage', true);
-                Future.delayed(
-                  const Duration(seconds: 2),
-                  () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeView()));
-                  },
-                );
+
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const HomeView()));
               }
             },
             child: downloading
                 ? const SizedBox(
-                  width: 25,
-                  height: 25,
-                  child: CircularProgressIndicator(
+                    width: 25,
+                    height: 25,
+                    child: CircularProgressIndicator(
                       color: Colors.orange,
                     ),
-                )
+                  )
                 : const Text('دخول'),
           )
         ],
