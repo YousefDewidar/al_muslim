@@ -32,6 +32,7 @@ class _ALlAzkarViewState extends State<ALlAzkarView> {
                 List<AzkarCategoryModel> category = snapShot.data!;
                 return Expanded(
                   child: ListView.builder(
+                    padding: EdgeInsets.zero,
                     itemCount: category.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ZekrCategoryCard(

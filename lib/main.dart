@@ -1,4 +1,3 @@
-import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/themes/theme_data.dart';
 import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
@@ -18,14 +17,33 @@ void main() async {
   await NotificationService.initNotification();
 }
 
-class AlMuslim extends StatefulWidget {
+class AlMuslim extends StatelessWidget {
   const AlMuslim({super.key});
 
   @override
-  State<AlMuslim> createState() => _AlMuslimState();
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SettingCubit(),
+        ),
+        BlocProvider(
+          create: (context) => FavCubit(),
+        ),
+      ],
+      child: const MainWidget(),
+    );
+  }
 }
 
-class _AlMuslimState extends State<AlMuslim> {
+class MainWidget extends StatefulWidget {
+  const MainWidget({super.key});
+
+  @override
+  State<MainWidget> createState() => _MainWidgetState();
+}
+
+class _MainWidgetState extends State<MainWidget> {
   bool hasSeenLandingPage = false;
 
   @override
@@ -44,41 +62,21 @@ class _AlMuslimState extends State<AlMuslim> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => SettingCubit(),
-        ),
-        BlocProvider(
-          create: (context) => FavCubit(),
-        ),
-      ],
-      child: BlocBuilder<SettingCubit, SettingState>(
-        builder: (context, state) {
-          BlocProvider.of<SettingCubit>(context).initialDataFromLDB();
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'المسلم',
-            themeMode: BlocProvider.of<SettingCubit>(context).myTheme,
-            // darkTheme:
-            //     CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
-            //         .darkData(context),
-            theme:
-                CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
-                    .lightData(context),
-            home: startPage(),
-          );
-        },
-      ),
+    return BlocBuilder<SettingCubit, SettingState>(
+      builder: (context, state) {
+        BlocProvider.of<SettingCubit>(context).initialDataFromLDB();
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'المسلم',
+          themeMode: BlocProvider.of<SettingCubit>(context).myTheme,
+          darkTheme:
+              CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
+                  .darkData(context),
+          theme: CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
+              .lightData(context),
+          home: hasSeenLandingPage ? const HomeView() : const NewLandingView(),
+        );
+      },
     );
-  }
-
-  Widget startPage() {
-    if (hasSeenLandingPage == true) {
-      //! replace whith home view
-      return const HomeView();
-    } else {
-      return const NewLandingView();
-    }
   }
 }

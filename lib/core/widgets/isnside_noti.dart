@@ -34,8 +34,8 @@ class InsideNotification {
         message: content,
         contentType: contentType,
         inMaterialBanner: true,
-        titleFontSize: 22,
-        messageFontSize: 19,
+        titleTextStyle: const TextStyle(fontSize: 22),
+        messageTextStyle: const TextStyle(fontSize: 19),
       ),
       actions: const [SizedBox.shrink()],
     );

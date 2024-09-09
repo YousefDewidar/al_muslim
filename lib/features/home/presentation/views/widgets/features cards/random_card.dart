@@ -76,7 +76,7 @@ class _RandomCardState extends State<RandomCard> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: CirculeActionButton(
-                    color: const Color(0xff3d7085),
+                    color: const Color.fromARGB(255, 70, 129, 154),
                     icon: Icons.replay,
                     radius: 20,
                     onTap: () {
@@ -109,7 +109,10 @@ class _RandomCardState extends State<RandomCard> {
               child: Text(
                 textAlign: TextAlign.center,
                 ayat[ayah],
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(height: 1.5),
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(height: 1.5),
               ),
             ),
           ],

@@ -1,13 +1,9 @@
 import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/space.dart';
-import 'package:al_muslim/features/landing/widgets/landing_list_tile.dart';
-import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_cubit.dart';
-import 'package:al_muslim/features/settings/presentation/view%20model/cubit/setting_state.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_font_card.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_theme_cards.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingViewBody extends StatelessWidget {
   const SettingViewBody({super.key});
@@ -40,32 +36,57 @@ class SettingViewBody extends StatelessWidget {
           ),
         ),
         const ChangeFontCard(),
-        //!!! refresh data in setting 
-        // BlocBuilder<SettingCubit, SettingState>(
-        //   builder: (context, state) {
-        //     return LandingListTile(
-        //       buttonChild: const Text('تحديث'),
-        //       title: 'تحديث البيانات',
-        //       onPressed: () {},
-        //     );
-        //   },
-        // ),
         const Spacer(),
         FutureBuilder(
-            future: FinalLoc.getLoc(),
-            builder: (context, snap) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Text(
-                  textAlign: TextAlign.center,
-                  snap.hasData
-                      ? snap.data ?? 'فشل تحديد موقعك'
-                      : 'جاري تحديد موقعك الحالي...',
-                  textDirection: TextDirection.rtl,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
+          future: FinalLoc.getLoc(),
+          builder: (context, snap) {
+            if (snap.hasData) {
+              return Text(
+                textAlign: TextAlign.center,
+                snap.data!,
+                textDirection: TextDirection.rtl,
+                style: Theme.of(context).textTheme.headlineMedium,
               );
-            }),
+            } else if (snap.connectionState == ConnectionState.waiting) {
+              return Text(
+                textAlign: TextAlign.center,
+                'جاري تحديد موقعك الحالي...',
+                textDirection: TextDirection.rtl,
+                style: Theme.of(context).textTheme.headlineMedium,
+              );
+            } else {
+              return Text(
+                textAlign: TextAlign.center,
+                'فشل تحديد موقعك',
+                textDirection: TextDirection.rtl,
+                style: Theme.of(context).textTheme.headlineMedium,
+              );
+            }
+          },
+        ),
+        const SpaceV(25),
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(text: '', children: [
+            TextSpan(
+                text: 'يوسف',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(fontSize: 20)),
+            const TextSpan(text: '   '),
+            const TextSpan(
+                text: '&',
+                style: TextStyle(color: Colors.orange, fontSize: 25)),
+            const TextSpan(text: '   '),
+            TextSpan(
+                text: 'سيد',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(fontSize: 20)),
+          ]),
+        ),
         const SpaceV(50),
       ],
     );

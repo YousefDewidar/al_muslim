@@ -25,6 +25,13 @@
           "ignoreFailures": true
         }
       ]
+    },
+    {
+      "name": "al_muslim (Flutter release mode)",
+      "program": "lib/main.dart",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
     }
   ]
 }

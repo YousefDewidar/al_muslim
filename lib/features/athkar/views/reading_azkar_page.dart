@@ -1,3 +1,4 @@
+import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/athkar/data/azkar_all_model.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/athkar/views/widgets/zekr_card.dart';
@@ -17,7 +18,7 @@ class _AzkarReadState extends State<AzkarRead> {
   late Future<List<AllAzkarModel>> future;
   @override
   void initState() {
-    future = AzkarServices(). getAllInfoFromDB(widget.startIndex);
+    future = AzkarServices().getAllInfoFromDB(widget.startIndex);
     super.initState();
   }
 
@@ -25,12 +26,23 @@ class _AzkarReadState extends State<AzkarRead> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child:
+                  IconBack(col: Theme.of(context).textTheme.labelLarge!.color!),
+            ),
+          ],
           backgroundColor: Colors.transparent,
           centerTitle: true,
-          title: Text(widget.zecrCategory,style: Theme.of(context)
-                  .textTheme
-                  .labelLarge!
-                  .copyWith(fontFamily: 'IBMPlex', height: 1.6),),
+          title: Text(
+            widget.zecrCategory,
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge!
+                .copyWith(fontFamily: 'IBMPlex', height: 1.6),
+          ),
         ),
         body: FutureBuilder(
             future: future,

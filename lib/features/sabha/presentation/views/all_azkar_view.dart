@@ -40,10 +40,10 @@ class AllAzkarView extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * .1,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       PageTransition(
-                          type: PageTransitionType.rightToLeft,
+                          type: PageTransitionType.fade,
                           child: SebhaView(zkr: azkar[index])),
                     );
                   },

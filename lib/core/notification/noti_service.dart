@@ -15,6 +15,7 @@ class NotificationService {
         }
       },
     );
+  
     await AwesomeNotifications().initialize(
       null,
       [

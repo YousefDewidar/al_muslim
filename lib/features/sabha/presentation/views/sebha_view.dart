@@ -3,6 +3,7 @@ import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/sabha/presentation/views/all_azkar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:vibration/vibration.dart';
 
 class SebhaView extends StatefulWidget {
   const SebhaView({super.key, this.zkr = 'سبحان الله '});
@@ -26,7 +27,14 @@ class _SebhaViewState extends State<SebhaView> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: InkWell(
-          onTap: () {
+          onTap: () async {
+            if (await Vibration.hasVibrator() == true &&
+                (count == 33 || count == 66 || count == 99)) {
+              Vibration.vibrate();
+            }
+            if (count == 99) {
+              count = 0;
+            }
             count++;
             setState(() {});
           },
@@ -63,10 +71,10 @@ class _SebhaViewState extends State<SebhaView> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     PageTransition(
-                        type: PageTransitionType.rightToLeft,
+                        type: PageTransitionType.fade,
                         child: const AllAzkarView()),
                   );
                 },

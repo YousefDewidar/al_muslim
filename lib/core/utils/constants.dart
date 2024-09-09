@@ -11,5 +11,5 @@ class Constants {
 
   // button color
   static Color kGreenCol = const Color(0xff365953);
-  static Color kButtonCol = const Color(0xff708d81);
+  static Color kButtonCol = const Color.fromARGB(255, 20, 153, 158);
 }
