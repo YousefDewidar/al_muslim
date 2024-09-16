@@ -15,7 +15,7 @@ class CustomThemeData {
               headlineSmall: const TextStyle(color: Colors.white),
               bodyLarge: const TextStyle(color: Colors.white),
               headlineMedium: const TextStyle(color: Colors.white),
-              titleLarge: const TextStyle(color: Colors.black),
+              titleLarge: const TextStyle(color: Colors.black,fontSize: 20),
               titleMedium: const TextStyle(color: Colors.white),
               // $$$$$$$$$$$$$$$$$$$$$$$$$$$
               labelLarge: const TextStyle(color: Colors.white)

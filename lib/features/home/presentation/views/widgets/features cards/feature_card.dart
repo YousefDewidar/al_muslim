@@ -1,5 +1,6 @@
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FeatureCard extends StatelessWidget {
   const FeatureCard({
@@ -19,17 +20,17 @@ class FeatureCard extends StatelessWidget {
       onTap: onTap,
       child: Card(
         child: Container(
-          width: MediaQuery.of(context).size.width / 4 - 20,
-          height: MediaQuery.of(context).size.height / 10.5,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+          width: MediaQuery.of(context).size.width / 4.w - 20.w,
+          height: MediaQuery.of(context).size.height / 10.5.h,
+          padding:  EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(imagePath, width: 30, height: 30),
+              Image.asset(imagePath, width: 30.w, height: 30.h),
               const SpaceV(5),
               Text(title,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w600, fontSize: 16)),
+                  style:  TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: 14.sp)),
             ],
           ),
         ),
