@@ -61,11 +61,13 @@ class _NewLandingViewState extends State<NewLandingView> {
                 downloading = true;
                 setState(() {});
                 await PrayTimeServices().getPrayTime();
+                //!
                 await SalahServices().setDayData();
-                await NotificationService.createNotification();
                 AzkarServices().getAllCategory();
                 AzkarServices().getAllAzkarInfo(0);
                 FehresService().getAllSwar();
+                //!
+                await NotificationService.createNotification();
               }
               SharedPreferences prefs = await SharedPreferences.getInstance();
               if (hasPermission == true && hasLocation == true) {

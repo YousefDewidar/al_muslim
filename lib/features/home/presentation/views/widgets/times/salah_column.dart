@@ -1,5 +1,6 @@
 import 'package:al_muslim/features/home/data/model/azan_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SalahColumn extends StatelessWidget {
   final AzanModel azan;
@@ -13,7 +14,7 @@ class SalahColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
       child: Column(
         children: [
           Text(

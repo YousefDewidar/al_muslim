@@ -69,6 +69,12 @@ class SettingViewBody extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(text: '', children: [
             TextSpan(
+                text: 'تم تطوير التطبيق بواسطه\n ',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(fontSize: 20)),
+            TextSpan(
                 text: 'يوسف',
                 style: Theme.of(context)
                     .textTheme

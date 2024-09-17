@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SettingCubit extends Cubit<SettingState> {
   SettingCubit() : super(SettingInitial());
   bool isRefreshed = true;
-  ThemeMode myTheme = ThemeMode.system;
+  ThemeMode myTheme = ThemeMode.light;
   double myFont = 20.0;
 
   void setTheme({required ThemeMode theme}) async {
