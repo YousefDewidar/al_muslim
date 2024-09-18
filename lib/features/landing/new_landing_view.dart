@@ -1,6 +1,6 @@
-
 import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/core/notification/noti_service.dart';
+import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
@@ -33,19 +33,21 @@ class _NewLandingViewState extends State<NewLandingView> {
   }
 
   @override
-  void dispose() {
-    downloading = false;
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     mm();
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/landing_masged.png'),
+          Image.asset(
+            'assets/logo/brand.png',
+            height: 60,
+            width: 220,
+            color: Colors.orange,
+          ),
+          const SpaceV(40),
+          Image.asset('assets/images/landing_masged.png', height: 360),
+          const SpaceV(20),
           LandingListTile(
             buttonChild:
                 hasLocation ? const Text('تم التفعيل ') : const Text('تفعيل'),
@@ -57,24 +59,29 @@ class _NewLandingViewState extends State<NewLandingView> {
           ),
           ElevatedButton(
             onPressed: () async {
-              if (hasLocation) {
+              if (hasLocation && hasPermission == true) {
                 downloading = true;
                 setState(() {});
-                await PrayTimeServices().getPrayTime();
-                //!
-                await SalahServices().setDayData();
-                AzkarServices().getAllCategory();
-                AzkarServices().getAllAzkarInfo(0);
-                FehresService().getAllSwar();
-                //!
-                await NotificationService.createNotification();
-              }
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              if (hasPermission == true && hasLocation == true) {
-                prefs.setBool('hasSeenLandingPage', true);
+                try {
+                  await PrayTimeServices().getPrayTime();
+                  await SalahServices().setDayData();
+                  await AzkarServices().getAllCategory();
+                  await AzkarServices().getAllAzkarInfo(0);
+                  await FehresService().getAllSwar();
+                  await NotificationService.createNotification();
 
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const HomeView()));
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setBool('hasSeenLandingPage', true);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeView(),
+                    ),
+                  );
+                } catch (e) {
+                  downloading = false;
+                }
               }
             },
             child: downloading
@@ -85,10 +92,19 @@ class _NewLandingViewState extends State<NewLandingView> {
                       color: Colors.orange,
                     ),
                   )
-                : const Text('دخول'),
-          )
+                : const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text('دخول'),
+                  ),
+          ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    downloading = false;
+    super.dispose();
   }
 }

@@ -51,10 +51,10 @@ class AllSwarViewBody extends StatelessWidget {
   String manageIndex(index) {
     if (index + 1 <= 9) {
       return '$swrahUrl${'00${index + 1}.mp3'}';
-    } else if (index >= 10 && index < 100) {
-      return '$swrahUrl${'0$index.mp3'}';
+    } else if (index + 1 >= 10 && index + 1 < 100) {
+      return '$swrahUrl${'0${index + 1}.mp3'}';
     } else {
-      return '$swrahUrl${'$index.mp3'}';
+      return '$swrahUrl${'${index + 1}.mp3'}';
     }
   }
 }

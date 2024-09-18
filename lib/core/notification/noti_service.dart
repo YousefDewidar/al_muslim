@@ -1,12 +1,7 @@
 import 'dart:async';
-
-import 'package:al_muslim/core/helper/location.dart' as loc;
-import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 
 class NotificationService {
   static Future<void> initNotification() async {
@@ -39,14 +34,13 @@ class NotificationService {
     DateTime asr = convertFromStringToData(salah: dayData.salah.asr);
     DateTime maghrib = convertFromStringToData(salah: dayData.salah.maghrib);
     DateTime isha = convertFromStringToData(salah: dayData.salah.isha);
-    String loc = await getLoc();
 
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 1,
         channelKey: 'basic key',
         title: 'أذان الفجر',
-        body: 'يحين الآن موعد اذان الفجر حسب توقيت $loc',
+        body: 'يحين الآن موعد اذان الفجر',
       ),
       schedule: NotificationCalendar.fromDate(
           repeats: true, date: fajr.subtract(const Duration(minutes: 4))),
@@ -56,7 +50,7 @@ class NotificationService {
           id: 2,
           channelKey: 'basic key',
           title: 'أذان الظهر',
-          body: 'يحين الآن موعد اذان الظهر حسب توقيت $loc',
+          body: 'يحين الآن موعد اذان الظهر',
         ),
         schedule: NotificationCalendar.fromDate(
             date: dhuhr.subtract(const Duration(minutes: 4))));
@@ -65,7 +59,7 @@ class NotificationService {
           id: 3,
           channelKey: 'basic key',
           title: 'أذان العصر',
-          body: 'يحين الآن موعد اذان العصر حسب توقيت $loc',
+          body: 'يحين الآن موعد اذان العصر',
         ),
         schedule: NotificationCalendar.fromDate(
             date: asr.subtract(const Duration(minutes: 4))));
@@ -74,7 +68,7 @@ class NotificationService {
           id: 4,
           channelKey: 'basic key',
           title: 'أذان المغرب',
-          body: 'يحين الآن موعد اذان المغرب حسب توقيت $loc',
+          body: 'يحين الآن موعد اذان المغرب',
         ),
         schedule: NotificationCalendar.fromDate(
             date: maghrib.subtract(const Duration(minutes: 4))));
@@ -83,7 +77,7 @@ class NotificationService {
           id: 5,
           channelKey: 'basic key',
           title: 'أذان العشاء',
-          body: 'يحين الآن موعد اذان العشاء حسب توقيت $loc',
+          body: 'يحين الآن موعد اذان العشاء ',
         ),
         schedule: NotificationCalendar.fromDate(
             date: isha.subtract(const Duration(minutes: 4))));
@@ -100,15 +94,5 @@ class NotificationService {
         DateTime(now.year, now.month, now.day, hour, minute);
 
     return notifyDateTime;
-  }
-
-  static Future<String> getLoc() async {
-    Position? pos = await loc.Location().getCurrentLocation();
-    if (pos != null) {
-      List<Placemark> curLoc =
-          await GetLocationData().getLocation(position: pos);
-      return curLoc.first.locality!;
-    }
-    return 'فشل تحديد موقعك';
   }
 }

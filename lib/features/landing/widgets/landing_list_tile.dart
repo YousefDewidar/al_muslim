@@ -19,7 +19,7 @@ class LandingListTile extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .titleMedium!
-            .copyWith(fontWeight: FontWeight.bold, fontSize: 15),
+            .copyWith(fontWeight: FontWeight.bold, fontSize: 14.5),
       ),
       leading: ElevatedButton(
         onPressed: onPressed,

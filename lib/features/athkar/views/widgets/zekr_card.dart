@@ -14,25 +14,24 @@ class ZekrCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             border: Border.all(
-              color: Theme.of(context)
-                  .textTheme
-                  .labelLarge!.color!
-            ),
+                color: Theme.of(context).textTheme.labelLarge!.color!),
             borderRadius: const BorderRadius.all(Radius.circular(16))),
         child: Column(
           children: [
             Text(
               azkar.text,
               textAlign: TextAlign.center,
+              textDirection: TextDirection.rtl,
               style: Theme.of(context)
                   .textTheme
                   .labelLarge!
                   .copyWith(fontFamily: 'Fustat', height: 1.8),
             ),
             const SpaceV(10),
-            ShareAndFavRow(azkar: azkar,),
+            ShareAndFavRow(
+              azkar: azkar,
+            ),
           ],
         ));
   }
 }
-

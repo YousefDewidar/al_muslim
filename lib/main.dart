@@ -60,7 +60,6 @@ class _MainWidgetState extends State<MainWidget> {
   Future<void> _checkLandingPage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     hasSeenLandingPage = prefs.getBool('hasSeenLandingPage') ?? false;
-    // prefs.clear();
     setState(() {});
   }
 
@@ -78,21 +77,26 @@ class _MainWidgetState extends State<MainWidget> {
     return BlocBuilder<SettingCubit, SettingState>(
       builder: (context, state) {
         BlocProvider.of<SettingCubit>(context).initialDataFromLDB();
-        return ScreenUtilInit(
-          designSize: const Size(375, 812),
-          minTextAdapt: true,
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'المسلم',
-            themeMode: BlocProvider.of<SettingCubit>(context).myTheme,
-            darkTheme:
-                CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
-                    .darkData(context),
-            theme:
-                CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
-                    .lightData(context),
-            home:
-                hasSeenLandingPage ? const HomeView() : const NewLandingView(),
+        return MediaQuery(
+          data: MediaQuery.of(context)
+              .copyWith(textScaler: const TextScaler.linear(1.0)),
+          child: ScreenUtilInit(
+            designSize: const Size(375, 812),
+            minTextAdapt: true,
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'المسلم',
+              themeMode: BlocProvider.of<SettingCubit>(context).myTheme,
+              darkTheme:
+                  CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
+                      .darkData(context),
+              theme:
+                  CustomThemeData(BlocProvider.of<SettingCubit>(context).myFont)
+                      .lightData(context),
+              home: hasSeenLandingPage
+                  ? const HomeView()
+                  : const NewLandingView(),
+            ),
           ),
         );
       },

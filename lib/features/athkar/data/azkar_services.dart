@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AzkarServices {
   Dio dio = Dio();
 
-  getAllCategory() async {
+  Future<void> getAllCategory() async {
     Response response = await dio.get(
         'https://raw.githubusercontent.com/rn0x/Adhkar-json/main/adhkar.json');
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -28,7 +28,7 @@ class AzkarServices {
   }
 
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  getAllAzkarInfo(startIndex) async {
+Future<void>  getAllAzkarInfo(startIndex) async {
     Response response = await dio.get(
         'https://raw.githubusercontent.com/rn0x/Adhkar-json/main/adhkar.json');
     SharedPreferences pref = await SharedPreferences.getInstance();

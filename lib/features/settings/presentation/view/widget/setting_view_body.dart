@@ -37,33 +37,7 @@ class SettingViewBody extends StatelessWidget {
         ),
         const ChangeFontCard(),
         const Spacer(),
-        FutureBuilder(
-          future: FinalLoc.getLoc(),
-          builder: (context, snap) {
-            if (snap.hasData) {
-              return Text(
-                textAlign: TextAlign.center,
-                snap.data!,
-                textDirection: TextDirection.rtl,
-                style: Theme.of(context).textTheme.headlineMedium,
-              );
-            } else if (snap.connectionState == ConnectionState.waiting) {
-              return Text(
-                textAlign: TextAlign.center,
-                'جاري تحديد موقعك الحالي...',
-                textDirection: TextDirection.rtl,
-                style: Theme.of(context).textTheme.headlineMedium,
-              );
-            } else {
-              return Text(
-                textAlign: TextAlign.center,
-                'فشل تحديد موقعك',
-                textDirection: TextDirection.rtl,
-                style: Theme.of(context).textTheme.headlineMedium,
-              );
-            }
-          },
-        ),
+        const NewWidget(),
         const SpaceV(25),
         RichText(
           textAlign: TextAlign.center,
@@ -95,6 +69,38 @@ class SettingViewBody extends StatelessWidget {
         ),
         const SpaceV(50),
       ],
+    );
+  }
+}
+
+class NewWidget extends StatefulWidget {
+  const NewWidget({
+    super.key,
+  });
+
+  @override
+  State<NewWidget> createState() => _NewWidgetState();
+}
+
+class _NewWidgetState extends State<NewWidget> {
+  String loc = 'موقعك الحالي...';
+  locationNow() async {
+    loc = await FinalLoc.getLoc();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    locationNow();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      loc,
+      style: Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 22),
+      textAlign: TextAlign.center,
     );
   }
 }

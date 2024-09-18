@@ -18,7 +18,7 @@ class DayRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             children: [
@@ -27,13 +27,16 @@ class DayRow extends StatelessWidget {
                       .textTheme
                       .bodyLarge!
                       .copyWith(fontSize: 20)),
-              Text(dayData.date.monthHName,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(fontSize: 23)),
+              Text(
+                dayData.date.monthHName,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontSize: 23),
+              ),
             ],
           ),
+          const Spacer(flex: 1),
           Column(
             children: [
               Text(dayData.date.dayName,
@@ -52,6 +55,9 @@ class DayRow extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          const Spacer(
+            flex: 2,
           ),
           const IconBackk(),
         ],

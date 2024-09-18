@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class FehresService {
   Dio dio = Dio();
-  getAllSwar() async {
+Future<void>  getAllSwar() async {
     Response response = await dio.get('https://mp3quran.net/api/v3/suwar');
     //setToDataBase
     SharedPreferences pref = await SharedPreferences.getInstance();
