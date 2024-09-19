@@ -13,7 +13,7 @@ class NotificationService {
       },
     );
     await AwesomeNotifications().initialize(
-      null,
+      'resource://drawable/noti',
       [
         NotificationChannel(
           channelKey: 'basic key',
