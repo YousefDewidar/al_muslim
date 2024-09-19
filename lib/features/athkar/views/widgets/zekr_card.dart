@@ -23,7 +23,7 @@ class ZekrCard extends StatelessWidget {
               textAlign: TextAlign.center,
               textDirection: TextDirection.rtl,
               style:
-                  Theme.of(context).textTheme.labelLarge!.copyWith(height: 2,fontFamily: 'IBMPlex'),
+                  Theme.of(context).textTheme.labelLarge!.copyWith(height: 2),
             ),
             const SpaceV(10),
             ShareAndFavRow(

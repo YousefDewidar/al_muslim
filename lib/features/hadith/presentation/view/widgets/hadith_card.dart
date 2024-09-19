@@ -22,7 +22,10 @@ class HadithCard extends StatelessWidget {
         child: Text(
           hadith.hadith,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.labelLarge!.copyWith(height: 1.8,fontFamily: 'IBMPlex'),
+          style: Theme.of(context)
+              .textTheme
+              .labelLarge!
+              .copyWith(height: 2, fontFamily: 'IBMPlex'),
         ),
       ),
     );
