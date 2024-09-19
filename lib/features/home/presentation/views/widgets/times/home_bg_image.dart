@@ -84,7 +84,7 @@ class HijriDate extends StatelessWidget {
       DayData date = snapShot.data!;
       String month = date.date.monthHName;
       String dayInAr =
-          LangConverter().convertToArabic(int.parse(date.date.dayHnum));
+          LangConverter().convertToArabic(int.parse(date.date.dayHnum) + 1);
       String yearInAr =
           LangConverter().convertToArabic(int.parse(date.date.hijriYear));
       return Text(

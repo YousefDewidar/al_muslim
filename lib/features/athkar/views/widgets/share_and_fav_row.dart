@@ -30,6 +30,7 @@ class _ShareAndFavRowState extends State<ShareAndFavRow> {
 
   @override
   Widget build(BuildContext context) {
+    isFavMethod();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

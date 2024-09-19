@@ -14,7 +14,7 @@ class DayRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String dayInAr =
-        LangConverter().convertToArabic(int.parse(dayData.date.dayHnum));
+        LangConverter().convertToArabic(int.parse(dayData.date.dayHnum) + 1);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Row(
