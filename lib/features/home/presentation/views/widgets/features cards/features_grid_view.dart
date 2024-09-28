@@ -10,6 +10,7 @@ import 'package:al_muslim/features/radio/views/all_radios_view.dart';
 import 'package:al_muslim/features/radio/views/masr_radio_view.dart';
 import 'package:al_muslim/features/sabha/presentation/views/sebha_view.dart';
 import 'package:al_muslim/features/salah/presentation/view/salah_view.dart';
+import 'package:al_muslim/features/sera/presentation/views/sera_view.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -22,7 +23,7 @@ class FeaturesGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 4.62,
+      height: MediaQuery.of(context).size.height * .32,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: GridView.count(
@@ -68,7 +69,7 @@ class FeaturesGridView extends StatelessWidget {
             ),
             FeatureCard(
               title: 'الأذكار',
-              imagePath: ImageData.pray,
+              imagePath: ImageData.azkar,
               onTap: () {
                 Navigator.push(
                   context,
@@ -136,6 +137,19 @@ class FeaturesGridView extends StatelessWidget {
                   PageTransition(
                       type: PageTransitionType.rightToLeft,
                       child: const SebhaView()),
+                );
+              },
+            ),
+            FeatureCard(
+              title: 'السيرة النبوية',
+              imagePath: ImageData.sera,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: const SeraView(),
+                  ),
                 );
               },
             ),
