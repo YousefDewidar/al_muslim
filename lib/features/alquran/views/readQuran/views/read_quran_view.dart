@@ -27,7 +27,7 @@ class ReadQuranView extends StatelessWidget {
               child:
                   Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
+                  padding: const EdgeInsets.only(right: 8.0, top: 20),
                   child: IconBack(
                     col: Theme.of(context).textTheme.labelLarge!.color!,
                   ),
@@ -36,7 +36,7 @@ class ReadQuranView extends StatelessWidget {
                 HeaderWidget(
                   pageIndex: surahIndex,
                 ),
-                surahIndex == 0
+                surahIndex == 0 || surahIndex == 8
                     ? const SizedBox()
                     : Basmalah(screenSize: screenSize),
                 Expanded(
