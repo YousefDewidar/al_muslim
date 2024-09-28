@@ -25,6 +25,5 @@ class ImageData {
   static String muslim = 'assets/images/صحيح-مسلم.jpg';
   static String ahmed = 'assets/images/مسند_احمد.webp';
 
-// ================== sera ==============================
-  static String ahmedAmer = 'assets/images/ahmed_amer.jpg';
+
 }

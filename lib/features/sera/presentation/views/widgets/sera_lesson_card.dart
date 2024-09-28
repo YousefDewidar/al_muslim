@@ -1,4 +1,3 @@
-import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/features/sera/data/model/sera_lesson_model.dart';
 import 'package:al_muslim/features/sera/presentation/views/youtube_view.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ class SeralessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
@@ -31,22 +30,16 @@ class SeralessonCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Card(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    ImageData.ahmedAmer,
-                  ),
-                ),
-                Text(
-                    textDirection: TextDirection.rtl,
-                    lesson.lessonTitle,
-                    style: Theme.of(context).textTheme.titleLarge!),
-              ],
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 15),
+              child: Text(
+                  overflow: TextOverflow.visible,
+                  textDirection: TextDirection.rtl,
+                  lesson.lessonTitle,
+                  style: Theme.of(context).textTheme.titleLarge!),
             ),
           ),
         ),

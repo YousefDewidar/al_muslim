@@ -131,11 +131,12 @@ class CustomReaderRow extends StatelessWidget {
         Navigator.push(
           context,
           PageTransition(
-              type: PageTransitionType.rightToLeft,
-              child: AllSwarView(
-                reacterName: racter,
-                swarUrl: url,
-              )),
+            type: PageTransitionType.rightToLeft,
+            child: AllSwarView(
+              reacterName: racter,
+              swarUrl: url,
+            ),
+          ),
         );
       },
       child: Row(

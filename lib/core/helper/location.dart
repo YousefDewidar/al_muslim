@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -70,7 +68,6 @@ class FinalLoc {
     if (pos != null) {
       List<Placemark> curLoc =
           await GetLocationData().getLocation(position: pos);
-      log(curLoc.first.locality!);
       return curLoc.first.locality!;
     }
     return 'فشل تحديد موقعك';

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/core/storage/storage_service.dart';
@@ -10,8 +9,6 @@ class SalahServices {
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd-MM-yyyy').format(now);
     String loc = await FinalLoc.getLoc();
-
-    log(loc);
 
     StorageService.setToLDB(
         keyInLDB: 'salah',

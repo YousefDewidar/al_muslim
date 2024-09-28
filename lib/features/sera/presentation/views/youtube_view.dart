@@ -19,6 +19,7 @@ class _YoutubeViewState extends State<YoutubeView> {
     super.initState();
     String id =
         YoutubePlayer.convertUrlToId(widget.seraLessonModel.lessonLink)!;
+
     controller = YoutubePlayerController(
       initialVideoId: id,
       flags: const YoutubePlayerFlags(
@@ -36,19 +37,23 @@ class _YoutubeViewState extends State<YoutubeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          CustomAppBar(
-            header: widget.seraLessonModel.lessonTitle,
-            desc: '',
-          ),
-          YoutubePlayer(
-            controller: controller,
-            showVideoProgressIndicator: true,
-            
-          ),
-        ],
+        body: YoutubePlayerBuilder(
+      player: YoutubePlayer(
+        controller: controller,
       ),
-    );
+      builder: (context, player) {
+        return Column(
+          children: [
+            CustomAppBar(
+              header: widget.seraLessonModel.lessonTitle.split('-')[0],
+              desc: widget.seraLessonModel.lessonTitle.split('-')[1],
+            ),
+            const Spacer(),
+            player,
+            const Spacer(flex: 2),
+          ],
+        );
+      },
+    ));
   }
 }
