@@ -41,6 +41,7 @@ class ReadQuranView extends StatelessWidget {
                     : Basmalah(screenSize: screenSize),
                 Expanded(
                   child: ListView.separated(
+                    padding: EdgeInsets.zero,
                     separatorBuilder: (context, index) => const Divider(),
                     itemCount: quran.getVerseCount(surahIndex + 1),
                     itemBuilder: (BuildContext context, int verseIndex) {
