@@ -5,11 +5,17 @@ import 'package:intl/intl.dart';
 class TimeHelper {
   static Map prayTimes = {};
 
-  static String time12({required String time}) {
-    DateTime timesss = DateFormat("HH:mm").parse(time);
-    String time12 = DateFormat("hh:mm a").format(timesss);
-    String time12Arabic = time12.replaceAll("AM", "ص").replaceAll("PM", "م");
-    return time12Arabic;
+  static String time12({required String time, bool needAmBm = true}) {
+    if (needAmBm) {
+      DateTime timesss = DateFormat("HH:mm").parse(time);
+      String time12 = DateFormat("hh:mm a").format(timesss);
+      String time12Arabic = time12.replaceAll("AM", "ص").replaceAll("PM", "م");
+      return time12Arabic;
+    } else {
+      DateTime timesss = DateFormat("HH:mm").parse(time);
+      String time12 = DateFormat("hh:mm").format(timesss);
+      return time12;
+    }
   }
 
   DateTime parsePrayerTime(String time) {

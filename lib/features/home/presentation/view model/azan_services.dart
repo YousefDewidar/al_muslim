@@ -12,7 +12,7 @@ class PrayTimeServices {
     StorageService.setToLDB(
       keyInLDB: 'pray_times',
       apiLink:
-          'https://api.aladhan.com/v1/timingsByCity/$formattedDate?city=cairo&country=$loc&method=8',
+          'https://api.aladhan.com/v1/timingsByCity/$formattedDate?city=$loc&country=',
     );
   }
 
