@@ -49,6 +49,7 @@ flutter:
     - assets/images/
     - assets/logo/
     - assets/icons/
+    - lib/features/asma allah/data/asma_allah.json
   fonts:
     - family: IBMPlex
       fonts:

@@ -1,5 +1,6 @@
 import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
+import 'package:al_muslim/features/asma%20allah/ui/asmaa_allah_view.dart';
 import 'package:al_muslim/features/athkar/views/all_azkar_page.dart';
 import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
 import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
@@ -149,6 +150,19 @@ class FeaturesGridView extends StatelessWidget {
                   PageTransition(
                     type: PageTransitionType.rightToLeft,
                     child: const SeraView(),
+                  ),
+                );
+              },
+            ),
+            FeatureCard(
+              title: 'أسماء الله\nالحسنى',
+              // imagePath: ImageData.thbha,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: const  AsmaaAllahView(),
                   ),
                 );
               },

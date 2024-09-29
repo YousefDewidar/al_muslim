@@ -6,11 +6,11 @@ class FeatureCard extends StatelessWidget {
   const FeatureCard({
     super.key,
     required this.title,
-    required this.imagePath,
+    this.imagePath,
     required this.onTap,
   });
   final String title;
-  final String imagePath;
+  final String? imagePath;
   final void Function() onTap;
 
   @override
@@ -22,15 +22,18 @@ class FeatureCard extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width / 4.w - 20.w,
           height: MediaQuery.of(context).size.height / 10.5.h,
-          padding:  EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(imagePath, width: 30.w, height: 30.h),
+              imagePath == null
+                  ? const SizedBox()
+                  : Image.asset(imagePath!, width: 30.w, height: 30.h),
               const SpaceV(5),
               Text(title,
-                  style:  TextStyle(
-                      fontWeight: FontWeight.w600, fontSize: 14.sp)),
+                  textAlign: TextAlign.center,
+                  style:
+                      TextStyle(fontWeight: FontWeight.w600, fontSize: 14.sp)),
             ],
           ),
         ),
