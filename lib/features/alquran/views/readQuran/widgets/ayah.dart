@@ -55,9 +55,20 @@ class _AyahState extends State<Ayah> {
         setState(() {});
       },
       child: Container(
-        color: bookMark
-            ? const Color.fromARGB(255, 28, 131, 215)
-            : Colors.transparent,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              bookMark
+                  ? const Color.fromARGB(57, 28, 215, 103)
+                  : Colors.transparent,
+              bookMark
+                  ? const Color.fromARGB(41, 215, 193, 28)
+                  : Colors.transparent,
+            ],
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: RichText(

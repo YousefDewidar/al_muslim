@@ -29,8 +29,12 @@ class _AllSwarViewBodyState extends State<AllSwarViewBody> {
   List<SwarModel> searchedList = [];
   late List<SwarModel> allSwar;
 
-  void goToLastSura() {
-    if (widget.pageRoute == 'readQuran') {}
+  bool isReadingView() {
+    if (widget.pageRoute == 'readQuran') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override
@@ -41,7 +45,7 @@ class _AllSwarViewBodyState extends State<AllSwarViewBody> {
           header: 'السور',
           desc: '',
           downloadIcon: Icons.bookmark,
-          hasDownload: true,
+          hasDownload: isReadingView(),
           downloadButt: () async {
             final pref = await SharedPreferences.getInstance();
             final lastSuraNum = pref.getInt('last_sura_num');
