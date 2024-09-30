@@ -1,6 +1,8 @@
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,7 +16,9 @@ class Ayah extends StatefulWidget {
 }
 
 class _AyahState extends State<Ayah> {
+  late AudioPlayer player;
   bool bookMark = false;
+  bool playingAudio = false;
 
   void hasBookMark() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -28,6 +32,7 @@ class _AyahState extends State<Ayah> {
 
   @override
   void initState() {
+    player = AudioPlayer();
     hasBookMark();
     super.initState();
   }
@@ -35,6 +40,31 @@ class _AyahState extends State<Ayah> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: () async {
+        final bool isCon = await InternetConnectionChecker().hasConnection;
+        if (isCon) {
+          playingAudio = true;
+          setState(() {});
+          final url = quran.getAudioURLByVerse(
+              widget.surahIndex + 1, widget.verseIndex + 1);
+          final duration = await player.setUrl(url);
+          player.play();
+
+          Future.delayed(
+            duration ?? const Duration(milliseconds: 5),
+            () {
+              playingAudio = false;
+              setState(() {});
+            },
+          );
+        } else {
+          InsideNotification.insideNotificationCard(
+              contentType: ContentType.warning,
+              context: context,
+              title: 'تأكد من اتصالك بالانترنت',
+              content: "للإستماع اللي الآية تأكد من اتصالك بالانترنت");
+        }
+      },
       onDoubleTap: () async {
         SharedPreferences pref = await SharedPreferences.getInstance();
         if (bookMark) {
@@ -56,6 +86,7 @@ class _AyahState extends State<Ayah> {
       },
       child: Container(
         decoration: BoxDecoration(
+          border: playingAudio ? Border.all() : const Border(),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

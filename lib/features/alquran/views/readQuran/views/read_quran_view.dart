@@ -3,6 +3,7 @@ import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/views/readQuran/widgets/ayah.dart';
 import 'package:al_muslim/features/alquran/views/readQuran/widgets/basmallah.dart';
 import 'package:al_muslim/features/alquran/views/readQuran/widgets/header_widget.dart';
+import 'package:al_muslim/features/alquran/views/readQuran/widgets/sura_info_butt.dart';
 import 'package:flutter/material.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -70,11 +71,23 @@ class _ReadQuranViewState extends State<ReadQuranView> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0, top: 20),
-                        child: IconBack(
-                          col: Theme.of(context).textTheme.labelLarge!.color!,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const SpaceH(30),
+                          SuraInfoButton(
+                            suraNum: surahIndex +1,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0, top: 20),
+                            child: IconBack(
+                              col: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge!
+                                  .color!,
+                            ),
+                          ),
+                        ],
                       ),
                       const SpaceV(20),
                       // اسم السوره
