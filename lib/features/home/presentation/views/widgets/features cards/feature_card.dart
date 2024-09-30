@@ -1,23 +1,33 @@
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:page_transition/page_transition.dart';
 
 class FeatureCard extends StatelessWidget {
   const FeatureCard({
     super.key,
     required this.title,
     this.imagePath,
-    required this.onTap,
+    required this.navigateTo,
+    // required this.onTap,
   });
   final String title;
   final String? imagePath;
-  final void Function() onTap;
+  // final void Function() onTap;
+  final Widget navigateTo;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: onTap,
+      // onTap: onTap,
+      onTap: () {
+        Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.rightToLeft, child: navigateTo),
+        );
+      },
       child: Card(
         child: Container(
           width: MediaQuery.of(context).size.width / 4.w - 20.w,

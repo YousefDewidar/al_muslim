@@ -2,7 +2,11 @@ import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/alquran/data/model/fehres_model.dart';
 import 'package:al_muslim/core/widgets/custom_title_card.dart';
+import 'package:al_muslim/features/alquran/views/readQuran/views/read_quran_view.dart';
+import 'package:al_muslim/features/alquran/views/tafserQuran/views/tafser_view.dart';
+import 'package:al_muslim/features/radio/views/radio_view.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class AllSwarViewBody extends StatefulWidget {
   final String pageRoute;
@@ -72,21 +76,89 @@ class _AllSwarViewBodyState extends State<AllSwarViewBody> {
                     itemBuilder: (BuildContext context, int index) {
                       return searchedList.isEmpty
                           ? CustomTitleCard(
-                              suraName: allSwar[index].name,
-                              swrahUrl: manageIndex(index),
-                              categorytTitle: allSwar[index].name,
-                              pageName: widget.pageRoute,
-                              pagestartIndex: index + 1,
-                              reacterName: widget.reacterName,
+                              title: allSwar[index].name,
+                              onTap: () {
+                                switch (widget.pageRoute) {
+                                  case 'redingTafser':
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: TafserView(
+                                              tafserstartIndex: index + 1)),
+                                    );
+
+                                  case 'listenToSwrah':
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: RadioView(
+                                          url: manageIndex(index),
+                                          sura: allSwar[index].name,
+                                          reacterName: widget.reacterName,
+                                        ),
+                                      ),
+                                    );
+
+                                  case 'readQuran':
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: ReadQuranView(
+                                            requiredPage: index + 1),
+                                      ),
+                                    );
+                                  default:
+                                }
+                              },
                             )
                           : CustomTitleCard(
-                              suraName:
-                                  allSwar[searchedList[index].id - 1].name,
-                              swrahUrl: manageIndex(searchedList[index].id - 1),
-                              categorytTitle: searchedList[index].name,
-                              pageName: widget.pageRoute,
-                              pagestartIndex: (searchedList[index].id - 1) + 1,
-                              reacterName: widget.reacterName,
+                              title: searchedList[index].name,
+                              onTap: () {
+                                switch (widget.pageRoute) {
+                                  case 'redingTafser':
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: TafserView(
+                                              tafserstartIndex:
+                                                  (searchedList[index].id - 1) +
+                                                      1)),
+                                    );
+
+                                  case 'listenToSwrah':
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: RadioView(
+                                          url: manageIndex(
+                                              searchedList[index].id - 1),
+                                          sura: allSwar[
+                                                  searchedList[index].id - 1]
+                                              .name,
+                                          reacterName: widget.reacterName,
+                                        ),
+                                      ),
+                                    );
+
+                                  case 'readQuran':
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: ReadQuranView(
+                                            requiredPage:
+                                                (searchedList[index].id - 1) +
+                                                    1),
+                                      ),
+                                    );
+                                  default:
+                                }
+                              },
                             );
                     },
                   );

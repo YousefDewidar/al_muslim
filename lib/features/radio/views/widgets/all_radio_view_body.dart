@@ -3,7 +3,9 @@ import 'package:al_muslim/core/widgets/custom_title_card.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/radio/data/model/radio_model.dart';
 import 'package:al_muslim/features/radio/data/radio_services.dart';
+import 'package:al_muslim/features/radio/views/radio_view.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class AllRadioViewBody extends StatefulWidget {
   const AllRadioViewBody({super.key});
@@ -118,20 +120,30 @@ class HandelRadioList extends StatelessWidget {
             : searchedList.length,
         itemBuilder: (BuildContext context, int index) {
           return CustomTitleCard(
-            reacterName:searchController.text.isEmpty? allList[index].name: searchedList[index].name,
             prefixIcon: Icons.radio,
-            categorytTitle: searchController.text.isEmpty
+            title: searchController.text.isEmpty
                 ? allList[index].name
                 : searchedList[index].name,
-            url: searchController.text.isEmpty
-                ? allList[index].url
-                : searchedList[index].url,
-            pageName: 'radio',
+            onTap: () {
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: RadioView(
+                    url: searchController.text.isEmpty
+                        ? allList[index].url
+                        : searchedList[index].url ?? '',
+                    sura: '',
+                    reacterName: searchController.text.isEmpty
+                        ? allList[index].name
+                        : searchedList[index].name,
+                  ),
+                ),
+              );
+            },
           );
         },
       ),
     );
   }
-
-  edit() async {}
 }
