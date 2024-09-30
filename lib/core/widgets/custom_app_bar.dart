@@ -40,13 +40,13 @@ class CustomAppBar extends StatelessWidget {
             hasDownload
                 ? Positioned(
                     top: 15,
-                    left: 10,
+                    left: 30,
                     child: GestureDetector(
                       onTap: downloadButt,
                       child: Icon(
                         size: 41,
                         downloadIcon,
-                        color: const Color.fromARGB(172, 0, 0, 0),
+                        color: Colors.orange,
                       ),
                     ),
                   )
