@@ -1,5 +1,4 @@
 import 'package:al_muslim/core/helper/location.dart';
-import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/data/fehres_service.dart';
 import 'package:al_muslim/features/athkar/data/azkar_services.dart';
@@ -68,7 +67,6 @@ class _NewLandingViewState extends State<NewLandingView> {
                   await AzkarServices().getAllCategory();
                   await AzkarServices().getAllAzkarInfo(0);
                   await FehresService().getAllSwar();
-                  await NotificationService.createNotification();
 
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();

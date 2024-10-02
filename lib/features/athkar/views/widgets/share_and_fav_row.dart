@@ -1,3 +1,4 @@
+
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/features/athkar/data/azkar_all_model.dart';
 import 'package:al_muslim/features/favorites/presentation/view%20model/cubit/fav_cubit.dart';
@@ -35,6 +36,7 @@ class _ShareAndFavRowState extends State<ShareAndFavRow> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         //fav button
+
         IconButton(
           padding: const EdgeInsets.all(20),
           color: Colors.teal,
@@ -50,6 +52,7 @@ class _ShareAndFavRowState extends State<ShareAndFavRow> {
           icon: Icon(isFav ? Icons.favorite : Icons.favorite_outline,
               color: Colors.teal),
         ),
+
         //count button
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -75,16 +78,19 @@ class _ShareAndFavRowState extends State<ShareAndFavRow> {
             ),
           ),
         ),
+
         //shareButton
         IconButton(
             onPressed: () {
-              InsideNotification.shareMethod(
-                  message: widget.azkar.text, context: context);
+              InsideNotification.takeScreenshotAndShare(
+                context: context,
+                zkr: widget.azkar.text,
+              );
             },
             icon: const Icon(
               Icons.share,
               color: Colors.teal,
-            ))
+            )),
       ],
     );
   }

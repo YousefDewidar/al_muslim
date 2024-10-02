@@ -24,11 +24,14 @@ class HomeView extends StatelessWidget {
             PrayTimeServices().getPrayTime();
             String location = await FinalLoc.getLoc();
             InsideNotification.insideNotificationCard(
-                content: '$location الموقع الحالي هو ',
-                contentType: ContentType.success,
-                context: context,
-                title: 'تم تحديث البيانات بنجاح');
-            await NotificationService.createNotification();
+              content: '$location الموقع الحالي هو ',
+              contentType: ContentType.success,
+              context: context,
+              title: 'تم تحديث البيانات بنجاح',
+            );
+
+            await NotificationService.removeAllNotifications();
+            await NotificationService.createPrayerNotifications();
           } else {
             InsideNotification.insideNotificationCard(
                 contentType: ContentType.warning,

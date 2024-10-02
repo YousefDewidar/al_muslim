@@ -76,7 +76,7 @@ class _ReadQuranViewState extends State<ReadQuranView> {
                         children: [
                           const SpaceH(30),
                           SuraInfoButton(
-                            suraNum: surahIndex +1,
+                            suraNum: surahIndex + 1,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0, top: 20),

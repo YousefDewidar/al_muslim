@@ -3,9 +3,11 @@ import 'package:quran/quran.dart';
 
 class HeaderWidget extends StatelessWidget {
   final int pageIndex;
+  final bool forYousef;
   const HeaderWidget({
     super.key,
     required this.pageIndex,
+    this.forYousef = false,
   });
 
   @override
@@ -13,6 +15,7 @@ class HeaderWidget extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: Stack(
+        alignment: Alignment.center,
         children: [
           Center(
             child: Image.asset(
@@ -23,21 +26,15 @@ class HeaderWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.7, vertical: 7),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Center(
-                  child: RichText(
-                    text: TextSpan(
-                      text: ' ${getSurahNameArabic(pageIndex + 1)}',
-                      style:  TextStyle(
-                          fontFamily: "arsura",
-                          fontSize: 22,
-                          color: Theme.of(context).textTheme.labelLarge!.color,),
-                    ),
-                  ),
-                ),
-              ],
+            child: Text(
+              ' ${getSurahNameArabic(pageIndex + 1)}',
+              style: TextStyle(
+                fontFamily: "arsura",
+                fontSize: forYousef ? 18 : 22,
+                color: forYousef
+                    ? Colors.white
+                    : Theme.of(context).textTheme.labelLarge!.color,
+              ),
             ),
           ),
         ],

@@ -9,18 +9,15 @@ class FeatureCard extends StatelessWidget {
     required this.title,
     this.imagePath,
     required this.navigateTo,
-    // required this.onTap,
   });
   final String title;
   final String? imagePath;
-  // final void Function() onTap;
   final Widget navigateTo;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      // onTap: onTap,
       onTap: () {
         Navigator.push(
           context,
