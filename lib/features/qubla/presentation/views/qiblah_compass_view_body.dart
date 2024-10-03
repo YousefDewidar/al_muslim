@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,9 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
       children: [
         const CustomAppBar(
             header: 'القبلة', desc: 'الاتجاه الدقيق لقبلة الصلاة'),
+        const SizedBox(
+          height: 10,
+        ),
         StreamBuilder<QiblahDirection>(
             stream: FlutterQiblah.qiblahStream,
             builder: (context, snapshot) {
@@ -53,11 +57,14 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 100,
-                      width: 150,
+                      height: 60,
                       child: direction.direction.round() == 137
-                          ? Image.asset('assets/images/qibla.png')
-                          : const SizedBox(),
+                          ? Image.asset('assets/images/landmark.png')
+                          : Opacity(
+                              opacity: 0.2,
+                              child: Image.asset(
+                                'assets/images/landmark.png',
+                              )),
                     ),
                     Text(
                       '${direction.direction.round()}°',
@@ -88,10 +95,8 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
                     const SpaceV(5),
                     Text(
                       '  ∞ يجب التاكد من تدوير الهاتف قبل الاستخدام علي شكل  ',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(fontFamily: 'IBMPlex',fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          fontFamily: 'IBMPlex', fontWeight: FontWeight.bold),
                     ),
                     const SpaceV(5),
                     Padding(

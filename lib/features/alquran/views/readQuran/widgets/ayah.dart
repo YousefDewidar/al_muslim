@@ -99,6 +99,7 @@ class _AyahState extends State<Ayah> {
           backgroundColor: const Color.fromARGB(255, 33, 33, 33),
           context: context,
           builder: (context) {
+            //? screen shot view...
             return ScreenShotView(
               suraIndex: widget.surahIndex,
               suraName: quran.getSurahNameArabic(widget.surahIndex + 1),
