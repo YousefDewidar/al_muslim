@@ -1,4 +1,7 @@
 class ImageData {
+  // logo
+  static String logo = 'assets/logo/logo_rb.png';
+
   // ========== home =================
   static String quran =
       'assets/icons/pngtree-al-quran-in-arabic-for-front-page-png-image_3979794 1.png';
@@ -24,6 +27,4 @@ class ImageData {
   static String magaa = 'assets/images/سنن_ابن_ماجة.jpg';
   static String muslim = 'assets/images/صحيح-مسلم.jpg';
   static String ahmed = 'assets/images/مسند_احمد.webp';
-
-
 }

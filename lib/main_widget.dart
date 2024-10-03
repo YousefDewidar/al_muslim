@@ -1,4 +1,3 @@
-import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/themes/theme_data.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/home_view.dart';
@@ -40,7 +39,6 @@ class _MainWidgetState extends State<MainWidget> {
     if (isConnected && hasSeenLandingPage) {
       SalahServices().setDayData();
       PrayTimeServices().getPrayTime();
-      await NotificationService.createNotification();
     }
   }
 

@@ -1,23 +1,43 @@
+import 'dart:io';
+
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/space.dart';
+import 'package:al_muslim/features/athkar/views/widgets/hiden_zekr_for_share.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 class InsideNotification {
-  static void shareMethod(
-      {required String message, required BuildContext context}) async {
-    final res =
-        await Share.share(message, subject: 'اكتشف تطبيق المسلم من هنا ');
-    if (res.status == ShareResultStatus.success) {
-      InsideNotification.insideNotificationCard(
-        content: 'تم مشاركة الدعاء بنجاح',
-        // ignore: use_build_context_synchronously
-        context: context,
-        title: 'اشعار جديد',
-        contentType: ContentType.success,
-      );
+  static void takeScreenshotAndShare({required String zkr, context}) async {
+    if (await Permission.storage.request().isGranted) {
+    } else {
+      await Permission.storage.request();
     }
+    ScreenshotController screenshotController = ScreenshotController();
+
+    final image = await screenshotController.captureFromWidget(
+      HidenZekrWidgetForShareOnly(
+        screenshotController: screenshotController,
+        zkr: zkr,
+      ),
+    );
+    final directory = await getApplicationDocumentsDirectory();
+    final imagePath = await File('${directory.path}/screenshot.png').create();
+
+    await imagePath.writeAsBytes(image);
+
+    await Share.shareXFiles([XFile(imagePath.path)],
+        text: 'من تطبيق المُسْلِم');
+
+    InsideNotification.insideNotificationCard(
+      content: 'تم مشاركة الدعاء بنجاح',
+      context: context,
+      title: 'اشعار جديد',
+      contentType: ContentType.help,
+    );
   }
 
   static void insideNotificationCard(

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/material.dart';
 
 class NotificationService {
   static Future<void> initNotification() async {
@@ -16,83 +17,80 @@ class NotificationService {
       'resource://drawable/noti',
       [
         NotificationChannel(
-          channelKey: 'basic key',
-          channelName: 'Basic notification',
-          channelDescription: 'noti channel testtt',
-          importance: NotificationImportance.High,
-          playSound: true,
+          channelKey: 'prayer_channel',
+          channelName: 'Prayer Notifications',
+          channelDescription: 'Notification channel for prayer times',
+          defaultColor: const Color(0xFF9D50DD),
+          importance: NotificationImportance.Max,
           channelShowBadge: true,
+          locked: true,
+          playSound: true,
+          soundSource: 'resource://raw/azan',
         ),
       ],
     );
   }
 
-  static Future<void> createNotification() async {
+  static Future<void> createPrayerNotifications() async {
     DayData dayData = await SalahServices().getDayDataFormLDB();
-    DateTime fajr = convertFromStringToData(salah: dayData.salah.fajr);
-    DateTime dhuhr = convertFromStringToData(salah: dayData.salah.dhuhr);
-    DateTime asr = convertFromStringToData(salah: dayData.salah.asr);
-    DateTime maghrib = convertFromStringToData(salah: dayData.salah.maghrib);
-    DateTime isha = convertFromStringToData(salah: dayData.salah.isha);
+    var fajr = _getMinAndHourFromDateString(dayData.salah.fajr);
+    var dhuhr = _getMinAndHourFromDateString(dayData.salah.dhuhr);
+    var asr = _getMinAndHourFromDateString(dayData.salah.asr);
+    var maghrib = _getMinAndHourFromDateString(dayData.salah.maghrib);
+    var isha = _getMinAndHourFromDateString(dayData.salah.isha);
 
-    await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: 1,
-        channelKey: 'basic key',
-        title: 'أذان الفجر',
-        body: 'باقي علي موعد أذان الفجر خمس دقائق',
-      ),
-      schedule: NotificationCalendar.fromDate(
-          repeats: true, date: fajr.subtract(const Duration(minutes: 4))),
-    );
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-          id: 2,
-          channelKey: 'basic key',
-          title: 'أذان الظهر',
-          body: 'باقي علي موعد أذان الظهر خمس دقائق',
-        ),
-        schedule: NotificationCalendar.fromDate(
-            date: dhuhr.subtract(const Duration(minutes: 4))));
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-          id: 3,
-          channelKey: 'basic key',
-          title: 'أذان العصر',
-          body: 'باقي علي موعد أذان العصر خمس دقائق',
-        ),
-        schedule: NotificationCalendar.fromDate(
-            date: asr.subtract(const Duration(minutes: 4))));
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-          id: 4,
-          channelKey: 'basic key',
-          title: 'أذان المغرب',
-          body: 'باقي علي موعد أذان المغرب خمس دقائق',
-        ),
-        schedule: NotificationCalendar.fromDate(
-            date: maghrib.subtract(const Duration(minutes: 4))));
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-          id: 5,
-          channelKey: 'basic key',
-          title: 'أذان العشاء',
-          body: 'باقي علي موعد أذان العشاء خمس دقائق ',
-        ),
-        schedule: NotificationCalendar.fromDate(
-            date: isha.subtract(const Duration(minutes: 4))));
+    await _createNotificationGlobal(
+        id: 0, salahName: "الفجر", hour: fajr['hour'], minute: fajr['min']);
+    await _createNotificationGlobal(
+        id: 1, salahName: "الظهر", hour: dhuhr['hour'], minute: dhuhr['min']);
+    await _createNotificationGlobal(
+        id: 2, salahName: "العصر", hour: asr['hour'], minute: asr['min']);
+    await _createNotificationGlobal(
+        id: 3,
+        salahName: "المغرب",
+        hour: maghrib['hour'],
+        minute: maghrib['min']);
+    await _createNotificationGlobal(
+        id: 4, salahName: "العشاء", hour: isha['hour'], minute: isha['min']);
   }
 
-  static DateTime convertFromStringToData({required String salah}) {
+  static Future<void> _createNotificationGlobal({
+    required String salahName,
+    required int id,
+    required int hour,
+    required int minute,
+  }) async {
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: id,
+        channelKey: 'prayer_channel',
+        title: 'أذان $salahName',
+        body: ' موعد أذان $salahNameيحين الآن',
+        notificationLayout: NotificationLayout.Default,
+      ),
+      schedule: NotificationCalendar(
+        repeats: true,
+        hour: hour,
+        minute: minute,
+        second: 0,
+        millisecond: 0,
+        preciseAlarm: true,
+      ),
+    );
+  }
+
+  static Future<void> removeAllNotifications() async {
+    await AwesomeNotifications().cancelAll();
+  }
+
+  static Map _getMinAndHourFromDateString(String salah) {
     List<String> parts = salah.split(':');
     int hour = int.parse(parts[0]);
     int minute = int.parse(parts[1]);
 
-    DateTime now = DateTime.now();
-
-    DateTime notifyDateTime =
-        DateTime(now.year, now.month, now.day, hour, minute);
-
-    return notifyDateTime;
+    return {
+      'hour': hour,
+      'min': minute,
+    };
   }
 }

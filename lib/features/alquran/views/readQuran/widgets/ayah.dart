@@ -1,4 +1,5 @@
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
+import 'package:al_muslim/features/alquran/views/readQuran/widgets/screen_shot_view.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -38,9 +39,16 @@ class _AyahState extends State<Ayah> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    player.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onLongPress: () async {
+      // Listen
+      onDoubleTap: () async {
         final bool isCon = await InternetConnectionChecker().hasConnection;
         if (isCon) {
           playingAudio = true;
@@ -49,7 +57,6 @@ class _AyahState extends State<Ayah> {
               widget.surahIndex + 1, widget.verseIndex + 1);
           final duration = await player.setUrl(url);
           player.play();
-
           Future.delayed(
             duration ?? const Duration(milliseconds: 5),
             () {
@@ -65,7 +72,8 @@ class _AyahState extends State<Ayah> {
               content: "للإستماع اللي الآية تأكد من اتصالك بالانترنت");
         }
       },
-      onDoubleTap: () async {
+      // Book Mar
+      onTap: () async {
         SharedPreferences pref = await SharedPreferences.getInstance();
         if (bookMark) {
           pref.remove('last_aya_num');
@@ -84,6 +92,23 @@ class _AyahState extends State<Ayah> {
         }
         setState(() {});
       },
+      // Screen Shot
+      onLongPress: () {
+        showModalBottomSheet(
+          showDragHandle: true,
+          backgroundColor: const Color.fromARGB(255, 33, 33, 33),
+          context: context,
+          builder: (context) {
+            return ScreenShotView(
+              suraIndex: widget.surahIndex,
+              suraName: quran.getSurahNameArabic(widget.surahIndex + 1),
+              ayah:
+                  '${quran.getVerse(widget.surahIndex + 1, widget.verseIndex + 1).toString()}${quran.getVerseEndSymbol(widget.verseIndex + 1)}',
+            );
+          },
+        );
+      },
+
       child: Container(
         decoration: BoxDecoration(
           border: playingAudio ? Border.all() : const Border(),
@@ -107,20 +132,22 @@ class _AyahState extends State<Ayah> {
             text: TextSpan(children: [
               // الايه
               TextSpan(
-                  text: quran
-                      .getVerse(widget.surahIndex + 1, widget.verseIndex + 1)
-                      .toString(),
-                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                        height: 2,
-                      ),
-                  children: [
-                    // رقم الايه
-                    TextSpan(
-                        text: quran.getVerseEndSymbol(widget.verseIndex + 1),
-                        style: const TextStyle(
-                          fontSize: 20,
-                        )),
-                  ]),
+                text: quran
+                    .getVerse(widget.surahIndex + 1, widget.verseIndex + 1)
+                    .toString(),
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                      height: 2,
+                    ),
+                children: [
+                  // رقم الايه
+                  TextSpan(
+                    text: quran.getVerseEndSymbol(widget.verseIndex + 1),
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
             ]),
           ),
         ),

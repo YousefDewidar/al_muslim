@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/circule_acion_button.dart';
@@ -93,8 +92,9 @@ class _RandomCardState extends State<RandomCard> {
                   padding: const EdgeInsets.all(10.0),
                   child: CirculeActionButton(
                     onTap: () async {
-                      InsideNotification.shareMethod(
-                          message: ayat[ayah], context: context);
+                      InsideNotification.takeScreenshotAndShare(
+                        zkr: ayat[ayah],
+                      );
                     },
                     color: Colors.orange,
                     icon: Icons.share,
