@@ -4,7 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   awesome_notifications
-  connectivity_plus
+  flutter_inappwebview_windows
   geolocator_windows
   permission_handler_windows
   share_plus

@@ -24,7 +24,8 @@ class InsideNotification {
       {required ContentType contentType,
       required BuildContext context,
       required String title,
-      required String content}) {
+      required String content,
+      int time = 3}) {
     final materialBanner = MaterialBanner(
       elevation: 50000,
       backgroundColor: Colors.transparent,
@@ -45,7 +46,7 @@ class InsideNotification {
       ..showMaterialBanner(materialBanner);
 
     Future.delayed(
-      const Duration(seconds: 3),
+      Duration(seconds: time),
       () {
         ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
       },

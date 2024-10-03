@@ -23,30 +23,6 @@ class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
   final searchController = TextEditingController();
   List<ReactersModel> searchedList = [];
   late List<ReactersModel> allList;
-  Widget buildTextFeild() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
-      child: TextField(
-        onChanged: (searcherChar) {
-          addSearcherChartoFiltertheList(searcherChar);
-        },
-        controller: searchController,
-        textAlign: TextAlign.right,
-        decoration: InputDecoration(
-          hintTextDirection: TextDirection.rtl,
-          hintText: 'ابحث عن الشيخ الذي ترغب ف الاستماع اليه',
-          hintStyle:
-              Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 16),
-          suffixIcon: const Icon(Icons.search),
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +30,33 @@ class _ListenQuranViewBodyState extends State<ListenQuranViewBody> {
       children: [
         const CustomAppBar(
             header: 'القراء', desc: "الاستماع الي مكتبه كبيره من القراء "),
-        buildTextFeild(),
+
+        // Sreach field
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
+          child: TextField(
+            onChanged: (searcherChar) {
+              addSearcherChartoFiltertheList(searcherChar);
+            },
+            controller: searchController,
+            textAlign: TextAlign.right,
+            decoration: InputDecoration(
+              hintTextDirection: TextDirection.rtl,
+              hintText: 'ابحث عن الشيخ الذي ترغب ف الاستماع اليه',
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .labelLarge!
+                  .copyWith(fontSize: 16),
+              suffixIcon: const Icon(Icons.search),
+              border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                ),
+              ),
+            ),
+          ),
+        ),
+
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -131,11 +133,12 @@ class CustomReaderRow extends StatelessWidget {
         Navigator.push(
           context,
           PageTransition(
-              type: PageTransitionType.rightToLeft,
-              child: AllSwarView(
-                reacterName: racter,
-                swarUrl: url,
-              )),
+            type: PageTransitionType.rightToLeft,
+            child: AllSwarView(
+              reacterName: racter,
+              swarUrl: url,
+            ),
+          ),
         );
       },
       child: Row(

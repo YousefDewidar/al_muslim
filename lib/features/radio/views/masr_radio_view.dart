@@ -1,15 +1,16 @@
+import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/radio/views/widgets/custom_button.dart';
 import 'package:al_muslim/features/radio/views/widgets/page_cover.dart';
 import 'package:al_muslim/features/radio/views/widgets/play_card.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:just_audio/just_audio.dart';
 
 class RadioMasrView extends StatefulWidget {
-  final String url;
   const RadioMasrView({
     super.key,
-    required this.url,
   });
 
   @override
@@ -17,7 +18,6 @@ class RadioMasrView extends StatefulWidget {
 }
 
 class _RadioMasrViewState extends State<RadioMasrView> {
-  late Future<String> future;
   double volumeLevel = .5;
   late AudioPlayer player;
   bool isPlayed = false;
@@ -28,9 +28,22 @@ class _RadioMasrViewState extends State<RadioMasrView> {
     super.initState();
     player = AudioPlayer();
     player.setVolume(.8);
-    player.setUrl(
-      'https://n0d.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABkbQKcI4ABaY4JFeSI-ZWgA',
-    );
+    setUrl();
+  }
+
+  void setUrl() async {
+    if (await InternetConnectionChecker().hasConnection) {
+      await player.setUrl(
+        'https://n0d.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABkbQKcI4ABaY4JFeSI-ZWgA',
+      );
+    } else {
+      InsideNotification.insideNotificationCard(
+        contentType: ContentType.failure,
+        context: context,
+        title: 'تأكد من اتصالك بالانترنت',
+        content: "",
+      );
+    }
   }
 
   @override
@@ -93,7 +106,7 @@ class _RadioMasrViewState extends State<RadioMasrView> {
                   ),
                   PlayCard(
                     isPlay: isPlayed,
-                    onPressed: () async {
+                    onPressed: () {
                       isPlayed = !isPlayed;
                       isPlayed ? player.play() : player.pause();
                       setState(() {});

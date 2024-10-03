@@ -23,7 +23,7 @@ dependencies:
   geocoding: ^3.0.0
   geolocator: 11.1.0
   google_fonts: ^6.2.1
-  internet_connection_checker: ^2.0.0
+  internet_connection_checker: ^1.0.0+1
   intl: ^0.19.0
   just_audio: ^0.9.39
   linear_progress_bar: ^1.1.2
@@ -34,6 +34,8 @@ dependencies:
   share_plus: ^10.0.2
   shared_preferences: ^2.3.2
   vibration: ^2.0.0
+  youtube_player_flutter: ^9.1.0
+  scrollable_positioned_list: ^0.3.5
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
@@ -48,6 +50,7 @@ flutter:
     - assets/images/
     - assets/logo/
     - assets/icons/
+    - lib/features/asma allah/data/asma_allah.json
   fonts:
     - family: IBMPlex
       fonts:

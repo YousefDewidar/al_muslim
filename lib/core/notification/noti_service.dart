@@ -40,7 +40,7 @@ class NotificationService {
         id: 1,
         channelKey: 'basic key',
         title: 'أذان الفجر',
-        body: 'يحين الآن موعد اذان الفجر',
+        body: 'باقي علي موعد أذان الفجر خمس دقائق',
       ),
       schedule: NotificationCalendar.fromDate(
           repeats: true, date: fajr.subtract(const Duration(minutes: 4))),
@@ -50,7 +50,7 @@ class NotificationService {
           id: 2,
           channelKey: 'basic key',
           title: 'أذان الظهر',
-          body: 'يحين الآن موعد اذان الظهر',
+          body: 'باقي علي موعد أذان الظهر خمس دقائق',
         ),
         schedule: NotificationCalendar.fromDate(
             date: dhuhr.subtract(const Duration(minutes: 4))));
@@ -59,7 +59,7 @@ class NotificationService {
           id: 3,
           channelKey: 'basic key',
           title: 'أذان العصر',
-          body: 'يحين الآن موعد اذان العصر',
+          body: 'باقي علي موعد أذان العصر خمس دقائق',
         ),
         schedule: NotificationCalendar.fromDate(
             date: asr.subtract(const Duration(minutes: 4))));
@@ -68,7 +68,7 @@ class NotificationService {
           id: 4,
           channelKey: 'basic key',
           title: 'أذان المغرب',
-          body: 'يحين الآن موعد اذان المغرب',
+          body: 'باقي علي موعد أذان المغرب خمس دقائق',
         ),
         schedule: NotificationCalendar.fromDate(
             date: maghrib.subtract(const Duration(minutes: 4))));
@@ -77,7 +77,7 @@ class NotificationService {
           id: 5,
           channelKey: 'basic key',
           title: 'أذان العشاء',
-          body: 'يحين الآن موعد اذان العشاء ',
+          body: 'باقي علي موعد أذان العشاء خمس دقائق ',
         ),
         schedule: NotificationCalendar.fromDate(
             date: isha.subtract(const Duration(minutes: 4))));

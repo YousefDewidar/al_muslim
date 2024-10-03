@@ -33,6 +33,7 @@ class _RadioViewState extends State<RadioView> {
   void initState() {
     super.initState();
     player = AudioPlayer();
+    player.setVolume(.8);
     player.setUrl(widget.url);
   }
 
@@ -87,6 +88,7 @@ class _RadioViewState extends State<RadioView> {
               CustomButton(
                   onPressed: () async {
                     isVolumeClicked = !isVolumeClicked;
+                    volumeLevel = player.volume;
                     setState(() {});
                   },
                   icon: volumeLevel == 0.0
