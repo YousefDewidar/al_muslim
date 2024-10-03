@@ -36,14 +36,14 @@ class SalahItem extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Constants.kBgColDark),
+                      color: AppColors.kBgColDark),
                 ),
                 Text(
                   salahTime,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 23,
-                      color: Constants.kBgColDark),
+                      color: AppColors.kBgColDark),
                 ),
               ],
             ),

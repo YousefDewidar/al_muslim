@@ -122,6 +122,9 @@ class _ScreenShotViewState extends State<ScreenShotView> {
                   child: InkWell(
                     onTap: () {
                       saveImageToGallery();
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('تم حفظ الصوره ف المعرض ',textAlign: TextAlign.end,),
+                      ));
                     },
                     child: Container(
                       color: Colors.greenAccent,

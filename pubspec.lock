@@ -339,6 +339,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  flutter_reaction_button:
+    dependency: "direct main"
+    description:
+      name: flutter_reaction_button
+      sha256: "9fe67f6e6dac65c5ee864c2ab03550b25e7fc82b9a800c885a87f85abe2c03c6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0+3"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -773,6 +781,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
+  pie_menu:
+    dependency: "direct main"
+    description:
+      name: pie_menu
+      sha256: b2b86f6bf9b2c56e90151e625d11c5a6c375746fd9115a9aa236c7a6366e9237
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.6"
   platform:
     dependency: transitive
     description:
