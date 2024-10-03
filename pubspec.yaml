@@ -1,7 +1,6 @@
 name: al_muslim
 description: "A new Flutter project."
 publish_to: "none"
-
 version: 1.0.0+1
 
 environment:
@@ -36,6 +35,9 @@ dependencies:
   vibration: ^2.0.0
   youtube_player_flutter: ^9.1.0
   scrollable_positioned_list: ^0.3.5
+  screenshot: ^3.0.0
+  image_gallery_saver: ^2.0.3
+  path_provider: ^2.1.4
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
