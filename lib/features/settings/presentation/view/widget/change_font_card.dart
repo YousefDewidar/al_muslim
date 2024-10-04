@@ -56,7 +56,7 @@ class _ChangeFontCardState extends State<ChangeFontCard> {
                 ),
               ),
               Slider(
-                inactiveColor: Constants.kBgColDark,
+                inactiveColor: AppColors.kBgColDark,
                 activeColor: Colors.purple,
                 max: 27,
                 min: 19,

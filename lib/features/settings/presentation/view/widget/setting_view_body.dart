@@ -86,13 +86,20 @@ class _NewWidgetState extends State<NewWidget> {
   String loc = 'موقعك الحالي...';
   locationNow() async {
     loc = await FinalLoc.getLoc();
-    setState(() {});
+    
   }
 
   @override
   void initState() {
     locationNow();
+    setState(() {});
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    loc = '';
+    super.dispose();
   }
 
   @override

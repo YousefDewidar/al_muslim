@@ -7,7 +7,7 @@ class CustomThemeData {
   CustomThemeData(this.myFont);
   ThemeData darkData(context) {
     return ThemeData(
-      scaffoldBackgroundColor: Constants.kBgColDark,
+      scaffoldBackgroundColor: AppColors.kBgColDark,
       // ###################
       // ###################
       textTheme: GoogleFonts.amiriTextTheme(
@@ -26,7 +26,7 @@ class CustomThemeData {
       // ###################
       cardTheme: CardTheme(
         elevation: 2.1,
-        color: Constants.kPrimaryColDark,
+        color: AppColors.kPrimaryColDark,
       ),
 
       // ###################
@@ -34,7 +34,7 @@ class CustomThemeData {
         style: ButtonStyle(
           foregroundColor: const WidgetStatePropertyAll(Colors.white),
           backgroundColor: WidgetStatePropertyAll(
-            Constants.kButtonCol,
+            AppColors.kButtonCol,
           ),
         ),
       ),
@@ -56,7 +56,7 @@ class CustomThemeData {
 // =========================================================================
   ThemeData lightData(context) {
     return ThemeData(
-      scaffoldBackgroundColor: Constants.kBgColLight,
+      scaffoldBackgroundColor: AppColors.kBgColLight,
       // ###################
       textTheme: GoogleFonts.amiriTextTheme(
         Theme.of(context).textTheme.copyWith(
@@ -76,14 +76,14 @@ class CustomThemeData {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           foregroundColor: const WidgetStatePropertyAll(Colors.white),
-          backgroundColor: WidgetStatePropertyAll(Constants.kButtonCol),
+          backgroundColor: WidgetStatePropertyAll(AppColors.kButtonCol),
         ),
       ),
 
       // ###################
       cardTheme: CardTheme(
         elevation: 2.1,
-        color: Constants.kPrimaryColLight,
+        color: AppColors.kPrimaryColLight,
       ),
 
       // ###################

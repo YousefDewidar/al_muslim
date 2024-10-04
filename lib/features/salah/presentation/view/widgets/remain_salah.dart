@@ -51,7 +51,7 @@ class _RemainSalahState extends State<RemainSalah> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 23,
-                    color: Constants.kBgColDark),
+                    color: AppColors.kBgColDark),
               ),
               Text(
                 snapshot.data!.entries.first.value,
@@ -59,7 +59,7 @@ class _RemainSalahState extends State<RemainSalah> {
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     letterSpacing: 2,
-                    color: Constants.kBgColDark,
+                    color: AppColors.kBgColDark,
                     fontFamily: AutofillHints.creditCardExpirationDate),
               ),
             ],

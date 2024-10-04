@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Constants {
+class AppColors {
   // background colors
   static Color kBgColLight = const Color(0xffEEE7DD);
   static Color kBgColDark = const Color(0xff001427);
