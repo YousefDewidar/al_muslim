@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/features/alquran/data/model/tafser_model.dart';
 import 'package:al_muslim/features/alquran/data/tafser_services.dart';
