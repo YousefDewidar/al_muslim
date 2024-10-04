@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:flutter/material.dart';

@@ -31,13 +31,6 @@ class InsideNotification {
 
     await Share.shareXFiles([XFile(imagePath.path)],
         text: 'من تطبيق المُسْلِم');
-
-    InsideNotification.insideNotificationCard(
-      content: 'تم مشاركة الدعاء بنجاح',
-      context: context,
-      title: 'اشعار جديد',
-      contentType: ContentType.help,
-    );
   }
 
   static void insideNotificationCard(
