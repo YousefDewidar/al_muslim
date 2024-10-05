@@ -1,4 +1,3 @@
-
 import 'package:al_muslim/features/alquran/data/model/reacters_model.dart';
 import 'package:dio/dio.dart';
 

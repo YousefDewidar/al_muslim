@@ -46,8 +46,10 @@ class _AyahState extends State<Ayah> {
 
   @override
   void dispose() {
-    super.dispose();
     player.dispose();
+    playingAudio = false;
+
+    super.dispose();
   }
 
   @override
@@ -230,7 +232,6 @@ class _AyahState extends State<Ayah> {
         duration ?? const Duration(milliseconds: 5),
         () {
           playingAudio = false;
-          setState(() {});
         },
       );
     } else {

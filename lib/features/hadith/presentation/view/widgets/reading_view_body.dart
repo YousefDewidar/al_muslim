@@ -34,7 +34,6 @@ class _ReadingHadithViewBodyState extends State<ReadingHadithViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    num hadithListCount = 0;
     return FutureBuilder<List<HadithModel>>(
       future: downloaded
           ? HadithServices().getHadithFromLDB(sahehName: widget.sahehName)
@@ -42,7 +41,6 @@ class _ReadingHadithViewBodyState extends State<ReadingHadithViewBody> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<HadithModel> hadith = snapshot.data!;
-          hadithListCount = hadith.length;
           return Column(
             children: [
               CustomAppBar(
@@ -55,7 +53,7 @@ class _ReadingHadithViewBodyState extends State<ReadingHadithViewBody> {
                         .setHadithInLDB(sahehName: widget.sahehName);
                   },
                   header: widget.title,
-                  desc: 'عدد الأحاديث : $hadithListCount'),
+                  desc: ''),
               Expanded(
                 child: ListView.builder(
                   padding: EdgeInsets.zero,

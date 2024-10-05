@@ -1,3 +1,4 @@
+import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,10 +25,10 @@ class SoundCard extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .labelLarge!
-                    .copyWith(fontSize: 18),
+                    .copyWith(fontSize: 18, color: Colors.black),
               ),
               const SpaceH(10),
-              const Icon(Icons.volume_up),
+              const Icon(Icons.volume_up, color: Colors.black),
               const SpaceH(5),
             ],
           ),
@@ -68,6 +69,7 @@ class _SoundSwitchState extends State<SoundSwitch> {
       onChanged: (needSound) async {
         SharedPreferences asyncPref = await SharedPreferences.getInstance();
         asyncPref.setBool('sound', needSound);
+        await NotificationService.initNotification();
         isDone = needSound;
         setState(() {});
       },

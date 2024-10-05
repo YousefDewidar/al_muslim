@@ -1,8 +1,8 @@
-import 'package:al_muslim/core/helper/location.dart';
 import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_font_card.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_theme_cards.dart';
+import 'package:al_muslim/features/settings/presentation/view/widget/rate_app.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/sound_card.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class SettingViewBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const CustomAppBar(header: 'الإعدادات', desc: ''),
-        const SpaceV(20),
+        const SpaceV(8),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
@@ -24,10 +24,10 @@ class SettingViewBody extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
-        const SpaceV(10),
+        const SpaceV(5),
         const Divider(height: 0),
         const ChangeThemeCard(),
-        const SpaceV(20),
+        const SpaceV(12),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
@@ -46,8 +46,9 @@ class SettingViewBody extends StatelessWidget {
           ),
         ),
         const SoundCard(),
+        const SpaceV(10),
+        const RateApp(),
         const Spacer(),
-        const NewWidget(),
         const SpaceV(25),
         RichText(
           textAlign: TextAlign.center,
@@ -79,44 +80,6 @@ class SettingViewBody extends StatelessWidget {
         ),
         const SpaceV(50),
       ],
-    );
-  }
-}
-
-class NewWidget extends StatefulWidget {
-  const NewWidget({
-    super.key,
-  });
-
-  @override
-  State<NewWidget> createState() => _NewWidgetState();
-}
-
-class _NewWidgetState extends State<NewWidget> {
-  String loc = 'موقعك الحالي...';
-  locationNow() async {
-    loc = await FinalLoc.getLoc();
-  }
-
-  @override
-  void initState() {
-    locationNow();
-    setState(() {});
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    loc = '';
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      loc,
-      style: Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 22),
-      textAlign: TextAlign.center,
     );
   }
 }
