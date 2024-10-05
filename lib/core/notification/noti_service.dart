@@ -3,8 +3,11 @@ import 'package:al_muslim/features/salah/data/model/day_data.dart';
 import 'package:al_muslim/features/salah/presentation/view%20model/salah_services.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationService {
+  static bool _needSound = false;
+
   static Future<void> initNotification() async {
     await AwesomeNotifications().isNotificationAllowed().then(
       (isAllowed) async {
@@ -13,6 +16,9 @@ class NotificationService {
         }
       },
     );
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    _needSound = pref.getBool('sound') ?? false;
+
     await AwesomeNotifications().initialize(
       'resource://drawable/noti',
       [
@@ -24,7 +30,7 @@ class NotificationService {
           importance: NotificationImportance.Max,
           channelShowBadge: true,
           locked: true,
-          playSound: true,
+          playSound: _needSound,
           soundSource: 'resource://raw/azan',
         ),
       ],
@@ -65,7 +71,7 @@ class NotificationService {
         id: id,
         channelKey: 'prayer_channel',
         title: 'أذان $salahName',
-        body: ' موعد أذان $salahNameيحين الآن',
+        body: "يحين الآن موعد أذان $salahName",
         notificationLayout: NotificationLayout.Default,
       ),
       schedule: NotificationCalendar(

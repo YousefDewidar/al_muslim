@@ -16,6 +16,7 @@
         android:label="المُسْلِم"
         android:name="${applicationName}"
                 android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/launcher_icon">
         
 
