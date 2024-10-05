@@ -41,6 +41,7 @@ class Location {
         (permission == LocationPermission.whileInUse ||
             permission == LocationPermission.always)) {
       Position position = await Geolocator.getCurrentPosition(
+        // ignore: deprecated_member_use
         desiredAccuracy: LocationAccuracy.best,
       );
       return position;
@@ -68,7 +69,7 @@ class FinalLoc {
     if (pos != null) {
       List<Placemark> curLoc =
           await GetLocationData().getLocation(position: pos);
-          //retur basyon
+      //retur basyon
       return curLoc.first.subAdministrativeArea!;
     }
     return 'فشل تحديد موقعك';

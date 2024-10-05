@@ -4,7 +4,7 @@ import 'package:al_muslim/core/utils/images_data.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/alquran/views/readQuran/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+// import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -30,7 +30,7 @@ class _ScreenShotViewState extends State<ScreenShotView> {
     await _requestPermission();
     final Uint8List? image = await screenshotController.capture();
     if (image != null) {
-      await ImageGallerySaver.saveImage(image, quality: 100);
+      // await ImageGallerySaver.saveImage(image, quality: 100);
       Navigator.pop(context);
     }
   }

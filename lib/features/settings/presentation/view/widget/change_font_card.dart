@@ -36,9 +36,9 @@ class _ChangeFontCardState extends State<ChangeFontCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * .2,
+      // height: MediaQuery.of(context).size.height * .2,
       child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(

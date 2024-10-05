@@ -9,14 +9,13 @@ class RoutineTrackCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal:20.0),
       child: InkWell(
         onTap: () {
           showDialog(
             context: context,
             builder: (context) {
               return const Dialog(
-                
                 child: SizedBox(
                   height: 200,
                   child: Center(
@@ -36,7 +35,6 @@ class RoutineTrackCard extends StatelessWidget {
             height: MediaQuery.of(context).size.width / 5,
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'الروتين اليومي',

@@ -29,7 +29,6 @@ class HomeView extends StatelessWidget {
               context: context,
               title: 'تم تحديث البيانات بنجاح',
             );
-
             await NotificationService.removeAllNotifications();
             await NotificationService.createPrayerNotifications();
           } else {
