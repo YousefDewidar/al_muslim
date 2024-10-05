@@ -9,6 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
+// انا موقف شير السور مؤقت
+
 void main() async {
   const bool isRelease = bool.fromEnvironment('dart.vm.product');
   if (isRelease) {

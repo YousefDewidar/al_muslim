@@ -28,13 +28,13 @@ android {
     compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
-    compileOptions {
+  compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-    }
+}
 
     defaultConfig {
-        applicationId "com.example.almuslimm"
+        applicationId "com.example.al_muslim"
         minSdkVersion 28     // Support from Android 9 (Pie)
         targetSdkVersion 34   // Target the latest version (currently Android 14)
         versionCode 2
