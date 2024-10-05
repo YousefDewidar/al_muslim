@@ -4,6 +4,7 @@ import 'package:al_muslim/features/athkar/views/all_azkar_page.dart';
 import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
 import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
+import 'package:al_muslim/features/podcast/ui/home_screen.dart';
 import 'package:al_muslim/features/qubla/presentation/views/qibla_view.dart';
 import 'package:al_muslim/features/radio/views/all_radios_view.dart';
 import 'package:al_muslim/features/radio/views/masr_radio_view.dart';
@@ -76,6 +77,10 @@ class FeaturesGridView extends StatelessWidget {
             const FeatureCard(
               navigateTo: AsmaaAllahView(),
               title: 'أسماء الله\nالحسنى',
+            ),
+             const FeatureCard(
+              navigateTo: AllPodcastsScreen(),
+              title: 'البودكاست',
             ),
           ],
         ),
