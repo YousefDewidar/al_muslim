@@ -4,7 +4,7 @@ import 'package:al_muslim/features/athkar/views/all_azkar_page.dart';
 import 'package:al_muslim/features/favorites/presentation/view/fav_view.dart';
 import 'package:al_muslim/features/hadith/presentation/view/hadith_view.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/feature_card.dart';
-import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/routine_track_card.dart';
+import 'package:al_muslim/features/podcast/ui/all_podcast_screen.dart';
 import 'package:al_muslim/features/qubla/presentation/views/qibla_view.dart';
 import 'package:al_muslim/features/radio/views/all_radios_view.dart';
 import 'package:al_muslim/features/radio/views/masr_radio_view.dart';
@@ -72,24 +72,21 @@ class FeaturesGridView extends StatelessWidget {
                     imagePath: ImageData.thbha,
                     navigateTo: const SebhaView(),
                   ),
+                  const FeatureCard(
+                    title: 'السيرة النبوية',
+                    navigateTo: SeraView(),
+                    // imagePath: ImageData.sera,
+                  ),
+                  const FeatureCard(
+                    navigateTo: AsmaaAllahView(),
+                    title: 'أسماء الله\nالحسنى',
+                  ),
+                  const FeatureCard(
+                    navigateTo: AllPodcastsScreen(),
+                    title: 'البودكاست',
+                  ),
                 ],
               ),
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-
-              children: [
-                FeatureCard(
-                  title: 'السيرة النبوية',
-                  navigateTo: SeraView(),
-                  // imagePath: ImageData.sera,
-                ),
-                Expanded(child: RoutineTrackCard()),
-                FeatureCard(
-                  navigateTo: AsmaaAllahView(),
-                  title: 'أسماء الله\nالحسنى',
-                ),
-              ],
             ),
           ],
         ),
