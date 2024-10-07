@@ -6,9 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// انا موقف شير السور مؤقت
-// عند صوت الاذان وعند ريفريش وعندالتشغيل (الاشعارات)
-
 
 void main() async {
   const bool isRelease = bool.fromEnvironment('dart.vm.product');

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomeMainItem extends StatelessWidget {
+class PodcastItem extends StatelessWidget {
   final Color color;
   final double height;
   final double width;
   final double radius;
   final String imageUrl;
   final Function() onTap;
-  const HomeMainItem({
+  const PodcastItem({
     super.key,
     required this.color,
     required this.height,
