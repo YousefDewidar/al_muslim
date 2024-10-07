@@ -115,16 +115,19 @@ class RateApp extends StatelessWidget {
             },
           ));
         },
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Text(
-              'تقييم التطبيق',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelLarge!
-                  .copyWith(fontSize: 22, color: Colors.black),
-              textAlign: TextAlign.center,
+        child: SizedBox(
+          width: double.infinity,
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text(
+                'تقييم التطبيق',
+                style: Theme.of(context)
+                    .textTheme
+                    .labelLarge!
+                    .copyWith(fontSize: 22, color: Colors.black),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ),

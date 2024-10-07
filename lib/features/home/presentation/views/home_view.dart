@@ -1,5 +1,4 @@
 import 'package:al_muslim/core/helper/location.dart';
-import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/widgets/isnside_noti.dart';
 import 'package:al_muslim/features/home/presentation/view%20model/azan_services.dart';
 import 'package:al_muslim/features/home/presentation/views/widgets/home_view_body.dart';
@@ -29,8 +28,6 @@ class HomeView extends StatelessWidget {
               context: context,
               title: 'تم تحديث البيانات بنجاح',
             );
-            await NotificationService.removeAllNotifications();
-            await NotificationService.createPrayerNotifications();
           } else {
             InsideNotification.insideNotificationCard(
                 contentType: ContentType.warning,

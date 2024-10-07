@@ -11,7 +11,7 @@ class ImageData {
   static String bookmark = 'assets/icons/bookmark.png';
   static String prayTime = 'assets/icons/prayer-mat.png';
   static String radio = 'assets/icons/radio.png';
-  static String qibla = 'assets/images/landMark.png';
+  static String qibla = 'assets/images/landmark.png';
   static String radioMasr = 'assets/icons/radio_masr.png';
   static String azkar = 'assets/icons/prayer.png';
 

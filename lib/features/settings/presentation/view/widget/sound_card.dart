@@ -1,4 +1,3 @@
-import 'package:al_muslim/core/notification/noti_service.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -69,7 +68,7 @@ class _SoundSwitchState extends State<SoundSwitch> {
       onChanged: (needSound) async {
         SharedPreferences asyncPref = await SharedPreferences.getInstance();
         asyncPref.setBool('sound', needSound);
-        await NotificationService.initNotification();
+        // await NotificationService.initNotification();
         isDone = needSound;
         setState(() {});
       },

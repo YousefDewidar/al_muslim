@@ -2,7 +2,6 @@ import 'package:al_muslim/core/widgets/custom_app_bar.dart';
 import 'package:al_muslim/core/widgets/space.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_font_card.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/change_theme_cards.dart';
-import 'package:al_muslim/features/settings/presentation/view/widget/rate_app.dart';
 import 'package:al_muslim/features/settings/presentation/view/widget/sound_card.dart';
 import 'package:flutter/material.dart';
 
@@ -46,8 +45,6 @@ class SettingViewBody extends StatelessWidget {
           ),
         ),
         const SoundCard(),
-        const SpaceV(10),
-        const RateApp(),
         const Spacer(),
         const SpaceV(25),
         RichText(

@@ -53,7 +53,7 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
         FutureBuilder(
             future: FlutterQiblah.androidDeviceSensorSupport(),
             builder: (context, snapSot) {
-              if (snapSot.data!) {
+              if (snapSot.data ?? false) {
                 return StreamBuilder<QiblahDirection>(
                     stream: FlutterQiblah.qiblahStream,
                     builder: (context, snapshot) {
@@ -70,7 +70,7 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
                           children: [
                             SizedBox(
                               height: 60,
-                              child: direction.qiblah.round()==360
+                              child: direction.qiblah.round() == 360
                                   ? Image.asset('assets/images/landmark.png')
                                   : Opacity(
                                       opacity: 0.2,
@@ -131,12 +131,17 @@ class _QuiblaViewBodyState extends State<QuiblaViewBody>
                             ),
                           ],
                         );
-                      } else {
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
                         return const Column(
                           children: [
                             SpaceV(50),
                             CircularProgressIndicator(color: Colors.amber),
                           ],
+                        );
+                      } else {
+                        return const Column(
+                          children: [SpaceV(50), Text('الجهاز لا يدعم القبلة')],
                         );
                       }
                     });

@@ -5,6 +5,8 @@ import 'package:al_muslim/features/home/presentation/views/widgets/features%20ca
 import 'package:al_muslim/features/home/presentation/views/widgets/features%20cards/routine_track_card.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../settings/presentation/view/widget/rate_app.dart';
+
 class BodyContent extends StatelessWidget {
   const BodyContent({
     super.key,
@@ -12,7 +14,7 @@ class BodyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Column(
+    return const Column(
       children: [
         SpaceV(20),
         QuranCard(),
@@ -21,6 +23,9 @@ class BodyContent extends StatelessWidget {
         RoutineTrackCard(),
         SpaceV(3),
         RandomCard(),
+        SpaceV(3),
+        RateApp(),
+        SpaceV(20),
       ],
     );
   }
